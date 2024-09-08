@@ -1,118 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import MainNavigator from './src/navigators/main';
+import i18n from './src/i18n/i18n';
+import { I18nextProvider } from 'react-i18next';
+import { Platform } from 'react-native';
+import KeyboardManager from 'react-native-keyboard-manager';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+if (Platform.OS === 'ios') {
+  KeyboardManager.setEnable(true);
+  // KeyboardManager.setEnableDebugging(false);
+  // KeyboardManager.setKeyboardDistanceFromTextField(10);
+  // KeyboardManager.setLayoutIfNeededOnUpdate(true);
+  // KeyboardManager.setEnableAutoToolbar(true);
+  // // KeyboardManager.setToolbarDoneBarButtonItemText("Done");
+  // KeyboardManager.setToolbarManageBehaviourBy("subviews"); // "subviews" | "tag" | "position"
+  // KeyboardManager.setToolbarPreviousNextButtonEnable(false);
+  // KeyboardManager.setToolbarTintColor('#0000FF'); // Only #000000 format is supported
+  // KeyboardManager.setToolbarBarTintColor('#FFFFFF'); // Only #000000 format is supported
+  // KeyboardManager.setShouldShowToolbarPlaceholder(true);
+  // KeyboardManager.setOverrideKeyboardAppearance(false);
+  // KeyboardManager.setKeyboardAppearance("default"); // "default" | "light" | "dark"
+  // KeyboardManager.setShouldResignOnTouchOutside(true);
+  // KeyboardManager.setShouldPlayInputClicks(true);
+  // KeyboardManager.resignFirstResponder();
+  KeyboardManager.isKeyboardShowing()
+    .then((isShowing) => {
+        // ...
+    });
 }
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <I18nextProvider i18n={i18n}>
+      <NavigationContainer>
+        <MainNavigator/>
+      </NavigationContainer>
+    </I18nextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
