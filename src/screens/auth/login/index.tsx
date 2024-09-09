@@ -9,6 +9,9 @@ import { Controller, useForm } from 'react-hook-form';
 import InputField from '../../../components/input-field';
 import Button from '../../../components/button';
 import { colors } from '../../../styles/colors';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequest } from '../../../store/actions/auth';
+import { RootState } from '../../../store';
 
 interface IProps {}
 
@@ -17,6 +20,7 @@ const LoginScreen: React.FC<IProps>  = () => {
     const layout = useWindowDimensions();
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
+    const dispatch = useDispatch();
 
     const {
       register,
@@ -27,11 +31,24 @@ const LoginScreen: React.FC<IProps>  = () => {
     } = useForm();
     const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = async(data: any)=> {
+    const onSubmit = async()=> {
       setIsLoading(true);
-      navigation.navigate('Home');
+      const { email, password } = getValues();
+      dispatch(loginRequest(email, password, ""));
       setIsLoading(false);
     };
+
+    const authState = useSelector((state: RootState) => state.auth);
+
+    useEffect(() => {
+      if (authState.error) {
+        console.log(authState.error)
+      }
+
+      if (authState.token) {
+        navigation.navigate('Home');
+      }
+    }, [authState.token, authState.error]);
 
   return (
     <SafeAreaView style={styles.viewContainer}>

@@ -2,8 +2,8 @@ import { all } from 'redux-saga/effects';
 import { combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
-import { authSaga } from './sagas/authSaga';
 import authReducer from './reducers/auth';
+import { authSaga } from './sagas/auth';
 
 const rootReducer = combineReducers({
   auth: authReducer

@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
         padding: scale(12),
-        marginHorizontal: scale(12)
+        marginHorizontal: scale(12),
+        // backgroundColor: colors.DefaultBackground,
     },
 
     txtTitle: {

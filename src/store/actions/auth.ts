@@ -8,6 +8,7 @@ interface LoginRequestAction {
     email: string;
     password: string;
     deviceToken: string;
+    [key: string]: any;
   };
 }
 
@@ -16,6 +17,7 @@ interface LoginSuccessAction {
   payload: {
     token: string;
     user: any;
+    [key: string]: any;
   };
 }
 
@@ -23,22 +25,23 @@ interface LoginFailureAction {
   type: typeof LOGIN_FAILURE;
   payload: {
     error: string;
+    [key: string]: any;
   };
 }
 
 export type AuthActionTypes = LoginRequestAction | LoginSuccessAction | LoginFailureAction;
 
-export const loginRequest = (email: string, password: string, deviceToken: string): LoginRequestAction => ({
+export const loginRequest = (email: string, password: string, deviceToken: string) => ({
   type: LOGIN_REQUEST,
   payload: { email, password, deviceToken }
 });
 
-export const loginSuccess = (token: string, user: any): LoginSuccessAction => ({
+export const loginSuccess = (token: string, user: any) => ({
   type: LOGIN_SUCCESS,
   payload: { token, user }
 });
 
-export const loginFailure = (error: string): LoginFailureAction => ({
+export const loginFailure = (error: string) => ({
   type: LOGIN_FAILURE,
   payload: { error }
 });
