@@ -26,7 +26,7 @@ export const apiService = {
     }
   },
 
-  async getProfileInfo(): Promise<LoginResponse> {
+  async getProfileInfo(): Promise<any> {
     try {
       const token = await AsyncStorage.getItem('token');
       console.log(token);
@@ -47,10 +47,31 @@ export const apiService = {
       console.log(error.response);
       throw new Error(error.response.data.message || 'An error occurred');
     }
-  }
+  },
 
-
+  async getSuggestUser(): Promise<any> {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      console.log(token);
   
+      const response = await api.post(
+        'friend/suggest',
+        {}, 
+        {
+          headers: { 
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response);
+      throw new Error(error.response.data.message || 'An error occurred');
+    }
+  },
+
 };
 
 export default apiService;
