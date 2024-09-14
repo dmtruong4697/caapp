@@ -1,0 +1,9 @@
+{
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    },
+    "editor.quickSuggestionsDelay": 0,
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

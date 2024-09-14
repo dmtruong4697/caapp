@@ -4,6 +4,7 @@ import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
+import SearchUserItem from '../../../components/search-user-item';
 
 interface IProps {}
 
@@ -15,7 +16,7 @@ const FriendListScreen: React.FC<IProps>  = () => {
 
   return (
     <SafeAreaView style={styles.viewContainer}>
-        
+        <SearchUserItem/>
     </SafeAreaView>
   )
 }

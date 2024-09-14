@@ -1,6 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8910';
+const API_BASE_URL = 'http://192.168.1.109:8910';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -18,14 +19,58 @@ export const apiService = {
   async login(email: string, password: string, deviceToken: string): Promise<LoginResponse> {
     try {
       const response = await api.post('auth/login', { email, password, deviceToken });
-      console.log(response.data)
       return response.data;
     } catch (error: any) {
-      throw new Error(error.response.data.message || 'An error occurred');
+      throw error.response.data
     }
   },
 
+  async getProfileInfo(): Promise<any> {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      console.log(token);
   
+      const response = await api.post(
+        'profile/profile-info',
+        {}, 
+        {
+          headers: { 
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response);
+      throw error.response.data
+    }
+  },
+
+  async getSuggestUser(): Promise<any> {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      console.log(token);
+  
+      const response = await api.post(
+        'friend/suggest',
+        {}, 
+        {
+          headers: { 
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      // console.log(response.data);
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response);
+      throw error.response.data
+    }
+  },
+
 };
 
 export default apiService;

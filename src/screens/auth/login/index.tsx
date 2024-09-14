@@ -12,6 +12,7 @@ import { colors } from '../../../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest } from '../../../store/actions/auth';
 import { RootState } from '../../../store';
+import { createTwoButtonAlert } from '../../../utils/alert';
 
 interface IProps {}
 
@@ -42,7 +43,8 @@ const LoginScreen: React.FC<IProps>  = () => {
 
     useEffect(() => {
       if (authState.error) {
-        console.log(authState.error)
+        console.log(authState.error);
+        createTwoButtonAlert(authState.error.error_code, authState.error.error_code)
       }
 
       if (authState.token) {
