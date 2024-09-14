@@ -1,4 +1,5 @@
 import { ProfileInfo } from "../../models/profile/profile-info";
+import { UserInfo } from "../../models/user/user-info";
 
 export const GET_SUGGEST_USER_REQUEST = 'GET_PROFILE_INFO_REQUEST';
 export const GET_SUGGEST_USER_SUCCESS = 'GET_PROFILE_INFO_SUCCESS';
@@ -7,6 +8,7 @@ export const GET_SUGGEST_USER_FAILURE = 'GET_PROFILE_INFO_FAILURE';
 interface GetSuggestUserRequestAction {
   type: typeof GET_SUGGEST_USER_REQUEST;
   payload: {
+    id: any,
     [key: string]: any;
   };
 }
@@ -34,9 +36,9 @@ export const getSuggestUserRequest = (id: string) => ({
   payload: { id }
 });
 
-export const getSuggestUserSuccess = (profile: ProfileInfo) => ({
+export const getSuggestUserSuccess = (users: any) => ({
   type: GET_SUGGEST_USER_SUCCESS,
-  payload: { profile }
+  payload: { users }
 });
 
 export const getSuggestUserFailure = (error: string) => ({

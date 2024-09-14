@@ -23,7 +23,7 @@ interface LoginSuccessAction {
 interface LoginFailureAction {
   type: typeof LOGIN_FAILURE;
   payload: {
-    error: string;
+    error: any;
     [key: string]: any;
   };
 }

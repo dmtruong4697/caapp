@@ -10,7 +10,7 @@ function* login(action: ReturnType<typeof loginRequest>): Generator<any, void, a
     yield put(loginSuccess(response.token ));
     yield put({ type: LOGIN_SUCCESS });
   } catch (error: any) {
-    yield put(loginFailure(error.message));
+    yield put(loginFailure(error));
   }
 }
 

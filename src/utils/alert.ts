@@ -1,13 +1,13 @@
 import { Alert } from "react-native";
 
 export const createTwoButtonAlert = (title: string, message: string) => {
-    Alert.alert('Alert Title', 'My Alert Msg', [
+    Alert.alert(title, message, [
       {
         text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
+        onPress: () => {},
         style: 'cancel',
       },
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
+      {text: 'OK', onPress: () => {}},
     ]);
 }
 

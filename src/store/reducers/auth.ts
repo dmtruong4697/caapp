@@ -1,5 +1,5 @@
 import { ProfileInfo } from "../../models/profile/profile-info";
-import { AuthActionTypes, LOGIN_FAILURE, LOGIN_SUCCESS } from "../actions/auth";
+import { AuthActionTypes, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actions/auth";
 
 interface AuthState {
   token: string | null;
@@ -13,6 +13,11 @@ const initialState: AuthState = {
 
 const authReducer = (state = initialState, action: AuthActionTypes): AuthState => {
   switch (action.type) {
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        error: null,
+      };
     case LOGIN_SUCCESS:
       return {
         ...state,

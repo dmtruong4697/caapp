@@ -4,5 +4,6 @@
         "comments": "on",
         "strings": "on"
     },
-    "editor.quickSuggestionsDelay": 0
+    "editor.quickSuggestionsDelay": 0,
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
