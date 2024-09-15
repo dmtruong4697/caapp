@@ -1,4 +1,5 @@
 import { ProfileInfo } from "../../models/profile/profile-info";
+import { createTwoButtonAlert } from "../../utils/alert";
 import { AuthActionTypes, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actions/auth";
 
 interface AuthState {
@@ -25,6 +26,7 @@ const authReducer = (state = initialState, action: AuthActionTypes): AuthState =
         error: null,
       };
     case LOGIN_FAILURE:
+      createTwoButtonAlert(action.payload.error.error_code, action.payload.error.error_code)
       return {
         ...state,
         error: action.payload.error,

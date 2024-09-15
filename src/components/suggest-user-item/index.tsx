@@ -35,7 +35,9 @@ const SuggestUserItem: React.FC<IProps> = ({userInfo}) => {
 
                 <TouchableOpacity 
                     style={styles.btnButton}
-                    onPress={() => {}}
+                    onPress={() => {
+                        console.log(userInfo!.friend);
+                    }}
                 >
                     <Text style={[styles.txtButton]}>Send Request</Text>
                 </TouchableOpacity>

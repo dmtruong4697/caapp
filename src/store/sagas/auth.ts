@@ -6,9 +6,9 @@ import api from '../../services/api';
 function* login(action: ReturnType<typeof loginRequest>): Generator<any, void, any> {
   try {
     const response = yield call(api.login, action.payload.email, action.payload.password, action.payload.deviceToken);
-    yield AsyncStorage.setItem('token', response.token);
-    yield put(loginSuccess(response.token ));
-    yield put({ type: LOGIN_SUCCESS });
+    yield AsyncStorage.setItem('token', response!.token);
+    yield put(loginSuccess(response!.token ));
+    // yield put({ type: LOGIN_SUCCESS });
   } catch (error: any) {
     yield put(loginFailure(error));
   }

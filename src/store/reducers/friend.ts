@@ -1,5 +1,6 @@
 import { ProfileInfo } from "../../models/profile/profile-info";
 import { UserInfo } from "../../models/user/user-info";
+import { createTwoButtonAlert } from "../../utils/alert";
 import { FriendActionTypes, GET_SUGGEST_USER_FAILURE, GET_SUGGEST_USER_REQUEST, GET_SUGGEST_USER_SUCCESS } from "../actions/friend";
 import { GET_PROFILE_INFO_REQUEST } from "../actions/profile";
 
@@ -27,6 +28,7 @@ const friendReducer = (state = initialState, action: FriendActionTypes): FriendS
         error: null,
       };
     case GET_SUGGEST_USER_FAILURE:
+      createTwoButtonAlert(action.payload.error.error_code, action.payload.error.error_code)
       return {
         ...state,
         error: action.payload.error,

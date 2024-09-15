@@ -23,7 +23,7 @@ interface GetProfileInfoSuccessAction {
 interface GetProfileInfoFailureAction {
   type: typeof GET_PROFILE_INFO_FAILURE;
   payload: {
-    error: string;
+    error: any;
     [key: string]: any;
   };
 }

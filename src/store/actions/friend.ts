@@ -24,7 +24,7 @@ interface GetSuggestUserSuccessAction {
 interface GetSuggestUserFailureAction {
   type: typeof GET_SUGGEST_USER_FAILURE;
   payload: {
-    error: string;
+    error: any;
     [key: string]: any;
   };
 }

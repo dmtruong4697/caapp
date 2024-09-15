@@ -43,8 +43,8 @@ const LoginScreen: React.FC<IProps>  = () => {
 
     useEffect(() => {
       if (authState.error) {
-        console.log(authState.error);
-        createTwoButtonAlert(authState.error.error_code, authState.error.error_code)
+        console.log("auth error",authState.error);
+        // createTwoButtonAlert(authState.error.error_code, authState.error.error_code)
       }
 
       if (authState.token) {
