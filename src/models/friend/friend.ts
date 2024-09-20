@@ -1,6 +1,6 @@
 export type Friend = {
-    ID: number;
-    FirstUserId: number;
-    SecondUserId: number;
-    CreateAt: Date; 
+    id: number;
+    first_user_id: number;
+    second_user_id: number;
+    create_at: Date; 
 }

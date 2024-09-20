@@ -1,37 +1,39 @@
 import { ProfileInfo } from "../../models/profile/profile-info";
 import { UserInfo } from "../../models/user/user-info";
 import { createTwoButtonAlert } from "../../utils/alert";
-import { FriendActionTypes, GET_SUGGEST_USER_FAILURE, GET_SUGGEST_USER_REQUEST, GET_SUGGEST_USER_SUCCESS } from "../actions/friend";
+import { SuggestUserActionTypes, GET_SUGGEST_USER_FAILURE, GET_SUGGEST_USER_REQUEST, GET_SUGGEST_USER_SUCCESS } from "../actions/friend";
 import { GET_PROFILE_INFO_REQUEST } from "../actions/profile";
 
 interface FriendState {
-  suggest_user: any | null;
-  error: any | null;
+  suggest_users: any | null;
+  my_friends: any | null;
+  error_suggest_users: any | null;
 }
 
 const initialState: FriendState = {
-    suggest_user: null,
-    error: null,
+    suggest_users: null,
+    my_friends: null,
+    error_suggest_users: null,
 };
 
-const friendReducer = (state = initialState, action: FriendActionTypes): FriendState => {
+const friendReducer = (state = initialState, action: SuggestUserActionTypes): FriendState => {
   switch (action.type) {
     case GET_SUGGEST_USER_REQUEST:
       return {
         ...state,
-        error: null,
+        error_suggest_users: null,
       };
     case GET_SUGGEST_USER_SUCCESS:
       return {
         ...state,
-        suggest_user: action.payload.users,
-        error: null,
+        suggest_users: action.payload.users,
+        error_suggest_users: null,
       };
     case GET_SUGGEST_USER_FAILURE:
       createTwoButtonAlert(action.payload.error.error_code, action.payload.error.error_code)
       return {
         ...state,
-        error: action.payload.error,
+        error_suggest_users: action.payload.error,
       };
     default:
       return state;

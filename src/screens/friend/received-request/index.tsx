@@ -35,11 +35,11 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
     },[])
 
     useEffect(() => {
-      if (friendState.error) {
+      if (friendState.error_suggest_users) {
         // console.log(friendState.error)
       }
-      console.log(friendState.suggest_user);
-    }, [friendState.suggest_user, friendState.error]);
+      console.log(friendState.suggest_users);
+    }, [friendState.suggest_users, friendState.error_suggest_users]);
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -70,9 +70,9 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
             renderSeeAll
           />
           <View style={styles.viewFlatListContainer}>
-            {friendState.suggest_user && 
+            {friendState.suggest_users && 
               <FlatList
-                data={friendState.suggest_user}
+                data={friendState.suggest_users}
                 // keyExtractor={item => item.Id.toString()}
                 scrollEnabled={false}
                 renderItem={({item}) => (

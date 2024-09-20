@@ -9,7 +9,7 @@ function* getProfileInfo(action: ReturnType<typeof getProfileInfoRequest>): Gene
     const response = yield call(api.getProfileInfo);
     yield put(getProfileInfoSuccess(response.profile));
   } catch (error: any) {
-    yield put(getProfileInfoFailure(error.message));
+    yield put(getProfileInfoFailure(error));
   }
 }
 
