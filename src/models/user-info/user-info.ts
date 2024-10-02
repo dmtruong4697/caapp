@@ -1,3 +1,4 @@
+import { FriendRequest } from "../friend-responce/friend-request";
 import { Friend } from "../friend/friend";
 
 export type UserInfo = {
@@ -23,4 +24,5 @@ export type UserInfo = {
     job_name: string;
     time_zone: string;
     friend: Friend;
+    request: FriendRequest;
 }

@@ -59,6 +59,15 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.LightColor,
     },
 
+    btnUndoRequestButton: {
+        width: '48%',
+        height: scale(30),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: radius.Radius1,
+        backgroundColor: colors.GrayBackground,
+    },
+
     txtButton: {
         fontSize: 16,
         fontWeight: '400',

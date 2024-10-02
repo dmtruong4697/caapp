@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from 'r
 import React from 'react'
 import { styles } from './styles';
 import { colors } from '../../styles/colors';
-import { UserInfo } from '../../models/user/user-info';
+import { UserInfo } from '../../models/user-info/user-info';
 
 interface IProps {
     userInfo?: UserInfo

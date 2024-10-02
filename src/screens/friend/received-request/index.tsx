@@ -10,6 +10,7 @@ import { getSuggestUserRequest } from '../../../store/actions/friend';
 import { RootState } from '../../../store';
 import ListHeader from '../../../components/list-header';
 import SuggestUserItem from '../../../components/suggest-user-item';
+import { getAllReceivedRequestRequest } from '../../../store/actions/friend-request';
 
 interface IProps {}
 
@@ -20,23 +21,25 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
+    const friendState = useSelector((state: RootState) => state.friend);
+    const friendRequestState = useSelector((state: RootState) => state.friendRequest);
+
     // refresh handle
     const [refreshing,setRefreshing] = useState(false);
     const pullToRefreshFunction = () => {
         setRefreshing(true)
-        dispatch(getSuggestUserRequest("123"));
+        dispatch(getAllReceivedRequestRequest())
+        dispatch(getSuggestUserRequest());
         setRefreshing(false)
     }
 
-    const friendState = useSelector((state: RootState) => state.friend);
-
     useEffect(() => {
-      dispatch(getSuggestUserRequest("123"));
+      dispatch(getAllReceivedRequestRequest())
+      dispatch(getSuggestUserRequest());
     },[])
 
     useEffect(() => {
       if (friendState.error_suggest_users) {
-        // console.log(friendState.error)
       }
       console.log(friendState.suggest_users);
     }, [friendState.suggest_users, friendState.error_suggest_users]);
@@ -55,10 +58,23 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
           <ListHeader
             title='Received Request'
             onPressSeeAll={() => {
-
+              console.log(friendRequestState.received_requests!);
             }}
             renderSeeAll
           />
+          <View style={styles.viewFlatListContainer}>
+            {friendRequestState.received_requests && 
+              <FlatList
+                data={friendRequestState.received_requests.requests}
+                // keyExtractor={item => item.Id.toString()}
+                scrollEnabled={false}
+                renderItem={({item}) => (
+                  <SuggestUserItem userInfo={item.user}/>
+                )}
+                contentContainerStyle={{gap: 10,}}
+              />
+            }
+          </View>
         </View>
 
         <View style={styles.viewListContainer}>

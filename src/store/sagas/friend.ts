@@ -1,11 +1,11 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import api from '../../services/api';
 import { GET_ALL_MY_FRIENDS_REQUEST, GET_SUGGEST_USER_REQUEST, GET_SUGGEST_USER_SUCCESS, getAllMyFriendsFailure, getAllMyFriendsRequest, getAllMyFriendsSuccess, getSuggestUserFailure, getSuggestUserRequest, getSuggestUserSuccess } from '../actions/friend';
+import friendService from '../../services/friend';
 
 function* getSuggestUser(action: ReturnType<typeof getSuggestUserRequest>): Generator<any, void, any> {
   try {
-    const response = yield call(api.getSuggestUser);
+    const response = yield call(friendService.getSuggestUser);
     yield put(getSuggestUserSuccess(response.users));
     // console.log(response.users);
   } catch (error: any) {
@@ -15,7 +15,7 @@ function* getSuggestUser(action: ReturnType<typeof getSuggestUserRequest>): Gene
 
 function* getAllMyFriends(action: ReturnType<typeof getAllMyFriendsRequest>): Generator<any, void, any> {
   try {
-    const response = yield call(api.getAllMyFriend);
+    const response = yield call(friendService.getAllMyFriend);
     yield put(getAllMyFriendsSuccess(response.friends));
   } catch (error: any) {
     yield put(getAllMyFriendsFailure(error));  

@@ -8,11 +8,14 @@ import profileReducer from './reducers/profile';
 import { profileSaga } from './sagas/profile';
 import friendReducer from './reducers/friend';
 import { friendSaga } from './sagas/friend';
+import friendRequestReducer from './reducers/friend-request';
+import { friendRequestSaga } from './sagas/friend-request';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   friend: friendReducer,
+  friendRequest: friendRequestReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -22,6 +25,7 @@ function* rootSaga() {
     authSaga(),
     profileSaga(),
     friendSaga(),
+    friendRequestSaga(),
   ]);
 }
 

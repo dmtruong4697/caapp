@@ -32,7 +32,7 @@ const HomeNavigator = () => {
             right: 10,
 
             backgroundColor: colors.LightColor,
-            borderRadius: 10,
+            borderRadius: 15,
         },
 
         tabBarItemStyle:{
