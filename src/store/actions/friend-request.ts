@@ -8,6 +8,10 @@ export const CREATE_FRIEND_REQUEST_FAILURE = "CREATE_FRIEND_REQUEST_FAILURE";
 export const GET_ALL_RECEIVED_REQUEST_REQUEST = "GET_ALL_RECEIVED_REQUEST_REQUEST";
 export const GET_ALL_RECEIVED_REQUEST_SUCCESS = "GET_ALL_RECEIVED_REQUEST_SUCCESS";
 export const GET_ALL_RECEIVED_REQUEST_FAILURE = "GET_ALL_RECEIVED_REQUEST_FAILURE";
+//accept friend request
+export const ACCEPT_FRIEND_REQUEST_REQUEST = "ACCEPT_FRIEND_REQUEST_REQUEST";
+export const ACCEPT_FRIEND_REQUEST_SUCCESS = "ACCEPT_FRIEND_REQUEST_SUCCESS";
+export const ACCEPT_FRIEND_REQUEST_FAILURE = "ACCEPT_FRIEND_REQUEST_FAILURE";
 
 //create friend request
 interface CreateFriendRequestRequestAction {
@@ -17,7 +21,6 @@ interface CreateFriendRequestRequestAction {
         [key: string]: any;
     };
 }
-
 interface CreateFriendRequestSuccessAction {
     type: typeof CREATE_FRIEND_REQUEST_SUCCESS;
     payload: {
@@ -25,7 +28,6 @@ interface CreateFriendRequestSuccessAction {
         [key: string]: any;
     };
 }
-
 interface CreateFriendRequestFailureAction {
     type: typeof CREATE_FRIEND_REQUEST_FAILURE;
     payload: {
@@ -41,7 +43,6 @@ interface GetAllReceivedRequestRequestAction {
         [key: string]: any;
     };
 }
-
 interface GetAllReceivedRequestSuccessAction {
     type: typeof GET_ALL_RECEIVED_REQUEST_SUCCESS;
     payload: {
@@ -49,7 +50,6 @@ interface GetAllReceivedRequestSuccessAction {
         [key: string]: any;
     };
 }
-
 interface GetAllReceivedRequestFailureAction {
     type: typeof GET_ALL_RECEIVED_REQUEST_FAILURE;
     payload: {
@@ -58,11 +58,36 @@ interface GetAllReceivedRequestFailureAction {
     };
 }
 
+//get all received request
+interface AcceptFriendRequestRequestAction {
+    type: typeof GET_ALL_RECEIVED_REQUEST_REQUEST;
+    payload: {
+        id: number;
+        [key: string]: any;
+    };
+}
+interface AcceptFriendRequestSuccessAction {
+    type: typeof GET_ALL_RECEIVED_REQUEST_SUCCESS;
+    payload: {
+        id: number;
+        [key: string]: any;
+    };
+}
+interface AcceptFriendRequestFailureAction {
+    type: typeof GET_ALL_RECEIVED_REQUEST_FAILURE;
+    payload: {
+        error: any,
+        [key: string]: any;
+    };
+}
+
 export type FriendRequestActionTypes = 
+    | AcceptFriendRequestRequestAction
+    | AcceptFriendRequestSuccessAction
+    | AcceptFriendRequestFailureAction
     | CreateFriendRequestRequestAction
     | CreateFriendRequestSuccessAction
     | CreateFriendRequestFailureAction
-
     | GetAllReceivedRequestRequestAction
     | GetAllReceivedRequestSuccessAction
     | GetAllReceivedRequestFailureAction;
@@ -72,12 +97,10 @@ export const createFriendRequestRequest = (user_id: number) => ({
     type: CREATE_FRIEND_REQUEST_REQUEST,
     payload: {user_id}
 });
-
 export const createFriendRequestSuccess = (user_id: number) => ({
     type: CREATE_FRIEND_REQUEST_SUCCESS,
     payload: {user_id}
 });
-
 export const createFriendRequestFailure = (error: string) => ({
     type: CREATE_FRIEND_REQUEST_FAILURE,
     payload: {error}
@@ -88,13 +111,25 @@ export const getAllReceivedRequestRequest = () => ({
     type: GET_ALL_RECEIVED_REQUEST_REQUEST,
     payload: {}
 });
-
 export const getAllReceivedRequestSuccess = (requests: GetListFriendRequestReceivedResponce) => ({
     type: GET_ALL_RECEIVED_REQUEST_SUCCESS,
     payload: {requests}
 });
-
 export const getAllReceivedRequestFailure = (error: string) => ({
     type: GET_ALL_RECEIVED_REQUEST_FAILURE,
+    payload: {error}
+});
+
+// accept friend request
+export const acceptFriendRequestRequest = (id: number) => ({
+    type: ACCEPT_FRIEND_REQUEST_REQUEST,
+    payload: {id}
+});
+export const acceptFriendRequestSuccess = (id: number) => ({
+    type: ACCEPT_FRIEND_REQUEST_SUCCESS,
+    payload: {id}
+});
+export const acceptFriendRequestFailure = (error: string) => ({
+    type: ACCEPT_FRIEND_REQUEST_FAILURE,
     payload: {error}
 });

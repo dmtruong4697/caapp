@@ -11,6 +11,7 @@ import { RootState } from '../../../store';
 import ListHeader from '../../../components/list-header';
 import SuggestUserItem from '../../../components/suggest-user-item';
 import { getAllReceivedRequestRequest } from '../../../store/actions/friend-request';
+import ReceivedRequestItem from '../../../components/received-request-item';
 
 interface IProps {}
 
@@ -58,18 +59,18 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
           <ListHeader
             title='Received Request'
             onPressSeeAll={() => {
-              console.log(friendRequestState.received_requests!);
+              // console.log(friendRequestState.received_requests!);
             }}
             renderSeeAll
           />
           <View style={styles.viewFlatListContainer}>
             {friendRequestState.received_requests && 
               <FlatList
-                data={friendRequestState.received_requests.requests}
+                data={friendRequestState.received_requests}
                 // keyExtractor={item => item.Id.toString()}
                 scrollEnabled={false}
                 renderItem={({item}) => (
-                  <SuggestUserItem userInfo={item.user}/>
+                  <ReceivedRequestItem userInfo={item.user}/>
                 )}
                 contentContainerStyle={{gap: 10,}}
               />
