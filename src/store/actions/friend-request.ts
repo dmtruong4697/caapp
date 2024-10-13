@@ -85,9 +85,11 @@ export type FriendRequestActionTypes =
     | AcceptFriendRequestRequestAction
     | AcceptFriendRequestSuccessAction
     | AcceptFriendRequestFailureAction
+
     | CreateFriendRequestRequestAction
     | CreateFriendRequestSuccessAction
     | CreateFriendRequestFailureAction
+    
     | GetAllReceivedRequestRequestAction
     | GetAllReceivedRequestSuccessAction
     | GetAllReceivedRequestFailureAction;

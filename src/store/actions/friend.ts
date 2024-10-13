@@ -54,7 +54,6 @@ export const GET_ALL_MY_FRIENDS_FAILURE = 'GET_ALL_MY_FRIENDS_FAILURE';
 interface GetAllMyFriendsRequestAction {
   type: typeof GET_ALL_MY_FRIENDS_REQUEST;
   payload: {
-    id: any;
     [key: string]: any;
   };
 }
@@ -80,9 +79,9 @@ export type GetAllMyFriendActionTypes =
   | GetAllMyFriendsSuccessAction 
   | GetAllMyFriendsFailureAction;
 
-export const getAllMyFriendsRequest = (id: string) => ({
+export const getAllMyFriendsRequest = () => ({
   type: GET_ALL_MY_FRIENDS_REQUEST,
-  payload: { id }
+  payload: {}
 });
 
 export const getAllMyFriendsSuccess = (friends: any) => ({

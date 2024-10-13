@@ -6,6 +6,7 @@ export const colors = {
     // color
     White: "#FFFFFF",
     Black: "#000000",
+    Gray: "#7d7d7d",
 
     // text color
     PrimaryText: '#111111',
@@ -22,4 +23,7 @@ export const colors = {
     LightColor: '#C4DAD2',
     DarkColor: '#16423C',
     ChatItemColor: '#6A9C89',
+
+    // bonus
+
 }

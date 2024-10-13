@@ -23,16 +23,16 @@ const HomeNavigator = () => {
 
     const screenOptions = {
         tabBarStyle:{
-            height: 60,
-            paddingBottom: 10,
-            paddingTop: 10,
+            height: 68,
+            paddingBottom: 12,
+            paddingTop: 12,
             position: 'absolute',
-            bottom: 20,
+            bottom: 30,
             left: 10,
             right: 10,
 
             backgroundColor: colors.LightColor,
-            borderRadius: 15,
+            borderRadius: 20,
         },
 
         tabBarItemStyle:{

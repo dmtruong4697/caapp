@@ -5,6 +5,7 @@ import SignUpScreen from "../../screens/auth/sign-up";
 import ValidateEmailScreen from "../../screens/auth/validate-email";
 import HomeNavigator from "../home";
 import WelcomeScreen from "../../screens/welcome";
+import ChatScreen from "../../screens/chat/chat";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -75,6 +76,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="Home"
             component={HomeNavigator}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="Chat"
+            component={ChatScreen}
             options={{
                 headerShown: false,
             }}
