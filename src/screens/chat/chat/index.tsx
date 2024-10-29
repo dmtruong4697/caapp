@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, Pressable, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,6 +7,10 @@ import { useTranslation } from 'react-i18next';
 import { faAngleLeft, faBars, faFaceSmile, faPaperPlane, faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { colors } from '../../../styles/colors';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { case1NavigateChatScreenRequest } from '../../../store/actions/case1-navigate-chat-screen-action';
+import { case2NavigateChatScreenRequest } from '../../../store/actions/case2-navigate-chat-screen-action';
 
 interface IProps {}
 
@@ -15,6 +19,21 @@ const ChatScreen: React.FC<IProps>  = () => {
     const layout = useWindowDimensions();
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
+    const dispatch = useDispatch();
+
+    const checkFriendChannelState = useSelector((state: RootState) => state.checkFriendChannel);
+    const getChannelInfoState = useSelector((state: RootState) => state.channelInfo);
+    const channelChatHistoryState = useSelector((state: RootState) => state.channelChatHistory);
+
+    useEffect(() => {
+      dispatch(case2NavigateChatScreenRequest(4))
+    },[])
+
+    useEffect(() => {
+      console.log(checkFriendChannelState.channel);
+      console.log(getChannelInfoState.friend_channel_info);
+      console.log(channelChatHistoryState.messages);
+    }, [checkFriendChannelState.channel, getChannelInfoState.friend_channel_info, channelChatHistoryState.messages]);
 
     const [messageText, setMessageText] = useState("");
 
