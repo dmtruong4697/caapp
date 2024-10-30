@@ -22,7 +22,7 @@ function* case2NavigateChatScreen(action: ReturnType<typeof case2NavigateChatScr
     const getChannelChatHistoryResponse = yield call(channelService.getChannelChatHistory, checkFriendChannelInfoResponce.channel.id);
     yield put(getChannelChatHistorySuccess(getChannelChatHistoryResponse))
 
-    yield put(case2NavigateChatScreenSuccess());
+    yield put(case2NavigateChatScreenSuccess(true));
 
   } catch (error: any) {
     yield put(case2NavigateChatScreenFailure(error));

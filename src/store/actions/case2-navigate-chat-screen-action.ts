@@ -15,6 +15,7 @@ interface Case2NavigateChatScreenRequestAction {
 interface Case2NavigateChatScreenSuccessAction {
   type: typeof CASE2_NAVIGATE_CHAT_SCREEN_SUCCESS;
   payload: {
+    success_flg: boolean;
     [key: string]: any;
   };
 }
@@ -34,9 +35,9 @@ export const case2NavigateChatScreenRequest = (userID: number) => ({
   payload: { userID }
 });
 
-export const case2NavigateChatScreenSuccess = () => ({
+export const case2NavigateChatScreenSuccess = (successFlg: boolean) => ({
   type: CASE2_NAVIGATE_CHAT_SCREEN_SUCCESS,
-  payload: {}
+  payload: {successFlg}
 });
 
 export const case2NavigateChatScreenFailure = (error: string) => ({
