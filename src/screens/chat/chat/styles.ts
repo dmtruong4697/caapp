@@ -18,8 +18,15 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.PrimaryColor,
         height: scale(85),
 
-        position: 'absolute',
-        top: 0,
+        // position: 'absolute',
+        // top: 0,
+    },
+
+    viewChatHistoryContainer: {
+        width: '100%',
+        // padding: scale(8),
+        alignItems: 'center',
+        flex: 1,
     },
 
     btnHeaderUserName: {
@@ -57,8 +64,8 @@ export const styles = StyleSheet.create({
     viewBottomContainer: {
         width: '100%',
         // height: scale(60),
-        position: 'absolute',
-        bottom: 0,
+        // position: 'absolute',
+        // bottom: 0,
         padding: scale(6),
         paddingBottom: scale(18),
 

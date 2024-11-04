@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { case2NavigateChatScreenRequest } from '../../../store/actions/case2-navigate-chat-screen-action';
 import { MessageDetail } from '../../../models/message/message-detail';
+import ChatMessageItem from '../../../components/chat-message-item';
 
 interface IProps {}
 
@@ -32,9 +33,10 @@ const ChatScreen: React.FC<IProps> = () => {
   const getChannelInfoState = useSelector((state: RootState) => state.channelInfo);
   const channelChatHistoryState = useSelector((state: RootState) => state.channelChatHistory);
   const case2NavigateChatScreenState = useSelector((state: RootState) => state.case2NavigateChatScreen);
+  const profileState = useSelector((state: RootState) => state.profile)
 
   const [messageText, setMessageText] = useState("");
-  const [messages, setMessages] = useState<any[]>([]); 
+  const [messages, setMessages] = useState<MessageDetail[]>([]); 
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const ChatScreen: React.FC<IProps> = () => {
 
       ws.onmessage = (event) => {
         const newMessage: MessageDetail = JSON.parse(event.data);
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
+        setMessages((prevMessages) => [newMessage, ...prevMessages]);
       };
 
       ws.onclose = () => {
@@ -86,7 +88,8 @@ const ChatScreen: React.FC<IProps> = () => {
 
   const sendMessage = () => {
     if (socket && messageText) {
-      const message = { content: messageText, sender_id: 3 };
+      const message = { content: messageText, sender_id: profileState.profile!.id };
+      console.log(message)
       socket.send(JSON.stringify(message));
       // setMessages((prevMessages) => [...prevMessages, message]);
       setMessageText("");
@@ -104,7 +107,7 @@ const ChatScreen: React.FC<IProps> = () => {
         </TouchableOpacity>
 
         <Pressable style={styles.btnHeaderUserName} onPress={() => {}}>
-          <Text style={styles.txtHeaderUserName}>Tìm kiếm</Text>
+          <Text style={styles.txtHeaderUserName}>{getChannelInfoState.friend_channel_info?.user.first_name} {getChannelInfoState.friend_channel_info?.user.middle_name} {getChannelInfoState.friend_channel_info?.user.last_name}</Text>
         </Pressable>
 
         <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {}}>
@@ -112,17 +115,28 @@ const ChatScreen: React.FC<IProps> = () => {
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        data={messages}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <Text>{item.sender_id}: {item.content}</Text>
-        )}
-      />
+      {/* message list view */}
+      <View style={styles.viewChatHistoryContainer}>
+        <FlatList
+          data={messages}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <ChatMessageItem message={item}/>
+            // <Text>{item.sender?.id}: {item.message.content}</Text>
+          )}
+          style={{width: '100%',}}
+          inverted
+        />
+      </View>
 
       {/* bottom view */}
       <View style={styles.viewBottomContainer}>
-        <TouchableOpacity style={styles.btnBottom} onPress={() => {}}>
+        <TouchableOpacity 
+          style={styles.btnBottom} 
+          onPress={() => {
+            console.log(messages);
+          }}
+        >
           <FontAwesomeIcon icon={faFaceSmile} size={24} color={colors.Gray} />
         </TouchableOpacity>
 
