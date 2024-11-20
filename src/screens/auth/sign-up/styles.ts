@@ -11,12 +11,17 @@ export const styles = StyleSheet.create({
         // backgroundColor: colors.DefaultBackground,
     },
 
+    viewHeader: {
+        width: '100%',
+        paddingTop: scale(8),
+    },
+
     txtTitle: {
         fontSize: 22,
         fontWeight: '400',
         color: colors.PrimaryText,
+        marginTop: scale(0),
         marginBottom: scale(20),
-        marginTop: scale(10),
     },
 
     viewFormContainer: {
@@ -33,8 +38,8 @@ export const styles = StyleSheet.create({
     viewTerm: {
         width: '100%',
         flexDirection: 'row',
-        marginBottom: scale(30),
-        marginTop: scale(10),
+        marginBottom: scale(35),
+        marginTop: scale(15),
         paddingRight: scale(10),
     },
 

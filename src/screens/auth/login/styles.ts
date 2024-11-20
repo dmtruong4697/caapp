@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/colors";
 import { scale } from "../../../styles/scale";
+import { radius } from "../../../styles/radius";
 
 export const styles = StyleSheet.create({
     viewContainer: {
@@ -9,13 +10,18 @@ export const styles = StyleSheet.create({
         marginHorizontal: scale(12),
     },
 
+    viewHeader: {
+        width: '100%',
+        paddingTop: scale(8),
+    },
+
     txtTitle: {
         fontSize: 24,
         fontWeight: '500',
         color: colors.PrimaryText,
 
-        marginTop: scale(20),
-        marginBottom: scale(40),
+        marginTop: scale(0),
+        marginBottom: scale(35),
     },
 
     txtSub: {
@@ -59,7 +65,43 @@ export const styles = StyleSheet.create({
         gap: scale(10),
         flexDirection: 'column',
 
-        marginBottom: scale(15),
+        marginBottom: scale(40),
         marginTop: scale(30),
+    },
+
+    viewOAuthContainer: {
+        flexDirection: 'column',
+        width: '100%',
+        gap:  scale(20),
+    },
+
+    txtOrSignInWith: {
+        width: '100%',
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: '400',
+        color: colors.SecondText,
+    },
+
+    viewOAuth: {
+        width: '100%',
+        flexDirection: 'row',
+        gap: scale(30),
+        justifyContent: 'center'
+    },
+
+    btnOAuth: {
+        width: scale(74),
+        height: scale(48),
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        borderRadius: radius.Radius1,
+        backgroundColor: colors.White,
+    },
+
+    imgOAuth: {
+        width: scale(24),
+        height: scale(24),
     },
 })

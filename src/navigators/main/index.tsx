@@ -6,6 +6,9 @@ import ValidateEmailScreen from "../../screens/auth/validate-email";
 import HomeNavigator from "../home";
 import WelcomeScreen from "../../screens/welcome";
 import ChatScreen from "../../screens/chat/chat";
+import { UserInfo } from "../../models/user-info/user-info";
+import RCDashboardScreen from "../../screens/rc/rc-dashboard";
+import FirstInfoInputScreen from "../../screens/auth/first-info-input";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -14,11 +17,18 @@ export type RootStackParamList = {
 
     SignUp: {};
 
-    ValidateEmail: {};
+    ValidateEmail: {
+        email: string,
+        password: string,
+    };
 
     Home: {};
 
-    Chat: {};
+    Chat: {
+        userInfo: UserInfo | null,
+        channel_id: number | null,
+        navigate_case: number,
+    };
 
     ChatList: {};
 
@@ -27,6 +37,10 @@ export type RootStackParamList = {
     FriendRequest: {};
 
     Setting: {};
+
+    RCDashboard: {};
+
+    FirstInfoInput: {};
 
 };
 
@@ -62,7 +76,7 @@ const MainNavigator = () => {
             component={SignUpScreen}
             options={{
                 headerShown: false,
-            }} 
+            }}
         />
 
         <Stack.Screen 
@@ -78,12 +92,29 @@ const MainNavigator = () => {
             component={HomeNavigator}
             options={{
                 headerShown: false,
+                gestureEnabled: false, //prevent swift to go back
             }}
         />
 
         <Stack.Screen
             name="Chat"
             component={ChatScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="RCDashboard"
+            component={RCDashboardScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="FirstInfoInput"
+            component={FirstInfoInputScreen}
             options={{
                 headerShown: false,
             }}

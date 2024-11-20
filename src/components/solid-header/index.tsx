@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from 'react-native'
+import { View, Text, TouchableOpacity, StyleProp, ViewStyle, TextStyle, Image } from 'react-native'
 import React from 'react'
 import { styles } from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -31,10 +31,10 @@ const SolidHeader: React.FC<IProps> = ({
                 onPress={onPressLeftButton}
             >
                 {(leftButtonType == 'BACK') && 
-                    <FontAwesomeIcon icon={faArrowLeft} style={styles.iconBack} size={24}/>
+                    <Image style={styles.iconBack} source={require('../../assets/icons/navigate/back-64px.png')}/>
                 }
                 {(leftButtonType == 'CANCEL') && 
-                    <FontAwesomeIcon icon={faXmark} style={styles.iconCancel} size={24}/>
+                    <Image style={styles.iconBack} source={require('../../assets/icons/navigate/cancel-64px.png')}/>
                 }
             </TouchableOpacity>
             }

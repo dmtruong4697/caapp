@@ -10,6 +10,7 @@ import FriendTab from './tabs/friend';
 import GroupTab from './tabs/group';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { colors } from '../../../styles/colors';
+import CustomStatusBar from '../../../components/custom-status-bar';
 
 interface IProps {}
 
@@ -22,6 +23,7 @@ const FriendListScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={styles.viewContainer}>
+      <CustomStatusBar backgroundColor={colors.PrimaryColor}/>
       <SearchHeader/>
 
       <Tab.Navigator

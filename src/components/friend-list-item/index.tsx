@@ -26,7 +26,12 @@ const FriendListItem: React.FC<IProps> = ({userInfo}) => {
     <TouchableOpacity 
         style={styles.viewContainer}
         onPress={() => {
-            navigation.navigate("Chat")
+            navigation.navigate("Chat", 
+                {
+                    userInfo: userInfo,
+                    channel_id: null,
+                    navigate_case: 2,
+                })
         }}
     >
         <Image style={styles.imgAvatar} source={{uri: userInfo?.avatar_image}}/>

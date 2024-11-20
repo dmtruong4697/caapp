@@ -25,13 +25,13 @@ export const styles = StyleSheet.create({
     },
 
     iconBack: {
-        width: scale(32),
-        height: scale(32),
+        width: scale(34),
+        height: scale(34),
     },
 
     iconOption: {
-        width: scale(32),
-        height: scale(32),
+        width: scale(34),
+        height: scale(34),
     },
 
     txtTitle: {

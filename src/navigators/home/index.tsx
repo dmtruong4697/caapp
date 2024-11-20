@@ -4,7 +4,7 @@ import { styles } from './styles';
 import { useTranslation } from 'react-i18next';
 import ChatListScreen from '../../screens/chat/chat-list';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faGear, faInbox, faUserGroup, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faHippo, faInbox, faUserGroup, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { scale } from '../../styles/scale';
 import { colors } from '../../styles/colors';
 import FriendListScreen from '../../screens/friend/friend-list';
@@ -13,6 +13,7 @@ import SettingScreen from '../../screens/setting/setting';
 import { useEffect } from 'react';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import RCDashboardScreen from '../../screens/rc/rc-dashboard';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,13 +24,13 @@ const HomeNavigator = () => {
 
     const screenOptions = {
         tabBarStyle:{
-            height: 68,
-            paddingBottom: 12,
-            paddingTop: 12,
+            height: scale(68),
+            paddingBottom: scale(12),
+            paddingTop: scale(12),
             position: 'absolute',
-            bottom: 30,
-            left: 10,
-            right: 10,
+            bottom: scale(24),
+            left: scale(10),
+            right: scale(10),
 
             backgroundColor: colors.LightColor,
             borderRadius: 20,
@@ -81,6 +82,30 @@ const HomeNavigator = () => {
                         <FontAwesomeIcon icon={faUserGroup} color={colors.DarkColor} size={scale(24)}/>
                         :
                         <FontAwesomeIcon icon={faUserGroup} color={colors.PrimaryColor} size={scale(24)}/>
+                    ),
+                }}
+            />
+
+            <Tab.Screen 
+                name="RCDashboard" 
+                component={RCDashboardScreen} 
+                options={{
+                    // tabBarLabel: t("hn-friend"),
+                    headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarActiveTintColor: colors.DarkColor,
+                    tabBarLabelStyle: {
+                        fontWeight: '600',
+                    },
+                    tabBarIcon: ({focused}) => (
+                        (focused)?
+                        <View style={styles.rcCenterButton}>
+                            <FontAwesomeIcon icon={faHippo} color={colors.White} size={scale(24)}/>
+                        </View>
+                        :
+                        <View style={styles.rcCenterButton}>
+                            <FontAwesomeIcon icon={faHippo} color={colors.DarkColor} size={scale(24)}/>
+                        </View>
                     ),
                 }}
             />

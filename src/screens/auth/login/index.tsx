@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
@@ -13,6 +13,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest } from '../../../store/actions/auth';
 import { RootState } from '../../../store';
 import { createTwoButtonAlert } from '../../../utils/alert';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { scale } from '../../../styles/scale';
+import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {}
 
@@ -44,7 +47,6 @@ const LoginScreen: React.FC<IProps>  = () => {
     useEffect(() => {
       if (authState.error) {
         console.log("auth error",authState.error);
-        // createTwoButtonAlert(authState.error.error_code, authState.error.error_code)
       }
 
       if (authState.token) {
@@ -54,16 +56,20 @@ const LoginScreen: React.FC<IProps>  = () => {
 
   return (
     <SafeAreaView style={styles.viewContainer}>
-      <SolidHeader
-        renderLeftButton={true}
-        renderRightButton={false}
-        leftButtonType='CANCEL'
-        title=''
-        onPressLeftButton={() => {navigation.goBack()}}
-      />
+      <View style={styles.viewHeader}>
+        <SolidHeader
+          renderLeftButton={true}
+          renderRightButton={false}
+          leftButtonType='BACK'
+          title=''
+          onPressLeftButton={() => {navigation.goBack()}}
+        />
+      </View>
 
       <Text style={styles.txtTitle}>Sign in to 
-        <Text style={[styles.txtTitle, {color: colors.PrimaryColor}]}> CAAPP</Text>
+        <Text style={[styles.txtTitle, {color: colors.DarkColor}]}> CA
+          <Text style={[styles.txtTitle, {color: colors.PrimaryColor}]}>APP</Text>
+        </Text>
       </Text>
       
       <View style={styles.viewFormContainer}>
@@ -114,7 +120,7 @@ const LoginScreen: React.FC<IProps>  = () => {
         <Text
           style={styles.txtOption}
           onPress={() => {
-            // navigation.navigate('ValidateEmail')
+            Linking.openURL("https://google.com.vn/")
           }}
         >Privacy policy</Text>
       </View>
@@ -124,6 +130,42 @@ const LoginScreen: React.FC<IProps>  = () => {
           title='SIGN IN'
           onPress={handleSubmit(onSubmit)}
         />
+      </View>
+
+      <View style={styles.viewOAuthContainer}>
+        <Text style={styles.txtOrSignInWith}>Or Sign In with</Text>
+
+        <View style={styles.viewOAuth}>
+          {/* facebook */}
+          <TouchableOpacity
+            style={styles.btnOAuth}
+            onPress={() => {
+
+            }}
+          >
+            <Image style={styles.imgOAuth} source={require('../../../assets/icons/social-media-platform/facebook-64px.png')}/>
+          </TouchableOpacity>
+
+          {/* google */}
+          <TouchableOpacity
+            style={styles.btnOAuth}
+            onPress={() => {
+
+            }}
+          >
+            <Image style={styles.imgOAuth} source={require('../../../assets/icons/social-media-platform/google-64px.png')}/>
+          </TouchableOpacity>
+
+          {/* x */}
+          <TouchableOpacity
+            style={styles.btnOAuth}
+            onPress={() => {
+
+            }}
+          >
+            <Image style={styles.imgOAuth} source={require('../../../assets/icons/social-media-platform/x-64px.png')}/>
+          </TouchableOpacity>
+        </View>
       </View>
 
     </SafeAreaView>

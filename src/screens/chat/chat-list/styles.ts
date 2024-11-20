@@ -12,23 +12,23 @@ export const styles = StyleSheet.create({
 
     viewTopSearch: {
         width: '100%',
-        height: scale(38),
         paddingHorizontal: scale(10),
+        paddingVertical: scale(2),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: scale(10),
+        marginBottom: scale(5),
     },
 
     txtCaapp: {
-        fontSize: 34,
+        fontSize: 32,
         fontWeight: '600',
-        color: colors.PrimaryColor,
+        color: colors.DarkColor,
     },
 
     btnSearch: {
-        width: scale(30),
-        height: scale(30),
+        width: scale(28),
+        height: scale(28),
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -43,6 +43,30 @@ export const styles = StyleSheet.create({
     viewChatList: {
         flex: 1,
         paddingHorizontal: scale(10),
-        backgroundColor: 'blue',
-    }
+        // backgroundColor: 'pink',
+    },
+
+    viewChatListTitle: {
+        width: '100%',
+        paddingVertical: scale(2),
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: scale(10),
+    },
+
+    txtChatListTitle: {
+        fontSize: 18,
+        fontWeight: '500',
+        color: colors.PrimaryText,
+    },
+
+    btnChatListOption: {
+        height: scale(20),
+        width: scale(20),
+        borderRadius: 5,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 })

@@ -21,7 +21,7 @@ export const colors = {
     //Theme
     PrimaryColor: '#6A9C89',
     LightColor: '#C4DAD2',
-    DarkColor: '#16423C',
+    DarkColor: '#236b61',
     ChatItemColor: '#6A9C89',
 
     // bonus

@@ -10,9 +10,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
 
-        paddingTop: scale(50),
+        // paddingTop: scale(50),
         backgroundColor: colors.PrimaryColor,
-        height: scale(85),
+        // height: scale(85),
     },
 
     btnSearch: {

@@ -31,63 +31,30 @@ const SignUpScreen: React.FC<IProps>  = () => {
     const [isLoading, setIsLoading] = useState(false);
     const onSubmit = async(data: any)=> {
       setIsLoading(true);
-      // await signUp(navigation, getValues().email, getValues().password);
       setIsLoading(false);
       console.log(getValues());
+      navigation.navigate("ValidateEmail", {
+        email: getValues().email,
+        password: getValues().password,
+      })
     };
   
   const [isCheck, setIsCheck] = useState(false);
 
   return (
     <SafeAreaView style={styles.viewContainer}>
-      <SolidHeader
-        renderLeftButton={true}
-        renderRightButton={false}
-        leftButtonType='CANCEL'
-        title=''
-        onPressLeftButton={() => {navigation.goBack()}}
-      />
+      <View style={styles.viewHeader}>
+        <SolidHeader
+            renderLeftButton={true}
+            renderRightButton={false}
+            leftButtonType='BACK'
+            title=''
+            onPressLeftButton={() => {navigation.goBack()}}
+        />
+      </View>
 
       <View style={styles.viewFormContainer}>
         <Text style={styles.txtTitle}>Create your account</Text>
-
-        <Controller
-            control={control}
-            render={({field: {onChange, onBlur, value}}) => (
-            <InputField
-                title='First Name'
-                inputMode='text'
-                value={value}
-                onChangeText={value => onChange(value)}
-                onBlur={onBlur}
-                // isPassword
-            />
-            )}
-            name='firstName'
-            rules={{
-                required: true,
-            }}
-        />
-        {errors.firstName && <Text style={styles.txtError}>First Name is required.</Text>}
-
-        <Controller
-            control={control}
-            render={({field: {onChange, onBlur, value}}) => (
-            <InputField
-                title='Last Name'
-                inputMode='text'
-                value={value}
-                onChangeText={value => onChange(value)}
-                onBlur={onBlur}
-                // isPassword
-            />
-            )}
-            name='lastName'
-            rules={{
-                required: true,
-            }}
-        />
-        {errors.lastName && <Text style={styles.txtError}>Last Name is required.</Text>}
 
         <Controller
             control={control}
@@ -122,10 +89,35 @@ const SignUpScreen: React.FC<IProps>  = () => {
             )}
             name='password'
             rules={{
-                required: true,
+                required: 'Password is required.',
+                minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters.',
+                },
             }}
         />
-        {errors.password && <Text style={styles.txtError}>Password is required.</Text>}
+        {errors.password && <Text style={styles.txtError}>{errors.password.message}</Text>}
+
+        <Controller
+            control={control}
+            render={({field: {onChange, onBlur, value}}) => (
+            <InputField
+                title='Confirm Password'
+                inputMode='text'
+                value={value}
+                onChangeText={value => onChange(value)}
+                onBlur={onBlur}
+                isPassword
+            />
+            )}
+            name='confirmPassword'
+            rules={{
+                required: 'Confirm Password is required.',
+                validate: (value) =>
+                    value === getValues('password') || 'Passwords do not match.',
+            }}
+        />
+        {errors.confirmPassword && <Text style={styles.txtError}>{errors.confirmPassword.message}</Text>}
       </View>
 
       <View style={styles.viewTerm}>
@@ -146,12 +138,9 @@ const SignUpScreen: React.FC<IProps>  = () => {
 
       <View style={styles.viewButtonGroup}>
         <Button
-            title='Start'
+            title='NEXT'
             type='default'
             onPress={handleSubmit(onSubmit)}
-            // onPress={() => {
-            //     navigation.navigate('VerifyEmail');
-            // }}
         />
       </View>
     </SafeAreaView>

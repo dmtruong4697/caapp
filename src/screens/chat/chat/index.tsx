@@ -6,10 +6,12 @@ import {
   Pressable,
   TextInput,
   FlatList,
-  useWindowDimensions
+  useWindowDimensions,
+  StatusBar,
+  Platform
 } from 'react-native';
 import { styles } from './styles';
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { ParamListBase, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -20,14 +22,22 @@ import { RootState } from '../../../store';
 import { case2NavigateChatScreenRequest } from '../../../store/actions/case2-navigate-chat-screen-action';
 import { MessageDetail } from '../../../models/message/message-detail';
 import ChatMessageItem from '../../../components/chat-message-item';
+import { RootStackParamList } from '../../../navigators/main';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomStatusBar from '../../../components/custom-status-bar';
+import { addMessageToChannel } from '../../../store/actions/channel-chat-history-action';
+import { case1NavigateChatScreenRequest } from '../../../store/actions/case1-navigate-chat-screen-action';
 
 interface IProps {}
 
 const ChatScreen: React.FC<IProps> = () => {
+
   const layout = useWindowDimensions();
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const route = useRoute<RouteProp<RootStackParamList, 'Chat'>>();
+  const {userInfo, channel_id, navigate_case} = route.params;
 
   const checkFriendChannelState = useSelector((state: RootState) => state.checkFriendChannel);
   const getChannelInfoState = useSelector((state: RootState) => state.channelInfo);
@@ -35,12 +45,19 @@ const ChatScreen: React.FC<IProps> = () => {
   const case2NavigateChatScreenState = useSelector((state: RootState) => state.case2NavigateChatScreen);
   const profileState = useSelector((state: RootState) => state.profile)
 
+  const channelId = getChannelInfoState.friend_channel_info?.channel.id;
+
+  let messages = channelChatHistoryState.channels_chat_history[channelId] || [];
+
   const [messageText, setMessageText] = useState("");
-  const [messages, setMessages] = useState<MessageDetail[]>([]); 
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    dispatch(case2NavigateChatScreenRequest(4));
+    if (navigate_case == 1) {
+      dispatch(case1NavigateChatScreenRequest('friend',channel_id!))
+    } else {
+      dispatch(case2NavigateChatScreenRequest(userInfo!.id));
+    }
   }, []);
 
   useEffect(() => {
@@ -48,9 +65,7 @@ const ChatScreen: React.FC<IProps> = () => {
     console.log(getChannelInfoState.friend_channel_info);
     console.log(channelChatHistoryState.messages);
 
-    if (channelChatHistoryState.messages && channelChatHistoryState.messages.messages) {
-      setMessages(channelChatHistoryState.messages.messages);
-    }
+    messages = channelChatHistoryState.channels_chat_history[channelId] || [];
   }, [
     checkFriendChannelState.channel,
     getChannelInfoState.friend_channel_info,
@@ -58,46 +73,39 @@ const ChatScreen: React.FC<IProps> = () => {
   ]);
 
   useEffect(() => {
-    // if (case2NavigateChatScreenState.success_flg == ) {
-      const ws = new WebSocket(`ws://localhost:8910/chat/ws?channel_id=${getChannelInfoState.friend_channel_info?.channel.id}`);
+    if (channelId) {
+      const ws = new WebSocket(`ws://localhost:8910/chat/ws?channel_id=${channelId}`);
 
-      ws.onopen = () => {
-        console.log('WebSocket is connected');
-      };
-
+      ws.onopen = () => console.log('WebSocket connected');
+      
       ws.onmessage = (event) => {
         const newMessage: MessageDetail = JSON.parse(event.data);
-        setMessages((prevMessages) => [newMessage, ...prevMessages]);
+        dispatch(addMessageToChannel(newMessage));
       };
 
-      ws.onclose = () => {
-        console.log('WebSocket is closed');
-      };
-
-      ws.onerror = e => {
-        console.log(e.message);
-      };
-
+      ws.onclose = () => console.log('WebSocket closed');
+      
+      ws.onerror = (e) => console.log(e.message);
+      
       setSocket(ws);
 
       return () => {
         ws.close();
       };
-    // }
-  }, [case2NavigateChatScreenState.success_flg]);
+    }
+  }, [channelId]);
 
   const sendMessage = () => {
     if (socket && messageText) {
       const message = { content: messageText, sender_id: profileState.profile!.id };
-      console.log(message)
       socket.send(JSON.stringify(message));
-      // setMessages((prevMessages) => [...prevMessages, message]);
       setMessageText("");
     }
   };
 
   return (
     <View style={styles.viewContainer}>
+      <CustomStatusBar backgroundColor={colors.DarkColor}/>
       <View style={styles.viewHeaderContainer}>
         <TouchableOpacity
           style={styles.btnHeaderMenu}
@@ -160,3 +168,4 @@ const ChatScreen: React.FC<IProps> = () => {
 };
 
 export default ChatScreen;
+

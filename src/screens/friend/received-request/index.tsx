@@ -12,6 +12,8 @@ import ListHeader from '../../../components/list-header';
 import SuggestUserItem from '../../../components/suggest-user-item';
 import { getAllReceivedRequestRequest } from '../../../store/actions/friend-request';
 import ReceivedRequestItem from '../../../components/received-request-item';
+import CustomStatusBar from '../../../components/custom-status-bar';
+import { colors } from '../../../styles/colors';
 
 interface IProps {}
 
@@ -46,7 +48,8 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
     }, [friendState.suggest_users, friendState.error_suggest_users]);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <View style={{flex: 1}}>
+      <CustomStatusBar backgroundColor={colors.PrimaryColor}/>
       <ScrollView 
         style={styles.viewContainer}
         refreshControl={
@@ -101,7 +104,7 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
           </View>
         </View>
       </ScrollView >
-    </SafeAreaView>
+    </View>
   )
 }
 
