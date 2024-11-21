@@ -51,4 +51,16 @@ export const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'column',
     },
+
+    viewCodeInput: {
+        width: '100%',
+        marginTop: scale(20),
+        marginBottom: scale(50),
+    },
+
+    pinCodeContainer: {
+        borderColor: colors.GrayBorder, 
+        borderWidth: 2, 
+        borderRadius: 8,
+    },
 })

@@ -11,10 +11,10 @@ import { colors } from '../../../styles/colors';
 import { faEllipsis, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { useDispatch, useSelector } from 'react-redux';
-import { getChannelListRequest, updateChannelListItem } from '../../../store/actions/get-channel-list-action';
 import { RootState } from '../../../store';
 import ChannelListItem from '../../../components/channel-list-item';
 import { scale } from '../../../styles/scale';
+import { getChannelListRequest, updateChannelListItem } from '../../../store/actions/channel/get-channel-list-action';
 
 interface IProps {}
 

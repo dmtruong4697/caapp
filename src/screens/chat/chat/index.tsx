@@ -19,14 +19,14 @@ import { faAngleLeft, faBars, faFaceSmile, faPaperPlane } from '@fortawesome/fre
 import { colors } from '../../../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-import { case2NavigateChatScreenRequest } from '../../../store/actions/case2-navigate-chat-screen-action';
+import { case2NavigateChatScreenRequest } from '../../../store/actions/navigate-chat-screen/case2-navigate-chat-screen-action';
 import { MessageDetail } from '../../../models/message/message-detail';
 import ChatMessageItem from '../../../components/chat-message-item';
 import { RootStackParamList } from '../../../navigators/main';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomStatusBar from '../../../components/custom-status-bar';
-import { addMessageToChannel } from '../../../store/actions/channel-chat-history-action';
-import { case1NavigateChatScreenRequest } from '../../../store/actions/case1-navigate-chat-screen-action';
+import { case1NavigateChatScreenRequest } from '../../../store/actions/navigate-chat-screen/case1-navigate-chat-screen-action';
+import { addMessageToChannel } from '../../../store/actions/channel/channel-chat-history-action';
 
 interface IProps {}
 

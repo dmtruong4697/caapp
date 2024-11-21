@@ -1,0 +1,34 @@
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { CASE1_NAVIGATE_CHAT_SCREEN_REQUEST, case1NavigateChatScreenFailure, case1NavigateChatScreenRequest, case1NavigateChatScreenSuccess } from '../../actions/navigate-chat-screen/case1-navigate-chat-screen-action';
+import channelService from '../../../services/channel';
+import { getFriendChannelInfoSuccess, getGroupChannelInfoSuccess } from '../../actions/channel/channel-info-action';
+import { getChannelChatHistorySuccess } from '../../actions/channel/channel-chat-history-action';
+
+function* case1NavigateChatScreen(action: ReturnType<typeof case1NavigateChatScreenRequest>): Generator<any, void, any> {
+  try {
+
+    // get channel info
+    let getChannelInfoResponse = null
+    if (action.payload.channelType == 'friend') {
+        getChannelInfoResponse = yield call(channelService.getFriendChannelInfo, action.payload.channelID);
+        yield put(getFriendChannelInfoSuccess(getChannelInfoResponse));
+    } else {
+        getChannelInfoResponse = yield call(channelService.getGroupChannelInfo, action.payload.channelID);
+        yield put(getGroupChannelInfoSuccess(getChannelInfoResponse));
+    }
+
+    // get chat history
+    const getChannelChatHistoryResponse = yield call(channelService.getChannelChatHistory, action.payload.channelID);
+    yield put(getChannelChatHistorySuccess(getChannelChatHistoryResponse))
+
+
+    yield put(case1NavigateChatScreenSuccess());
+
+  } catch (error: any) {
+    yield put(case1NavigateChatScreenFailure(error));
+  }
+}
+
+export function* case1NavigateChatScreenSaga() {
+  yield takeEvery(CASE1_NAVIGATE_CHAT_SCREEN_REQUEST, case1NavigateChatScreen);
+}

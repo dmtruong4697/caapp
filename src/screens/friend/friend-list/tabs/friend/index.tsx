@@ -6,7 +6,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../../store';
-import { getAllMyFriendsRequest } from '../../../../../store/actions/friend';
+import { getAllMyFriendsRequest } from '../../../../../store/actions/friend/friend';
 import FriendListItem from '../../../../../components/friend-list-item';
 interface IProps {}
 

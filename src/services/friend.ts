@@ -1,6 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import Config from 'react-native-config';
 import { api } from '.';
 
 export const friendService = {

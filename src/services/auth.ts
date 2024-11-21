@@ -19,6 +19,36 @@ export const authService = {
       throw error.response.data
     }
   },
+
+  async register(email: string, password: string): Promise<any> {
+    try {
+      const response = await api.post('auth/register', { email, password});
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data
+    }
+  },
+
+  async resendValidateCode(email: string): Promise<any> {
+    try {
+      const response = await api.post('auth/resend-email-validate-code', { email });
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data
+    }
+  },
+
+  async validateEmail(email: string, password: string, validate_code: string): Promise<any> {
+    try {
+      const response = await api.post('auth/validate-email', { email, password, validate_code });
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data
+    }
+  },
 };
 
 export default authService;

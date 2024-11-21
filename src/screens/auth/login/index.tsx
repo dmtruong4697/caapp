@@ -10,12 +10,8 @@ import InputField from '../../../components/input-field';
 import Button from '../../../components/button';
 import { colors } from '../../../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest } from '../../../store/actions/auth';
+import { loginRequest } from '../../../store/actions/auth/login';
 import { RootState } from '../../../store';
-import { createTwoButtonAlert } from '../../../utils/alert';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { scale } from '../../../styles/scale';
-import { faGamepad } from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {}
 
@@ -43,16 +39,15 @@ const LoginScreen: React.FC<IProps>  = () => {
     };
 
     const authState = useSelector((state: RootState) => state.auth);
+    const profileState = useSelector((state: RootState) => state.profile);
 
     useEffect(() => {
-      if (authState.error) {
-        console.log("auth error",authState.error);
+      if (profileState.profile?.account_status == "1") {
+        navigation.navigate("Home")
+      } else if (profileState.profile?.account_status == "0") {
+        navigation.navigate("FirstInfoInput")
       }
-
-      if (authState.token) {
-        navigation.navigate('Home');
-      }
-    }, [authState.token, authState.error]);
+    }, [profileState]) 
 
   return (
     <SafeAreaView style={styles.viewContainer}>

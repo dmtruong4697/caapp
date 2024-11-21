@@ -5,7 +5,7 @@ import { colors } from '../../styles/colors';
 import { UserInfo } from '../../models/user-info/user-info';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { acceptFriendRequestRequest, createFriendRequestRequest, createFriendRequestSuccess } from '../../store/actions/friend-request';
+import { acceptFriendRequestRequest, createFriendRequestRequest, createFriendRequestSuccess } from '../../store/actions/friend/friend-request';
 import { RootState } from '../../store';
 
 interface IProps {

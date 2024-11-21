@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -11,6 +11,11 @@ import { colors } from '../../../styles/colors';
 import Button from '../../../components/button';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { regex } from '../../../utils/vaidate/regex';
+import TwoStatusButton from '../../../components/2-status-button';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { registerRequest, resetRegisterState } from '../../../store/actions/auth/register';
 
 interface IProps {}
 
@@ -19,6 +24,9 @@ const SignUpScreen: React.FC<IProps>  = () => {
     const layout = useWindowDimensions();
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
+    const dispatch = useDispatch();
+
+    const registerState = useSelector((state: RootState) => state.register);
 
     const {
       register,
@@ -31,13 +39,21 @@ const SignUpScreen: React.FC<IProps>  = () => {
     const [isLoading, setIsLoading] = useState(false);
     const onSubmit = async(data: any)=> {
       setIsLoading(true);
+      const { email, password } = getValues();
+      dispatch(registerRequest(email, password));
       setIsLoading(false);
       console.log(getValues());
-      navigation.navigate("ValidateEmail", {
-        email: getValues().email,
-        password: getValues().password,
-      })
     };
+
+    useEffect(() => {
+      if(registerState.success_flg == true) {
+        dispatch(resetRegisterState());
+        navigation.navigate("ValidateEmail", {
+          email: getValues().email,
+          password: getValues().password,
+        })
+      }
+    },[registerState.success_flg])
   
   const [isCheck, setIsCheck] = useState(false);
 
@@ -70,10 +86,14 @@ const SignUpScreen: React.FC<IProps>  = () => {
             )}
             name='email'
             rules={{
-                required: true,
+                required: 'Email is required.',
+                pattern: {
+                  value: regex.Email, 
+                  message: 'Please enter a valid email address',
+              },
             }}
         />
-        {errors.email && <Text style={styles.txtError}>Email is required.</Text>}
+        {errors.email && <Text style={styles.txtError}>{errors.email.message?.toString()}</Text>}
 
         <Controller
             control={control}
@@ -96,7 +116,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
                 },
             }}
         />
-        {errors.password && <Text style={styles.txtError}>{errors.password.message}</Text>}
+        {errors.password && <Text style={styles.txtError}>{errors.password.message?.toString()}</Text>}
 
         <Controller
             control={control}
@@ -117,7 +137,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
                     value === getValues('password') || 'Passwords do not match.',
             }}
         />
-        {errors.confirmPassword && <Text style={styles.txtError}>{errors.confirmPassword.message}</Text>}
+        {errors.confirmPassword && <Text style={styles.txtError}>{errors.confirmPassword.message?.toString()}</Text>}
       </View>
 
       <View style={styles.viewTerm}>
@@ -137,10 +157,10 @@ const SignUpScreen: React.FC<IProps>  = () => {
       </View>
 
       <View style={styles.viewButtonGroup}>
-        <Button
+        <TwoStatusButton
             title='NEXT'
-            type='default'
             onPress={handleSubmit(onSubmit)}
+            disabled={errors.email || errors.password || errors.confirmPassword || !isCheck}
         />
       </View>
     </SafeAreaView>
