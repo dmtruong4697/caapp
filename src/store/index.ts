@@ -3,8 +3,8 @@ import { combineReducers } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware } from 'redux';
 import loginReducer from './reducers/auth/login';
-import profileReducer from './reducers/profile';
-import { profileSaga } from './sagas/profile';
+import profileReducer from './reducers/profile/profile';
+import { profileSaga } from './sagas/profile/profile';
 import friendReducer from './reducers/friend/friend';
 import { friendSaga } from './sagas/friend/friend';
 import friendRequestReducer from './reducers/friend/friend-request';
@@ -28,10 +28,14 @@ import resendCodeReducer from './reducers/auth/resend-code';
 import validateEmailReducer from './reducers/auth/validate-email';
 import { resendCodeSaga } from './sagas/auth/resend-code';
 import { validateEmailSaga } from './sagas/auth/validate-email';
+import getLanguageListReducer from './reducers/constant-data/get-language-list';
+import { getLanguageListSaga } from './sagas/constant-data/get-language-list';
+import { checkDuplicateHashtagNameFailure } from './actions/profile/check-duplicate-hashtag-name';
+import checkDuplicateHashtagNameReducer from './reducers/profile/check-duplicate-hashtag-name';
+import { checkDuplicateHashtagNameSaga } from './sagas/profile/check-duplicate-hashtag-name';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
-  profile: profileReducer,
   friend: friendReducer,
   friendRequest: friendRequestReducer,
   channelList: channelListReducer,
@@ -43,6 +47,13 @@ const rootReducer = combineReducers({
   register: registerReducer,
   resendCode: resendCodeReducer,
   validateEmail: validateEmailReducer,
+
+  //profile
+  profile: profileReducer,
+  checkDuplicateHashtagName: checkDuplicateHashtagNameReducer,
+
+  // constant data
+  languageList: getLanguageListReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -50,7 +61,6 @@ export type RootState = ReturnType<typeof rootReducer>;
 function* rootSaga() {
   yield all([
     loginSaga(),
-    profileSaga(),
     friendSaga(),
     friendRequestSaga(),
     channelListSaga(),
@@ -62,6 +72,13 @@ function* rootSaga() {
     registerSaga(),
     resendCodeSaga(),
     validateEmailSaga(),
+
+    //profile
+    profileSaga(),
+    checkDuplicateHashtagNameSaga(),
+
+    // constant data
+    getLanguageListSaga(),
   ]);
 }
 

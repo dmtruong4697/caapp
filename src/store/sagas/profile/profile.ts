@@ -1,8 +1,8 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getProfileInfoFailure, getProfileInfoRequest, getProfileInfoSuccess } from '../actions/profile';
-import { LOGIN_SUCCESS } from '../actions/auth/login';
-import profileService from '../../services/profile';
+import { getProfileInfoFailure, getProfileInfoRequest, getProfileInfoSuccess } from '../../actions/profile/profile';
+import { LOGIN_SUCCESS } from '../../actions/auth/login';
+import profileService from '../../../services/profile';
 
 function* getProfileInfo(action: ReturnType<typeof getProfileInfoRequest>): Generator<any, void, any> {
   try {

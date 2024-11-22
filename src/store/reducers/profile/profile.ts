@@ -1,6 +1,6 @@
-import { ProfileInfo } from "../../models/profile/profile-info";
-import { createTwoButtonAlert } from "../../utils/alert";
-import { GET_PROFILE_INFO_FAILURE, GET_PROFILE_INFO_REQUEST, GET_PROFILE_INFO_SUCCESS, ProfileActionTypes } from "../actions/profile";
+import { ProfileInfo } from "../../../models/profile/profile-info";
+import { createTwoButtonAlert } from "../../../utils/alert";
+import { GET_PROFILE_INFO_FAILURE, GET_PROFILE_INFO_REQUEST, GET_PROFILE_INFO_SUCCESS, ProfileActionTypes } from "../../actions/profile/profile";
 
 interface ProfileState {
   profile: ProfileInfo | null;

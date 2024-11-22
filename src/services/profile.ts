@@ -26,6 +26,17 @@ export const profileService = {
       throw error.response.data
     }
   },
+
+  async checkDuplicateHashtagName(hashtagName: string): Promise<any> {
+    try {
+      const response = await api.post('profile/check-duplicate-hashtag-name', { hashtagName});
+      console.log(response);
+      return response.data;
+    } catch (error: any) {
+      throw error.response.data
+    }
+  },
+  
 };
 
 export default profileService;

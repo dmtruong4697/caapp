@@ -9,4 +9,34 @@ export const styles = StyleSheet.create({
         padding: scale(12),
         marginHorizontal: scale(12),
     },
+
+    viewHeader: {
+        width: '100%',
+        paddingTop: scale(8),
+    },
+
+    txtTitle: {
+        fontSize: 22,
+        fontWeight: '400',
+        color: colors.PrimaryText,
+        marginTop: scale(0),
+        marginBottom: scale(20),
+    },
+
+    viewFormContainer: {
+        flexDirection: 'column',
+        width: '100%',
+        gap: scale(12),
+    },
+
+    viewButtonGroup: {
+        width: '100%',
+        flexDirection: 'column',
+    },
+
+    txtError: {
+        fontSize: 14,
+        fontWeight: '400',
+        color: colors.ErrorText,
+    },
 })

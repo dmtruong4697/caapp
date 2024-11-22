@@ -1,4 +1,4 @@
-import { ProfileInfo } from "../../models/profile/profile-info";
+import { ProfileInfo } from "../../../models/profile/profile-info";
 
 export const GET_PROFILE_INFO_REQUEST = 'GET_PROFILE_INFO_REQUEST';
 export const GET_PROFILE_INFO_SUCCESS = 'GET_PROFILE_INFO_SUCCESS';

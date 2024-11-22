@@ -4,7 +4,7 @@ import { UserInfo } from "../../../models/user-info/user-info";
 import { createTwoButtonAlert } from "../../../utils/alert";
 import { SuggestUserActionTypes, GET_SUGGEST_USER_FAILURE, GET_SUGGEST_USER_REQUEST, GET_SUGGEST_USER_SUCCESS, GetAllMyFriendActionTypes, GET_ALL_MY_FRIENDS_REQUEST, GET_ALL_MY_FRIENDS_SUCCESS } from "../../actions/friend/friend";
 import { GET_ALL_RECEIVED_REQUEST_SUCCESS } from "../../actions/friend/friend-request";
-import { GET_PROFILE_INFO_REQUEST } from "../../actions/profile";
+import { GET_PROFILE_INFO_REQUEST } from "../../actions/profile/profile";
 
 interface FriendState {
   suggest_users: UserInfo[] | null;
