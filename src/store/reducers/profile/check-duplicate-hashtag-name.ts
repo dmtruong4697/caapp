@@ -1,5 +1,4 @@
 import { createTwoButtonAlert } from "../../../utils/alert";
-import { VALIDATE_EMAIL_FAILURE, VALIDATE_EMAIL_REQUEST, VALIDATE_EMAIL_SUCCESS, ValidateEmailActionTypes } from "../../actions/auth/validate-email";
 import { CHECK_DUPLICATEHASHTAG_NAME_FAILURE, CHECK_DUPLICATEHASHTAG_NAME_REQUEST, CHECK_DUPLICATEHASHTAG_NAME_SUCCESS, CheckDuplicateHashtagNameActionTypes } from "../../actions/profile/check-duplicate-hashtag-name";
 
 interface CheckDuplicateHashtagNameState {

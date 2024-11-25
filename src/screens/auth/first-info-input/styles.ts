@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
         padding: scale(12),
-        marginHorizontal: scale(12),
+        // marginHorizontal: scale(12),
+        backgroundColor: colors.White,
     },
 
     viewHeader: {
@@ -24,9 +25,10 @@ export const styles = StyleSheet.create({
     },
 
     viewFormContainer: {
-        flexDirection: 'column',
-        width: '100%',
-        gap: scale(12),
+        flexDirection: 'column',    
+        width: '100%',       
+        gap: scale(22),     
+        flex: 1,    
     },
 
     viewButtonGroup: {
@@ -38,5 +40,28 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '400',
         color: colors.ErrorText,
+    },
+
+    viewGenderSelectContainer: {
+        width: '100%',
+        paddingVertical: scale(8), 
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+
+    viewGenderSelect: {
+        width: '30%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: colors.White,
+        paddingVertical: scale(6),
+        borderWidth: scale(1),
+        borderColor: colors.GrayBorder,
+        borderRadius: radius.Radius1,
+    },
+
+    txtGenderSelect: {
+        fontSize: 16,
+        fontWeight: '500',
     },
 })

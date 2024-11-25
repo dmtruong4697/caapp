@@ -26,5 +26,7 @@ export const colors = {
     ChatItemColor: '#6A9C89',
 
     // bonus
+    CheckSuccess: '#43a646',
+    CheckFailure: '#f23c2f',
 
 }

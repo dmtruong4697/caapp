@@ -33,6 +33,8 @@ import { getLanguageListSaga } from './sagas/constant-data/get-language-list';
 import { checkDuplicateHashtagNameFailure } from './actions/profile/check-duplicate-hashtag-name';
 import checkDuplicateHashtagNameReducer from './reducers/profile/check-duplicate-hashtag-name';
 import { checkDuplicateHashtagNameSaga } from './sagas/profile/check-duplicate-hashtag-name';
+import { firstUpdateProfileInfoSaga } from './sagas/profile/first-update-profile-info';
+import firstUpdateProfileInfoReducer from './reducers/profile/first-update-profile-info';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -51,6 +53,7 @@ const rootReducer = combineReducers({
   //profile
   profile: profileReducer,
   checkDuplicateHashtagName: checkDuplicateHashtagNameReducer,
+  firstUpdateProfileInfo: firstUpdateProfileInfoReducer,
 
   // constant data
   languageList: getLanguageListReducer,
@@ -76,6 +79,7 @@ function* rootSaga() {
     //profile
     profileSaga(),
     checkDuplicateHashtagNameSaga(),
+    firstUpdateProfileInfoSaga(),
 
     // constant data
     getLanguageListSaga(),
