@@ -13,6 +13,10 @@ import InputField from '../../../components/input-field';
 import { regex } from '../../../utils/vaidate/regex';
 import InfoInputTextField from '../../../components/info-input-text-field';
 import { colors } from '../../../styles/colors';
+import CustomStatusBar from '../../../components/custom-status-bar';
+import InfoInputDatePicker from '../../../components/info-input-date-picker';
+import Button from '../../../components/button';
+import TwoStatusButton from '../../../components/2-status-button';
 
 interface IProps {}
 
@@ -35,6 +39,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
     const languageListState = useSelector((state: RootState) => state.languageList);
 
     const [selectedGender, setSelectedGender] = useState<string | null>(null);
+    const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
 
     useEffect(() => {
       dispatch(getLanguageListRequest());
@@ -42,6 +47,8 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={styles.viewContainer}>
+      <CustomStatusBar backgroundColor={colors.PrimaryColor}/>
+      <View style={styles.viewScreenContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader
           renderLeftButton={true}
@@ -143,6 +150,14 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
         />
         {errors.phoneNumber && <Text style={styles.txtError}>{errors.phoneNumber.message?.toString()}</Text>}
 
+        <InfoInputDatePicker
+          title='Date of Birth'
+          date={dateOfBirth}
+          onPickedDate={(date: Date) => {
+            setDateOfBirth(date);
+          }}
+        />
+
         <View style={styles.viewGenderSelectContainer}>
           {/* male */}
           <TouchableOpacity
@@ -155,7 +170,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             ]}
             onPress={() => {setSelectedGender("0")}}
           >
-            <Text style={styles.txtGenderSelect}>Male</Text>
+            <Text style={styles.txtGenderSelect}>🙋🏻‍♂️ Male</Text>
           </TouchableOpacity>
 
           {/* female */}
@@ -169,7 +184,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             ]}
             onPress={() => {setSelectedGender("1")}}
           >
-            <Text style={styles.txtGenderSelect}>Female</Text>
+            <Text style={styles.txtGenderSelect}>🙋🏻‍♀️ Female</Text>
           </TouchableOpacity>
 
           {/* other */}
@@ -183,10 +198,20 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             ]}
             onPress={() => {setSelectedGender("2")}}
           >
-            <Text style={styles.txtGenderSelect}>Other</Text>
+            <Text style={styles.txtGenderSelect}>🤨 Other</Text>
           </TouchableOpacity>
         </View>
+
+        <View style={styles.viewButtonGroup}>
+          <TwoStatusButton
+              title='NEXT'
+              onPress={() => {}}
+              disabled={(selectedGender == null)}
+          />
+        </View>
+
       </ScrollView>
+      </View>
     </View>
   )
 }

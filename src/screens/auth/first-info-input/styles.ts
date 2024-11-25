@@ -6,7 +6,14 @@ import { radius } from "../../../styles/radius";
 export const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        padding: scale(12),
+        // paddingHorizontal: scale(12),
+        // marginHorizontal: scale(12),
+        backgroundColor: colors.White,
+    },
+
+    viewScreenContainer: {
+        flex: 1,
+        paddingHorizontal: scale(12),
         // marginHorizontal: scale(12),
         backgroundColor: colors.White,
     },
@@ -34,6 +41,7 @@ export const styles = StyleSheet.create({
     viewButtonGroup: {
         width: '100%',
         flexDirection: 'column',
+        marginTop: scale(30),
     },
 
     txtError: {
@@ -63,5 +71,9 @@ export const styles = StyleSheet.create({
     txtGenderSelect: {
         fontSize: 16,
         fontWeight: '500',
+    },
+
+    viewDateOfBirthPicker: {
+        width: '100%',
     },
 })

@@ -33,23 +33,13 @@ export const styles = StyleSheet.create({
     inputField: {
         flex: 1,
         padding: scale(8),
+        justifyContent: 'center',
+    },
 
+    txtDate: {
         fontSize: 16,
         fontWeight: '400',
         color: colors.InputText,
-    },
-
-    viewCheck: {
-        width: scale(26),
-        height: scale(26),
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginHorizontal: scale(8),
-    },
-
-    imgCheck: {
-        width: scale(24),
-        height: scale(24),
-    },
+    }
 
 })
