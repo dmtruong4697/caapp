@@ -17,6 +17,9 @@ import CustomStatusBar from '../../../components/custom-status-bar';
 import InfoInputDatePicker from '../../../components/info-input-date-picker';
 import Button from '../../../components/button';
 import TwoStatusButton from '../../../components/2-status-button';
+import { FirstUpdateProfileInfoRequest } from '../../../models/profile-request/first-update-profile-info-request';
+import { firstUpdateProfileInfoRequest } from '../../../store/actions/profile/first-update-profile-info';
+import { checkDuplicateHashtagNameRequest, resetCheckDuplicateHashtagNameResult } from '../../../store/actions/profile/check-duplicate-hashtag-name';
 
 interface IProps {}
 
@@ -37,13 +40,45 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
     } = useForm();
 
     const languageListState = useSelector((state: RootState) => state.languageList);
+    const checkDuplicateHashtagNameState = useSelector((state: RootState) => state.checkDuplicateHashtagName);
+    const firstUpdateProfileInfoState = useSelector((state: RootState) => state.firstUpdateProfileInfo);
 
     const [selectedGender, setSelectedGender] = useState<string | null>(null);
     const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
 
+    const onSubmit = async(data: any)=> {
+      setIsLoading(true);
+      const { hashtagName, firstName, lastName, phoneNumber } = getValues();
+
+      const req: FirstUpdateProfileInfoRequest = {
+        hashtag_name: hashtagName,
+        first_name: firstName,
+        last_name: lastName,
+        phone_number: phoneNumber,
+        gender: selectedGender!,
+        date_of_birth: dateOfBirth,
+        middle_name: "",
+        country: "",
+        language: "",
+      }
+      dispatch(firstUpdateProfileInfoRequest(req));
+      setIsLoading(false);
+      console.log(getValues());
+    };
+
+    const checkDuplicateHashtagName = () => {
+      dispatch(checkDuplicateHashtagNameRequest(getValues().hashtagName))
+    }
+
     useEffect(() => {
       dispatch(getLanguageListRequest());
     },[])
+
+    useEffect(() => {
+      if (firstUpdateProfileInfoState.success_flg == true) {
+        navigation.navigate("Home");
+      }
+    }, [firstUpdateProfileInfoState.success_flg])
 
   return (
     <View style={styles.viewContainer}>
@@ -72,6 +107,10 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
                 value={value}
                 onChangeText={value => onChange(value)}
                 onBlur={onBlur}
+                isCheck={checkDuplicateHashtagNameState.isAvailableHashtagName}
+                onEndEditing={checkDuplicateHashtagName}
+                renderIsCheck
+                onFocus={() => {dispatch(resetCheckDuplicateHashtagNameResult())}}
             />
             )}
             name='hashtagName'
@@ -205,7 +244,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
         <View style={styles.viewButtonGroup}>
           <TwoStatusButton
               title='NEXT'
-              onPress={() => {}}
+              onPress={handleSubmit(onSubmit)}
               disabled={(selectedGender == null)}
           />
         </View>

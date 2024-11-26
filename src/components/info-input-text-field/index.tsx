@@ -5,24 +5,30 @@ import { colors } from '../../styles/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { scale } from '../../styles/scale';
 import { faCheck, faEye, faEyeSlash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { resetCheckDuplicateHashtagNameResult } from '../../store/actions/profile/check-duplicate-hashtag-name';
 
 interface IProps {
   title?: string;
   containerStyle?: ViewStyle;
   onBlur?: ((e: NativeSyntheticEvent<TextInputFocusEventData>) => void) | undefined;
   onChangeText?: ((text: string) => void) | undefined;
+  onEndEditing?: () => void;
+  onFocus?: () => void;
   value?: string;
   inputMode?: InputModeOptions;
   isPassword?: boolean;
   placeHolder?: string;
   renderIsCheck?: boolean;
-  isCheck?: boolean;
+  isCheck?: boolean | null;
 }
 
 const InfoInputTextField: React.FC<IProps> = ({
     title, 
     onBlur, 
     onChangeText, 
+    onEndEditing,
+    onFocus,
     containerStyle, 
     value, 
     inputMode, 
@@ -31,6 +37,8 @@ const InfoInputTextField: React.FC<IProps> = ({
     isCheck,
     renderIsCheck,
 }) => {
+
+  const dispatch = useDispatch();
 
   const [isFocus, setIsFocus] = useState(false);
   const [isShow, setIsShow] = useState(true);
@@ -51,14 +59,18 @@ const InfoInputTextField: React.FC<IProps> = ({
             <TextInput
                 secureTextEntry={(isPassword)? isShow:false}
                 style={styles.inputField}
-                onBlur={() => {setIsFocus(false)}}
+                onBlur={() => {setIsFocus(false);}}
                 onChangeText={onChangeText}
                 inputMode={inputMode}
-                onFocus={() => {setIsFocus(true)}}
+                onFocus={() => {
+                    setIsFocus(true);
+                    if (onFocus) onFocus();
+                }}
                 placeholder={placeHolder}
                 placeholderTextColor={colors.PlaceholderText}
+                onEndEditing={onEndEditing}
             />
-            {(renderIsCheck) &&
+            {(renderIsCheck) && (isCheck != null) &&
                 <View style={styles.viewCheck}>
                     {(isCheck) && <FontAwesomeIcon icon={faCheck} style={styles.imgCheck} color={colors.CheckSuccess}/>}
                     {(!isCheck) && <FontAwesomeIcon icon={faXmark} style={styles.imgCheck} color={colors.CheckFailure}/>}

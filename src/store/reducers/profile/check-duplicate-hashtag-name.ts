@@ -1,5 +1,5 @@
 import { createTwoButtonAlert } from "../../../utils/alert";
-import { CHECK_DUPLICATEHASHTAG_NAME_FAILURE, CHECK_DUPLICATEHASHTAG_NAME_REQUEST, CHECK_DUPLICATEHASHTAG_NAME_SUCCESS, CheckDuplicateHashtagNameActionTypes } from "../../actions/profile/check-duplicate-hashtag-name";
+import { CHECK_DUPLICATEHASHTAG_NAME_FAILURE, CHECK_DUPLICATEHASHTAG_NAME_REQUEST, CHECK_DUPLICATEHASHTAG_NAME_SUCCESS, CheckDuplicateHashtagNameActionTypes, RESET_CHECK_DUPLICATEHASHTAG_NAME_RESULT } from "../../actions/profile/check-duplicate-hashtag-name";
 
 interface CheckDuplicateHashtagNameState {
     isAvailableHashtagName: boolean | null,
@@ -31,6 +31,12 @@ const checkDuplicateHashtagNameReducer = (state = initialState, action: CheckDup
         ...state,
         isAvailableHashtagName: null,
         error: action.payload.error,
+      };
+    case RESET_CHECK_DUPLICATEHASHTAG_NAME_RESULT:
+      return {
+        ...state,
+        isAvailableHashtagName: null,
+        error: null,
       };
     default:
       return state;

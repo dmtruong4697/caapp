@@ -30,7 +30,7 @@ export const profileService = {
 
   async checkDuplicateHashtagName(hashtagName: string): Promise<any> {
     try {
-      const response = await api.post('profile/check-duplicate-hashtag-name', { hashtagName});
+      const response = await api.post('profile/check-duplicate-hashtag-name', { hashtag_name: hashtagName});
       console.log(response);
       return response.data;
     } catch (error: any) {
@@ -44,7 +44,15 @@ export const profileService = {
       const response = await api.post(
         'profile/first-update-profile-info', 
         {
-          request
+          hashtag_name: request.hashtag_name,
+          first_name: request.first_name,
+          last_name: request.last_name,
+          phone_number: request.phone_number,
+          gender: request.gender,
+          date_of_birth: request.date_of_birth,
+          middle_name: request.middle_name,
+          country: request.country,
+          language: request.language,
         },
         {
           headers: {
