@@ -20,6 +20,7 @@ const resendCodeReducer = (state = initialState, action: ResendCodeActionTypes):
         error: null,
       };
     case RESEND_CODE_SUCCESS:
+      createTwoButtonAlert("resend validate code success", "resend validate code success")
       return {
         ...state,
         success_flg: true,

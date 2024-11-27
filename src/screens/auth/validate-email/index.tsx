@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { RootStackParamList } from '../../../navigators/main';
 import { validateEmailRequest } from '../../../store/actions/auth/validate-email';
+import { resendCodeRequest } from '../../../store/actions/auth/resend-code';
+import { secondToMinuteConvert } from '../../../utils/date-time/date-time-convert';
 
 interface IProps {}
 
@@ -27,8 +29,41 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
     const {email, password} = route.params;
 
     const validateEmailState = useSelector((state: RootState) => state.validateEmail);
+    const resendCodeState = useSelector((state: RootState) => state.resendCode);
 
     const [validateCode, setValidateCode] = useState("");
+    const [timeLeft, setTimeLeft] = useState<number>(0); 
+    const [isCounting, setIsCounting] = useState<boolean>(false); 
+  
+    useEffect(() => {
+      let timer: NodeJS.Timeout | undefined;
+      if (isCounting && timeLeft > 0) {
+        timer = setInterval(() => {
+          setTimeLeft((prev) => prev - 1);
+        }, 1000); 
+      } else if (timeLeft === 0) {
+        setIsCounting(false); 
+      }
+  
+      return () => {
+        if (timer) clearInterval(timer);
+      };
+    }, [isCounting, timeLeft]);
+
+    const startCountdown = () => {
+      setTimeLeft(5 * 60);
+      setIsCounting(true);
+    };
+
+    useEffect(() => {
+      startCountdown();
+    },[]);
+
+    useEffect(() => {
+      if (resendCodeState.success_flg == true) {
+        startCountdown();
+      }
+    },[resendCodeState.success_flg])
 
     const [isLoading, setIsLoading] = useState(false);
     const validateEmail = async()=> {
@@ -37,6 +72,12 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
       console.log(email);
       setIsLoading(false);
     };
+
+    const resendEmailValidateCode = async() => {
+      setIsLoading(true);
+      dispatch(resendCodeRequest(email));
+      setIsLoading(false);
+    }
 
     useEffect(() => {
       if (validateEmailState.success_flg == true) {
@@ -64,6 +105,8 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
 
       <Text style={styles.txtSub}>An email with a verification code has been sent to your email</Text>
 
+      <Text>{secondToMinuteConvert(timeLeft)}</Text>
+
       <View style={styles.viewCodeInput}>
         <OtpInput
           numberOfDigits={6}
@@ -87,7 +130,9 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
       <Text style={styles.txtSub}>Didn't receive a code?{" "}
           <Text 
             style={[styles.txtSub, {color: colors.PrimaryColor}]} 
-            onPress={() =>console.log("hehehe")}
+            onPress={() => {
+              resendEmailValidateCode();
+            }}
           >Resend code</Text>
       </Text>
 
