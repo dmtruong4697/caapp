@@ -18,6 +18,7 @@ import { RootState } from '../../../store';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { colors } from '../../../styles/colors';
 import { scale } from '../../../styles/scale';
+import { setCurrentRCChannel } from '../../../store/actions/rc/current-channel';
 
 const RCDashboardScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();
@@ -51,7 +52,8 @@ const RCDashboardScreen: React.FC = () => {
     const ws = new WebSocket(`ws://localhost:8910/rc/queue?user_id=${profile?.id}`);
 
     ws.onopen = () => console.log('WebSocket connected');
-    ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));
+    // ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));
+    ws.onmessage = (event) => onMessage(event);
     ws.onclose = () => console.log('WebSocket closed');
     ws.onerror = (e) => console.error('WebSocket error:', e.message);
 
@@ -59,6 +61,14 @@ const RCDashboardScreen: React.FC = () => {
 
     return () => ws.close();
   }, [isFocused, profile?.id]);
+
+  const onMessage = (event: WebSocketMessageEvent) => {
+    const message = JSON.parse(event.data);
+    if (message.id > 0) {
+      setCurrentRCChannel(message.id);
+      navigation.navigate("RCChat");
+    }
+  }
 
   const toggleFinding = useCallback(() => {
     if (!socket) return;

@@ -2,12 +2,12 @@ import { createTwoButtonAlert } from "../../../utils/alert";
 import { VALIDATE_EMAIL_FAILURE, VALIDATE_EMAIL_REQUEST, VALIDATE_EMAIL_SUCCESS, ValidateEmailActionTypes } from "../../actions/auth/validate-email";
 
 interface ValidateEmailState {
-    success_flg: boolean | null;
+  success_flg: boolean | null;
   error: any | null;
 }
 
 const initialState: ValidateEmailState = {
-    success_flg: false,
+  success_flg: false,
   error: null,
 };
 

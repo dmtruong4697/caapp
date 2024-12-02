@@ -10,6 +10,7 @@ import { UserInfo } from "../../models/user-info/user-info";
 import RCDashboardScreen from "../../screens/rc/rc-dashboard";
 import FirstInfoInputScreen from "../../screens/auth/first-info-input";
 import SuccessFirstInfoInputScreen from "../../screens/auth/success-first-info-input";
+import RCChatScreen from "../../screens/rc/rc-chat";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -40,6 +41,8 @@ export type RootStackParamList = {
     Setting: {};
 
     RCDashboard: {};
+
+    RCChat: {};
 
     FirstInfoInput: {};
 
@@ -126,6 +129,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="SuccessFirstInfoInput"
             component={SuccessFirstInfoInputScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="RCChat"
+            component={RCChatScreen}
             options={{
                 headerShown: false,
             }}
