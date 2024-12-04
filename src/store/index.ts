@@ -39,6 +39,9 @@ import getCurrentChannelReducer from './reducers/rc/channel/get-current-channel'
 import { currentRCChannelSaga } from './sagas/rc/channel/get-current-channel';
 import RCChannelChatHistoryReducer from './reducers/rc/channel/channel-chat-history';
 import { RCChannelChatHistorySaga } from './sagas/rc/channel/channel-chat-history';
+import case1NavigateRCChatScreenReducer from './reducers/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
+import { case1NavigateRCChatScreenFailure } from './actions/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
+import { case1NavigateRCChatScreenSaga } from './sagas/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -65,6 +68,7 @@ const rootReducer = combineReducers({
   // rc channel
   currentRCChannel: getCurrentChannelReducer,
   RCChannelChatHistory: RCChannelChatHistoryReducer,
+  case1NavigateRCChatScreen: case1NavigateRCChatScreenReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -95,6 +99,7 @@ function* rootSaga() {
     // rc channel
     currentRCChannelSaga(),
     RCChannelChatHistorySaga(),
+    case1NavigateRCChatScreenSaga(),
   ]);
 }
 
