@@ -1,4 +1,4 @@
-export type Message = {
+export type RCMessage = {
     id: number;
     sender_id: number;
     content: string;

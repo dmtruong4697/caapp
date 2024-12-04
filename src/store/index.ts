@@ -35,6 +35,8 @@ import checkDuplicateHashtagNameReducer from './reducers/profile/check-duplicate
 import { checkDuplicateHashtagNameSaga } from './sagas/profile/check-duplicate-hashtag-name';
 import { firstUpdateProfileInfoSaga } from './sagas/profile/first-update-profile-info';
 import firstUpdateProfileInfoReducer from './reducers/profile/first-update-profile-info';
+import getCurrentChannelReducer from './reducers/rc/channel/get-current-channel';
+import { currentRCChannelSaga } from './sagas/rc/channel/get-current-channel';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -57,6 +59,9 @@ const rootReducer = combineReducers({
 
   // constant data
   languageList: getLanguageListReducer,
+
+  // rc channel
+  currentRCChannel: getCurrentChannelReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -83,6 +88,9 @@ function* rootSaga() {
 
     // constant data
     getLanguageListSaga(),
+
+    // rc channel
+    currentRCChannelSaga(),
   ]);
 }
 

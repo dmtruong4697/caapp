@@ -18,7 +18,7 @@ import { RootState } from '../../../store';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { colors } from '../../../styles/colors';
 import { scale } from '../../../styles/scale';
-import { setCurrentRCChannel } from '../../../store/actions/rc/current-channel';
+import { setCurrentRCChannel } from '../../../store/actions/rc/channel/current-channel';
 
 const RCDashboardScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();

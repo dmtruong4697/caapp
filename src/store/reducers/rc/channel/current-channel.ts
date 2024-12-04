@@ -1,4 +1,4 @@
-import { CurrentChannelActionTypes, RESET_CURRENT_RC_CHANNEL, SET_CURRENT_RC_CHANNEL } from "../../actions/rc/current-channel";
+import { CurrentChannelActionTypes, RESET_CURRENT_RC_CHANNEL, SET_CURRENT_RC_CHANNEL } from "../../../actions/rc/channel/current-channel";
 
 interface CurrentChannelState {
     channel_id: number | null,
