@@ -37,6 +37,8 @@ import { firstUpdateProfileInfoSaga } from './sagas/profile/first-update-profile
 import firstUpdateProfileInfoReducer from './reducers/profile/first-update-profile-info';
 import getCurrentChannelReducer from './reducers/rc/channel/get-current-channel';
 import { currentRCChannelSaga } from './sagas/rc/channel/get-current-channel';
+import RCChannelChatHistoryReducer from './reducers/rc/channel/channel-chat-history';
+import { RCChannelChatHistorySaga } from './sagas/rc/channel/channel-chat-history';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -62,6 +64,7 @@ const rootReducer = combineReducers({
 
   // rc channel
   currentRCChannel: getCurrentChannelReducer,
+  RCChannelChatHistory: RCChannelChatHistoryReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -91,6 +94,7 @@ function* rootSaga() {
 
     // rc channel
     currentRCChannelSaga(),
+    RCChannelChatHistorySaga(),
   ]);
 }
 
