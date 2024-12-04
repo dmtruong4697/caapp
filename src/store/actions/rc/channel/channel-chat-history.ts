@@ -56,7 +56,7 @@ export const getRCChannelChatHistoryFailure = (error: string) => ({
   payload: { error }
 });
 
-export const addMessageToChannel = (message: RCMessage) => ({
+export const addMessageToRCChannel = (message: RCMessage) => ({
   type: ADD_MESSAGE_TO_RC_CHANNEL,
   payload: { message }
 });

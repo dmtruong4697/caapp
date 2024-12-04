@@ -5,7 +5,6 @@ export const CASE1_NAVIGATE_RC_CHAT_SCREEN_FAILURE = 'CASE1_NAVIGATE_RC_CHAT_SCR
 interface Case1NavigateRCChatScreenRequestAction {
   type: typeof CASE1_NAVIGATE_RC_CHAT_SCREEN_REQUEST;
   payload: {
-    channel_id: number;
     [key: string]: any;
   };
 }
@@ -27,9 +26,9 @@ interface Case1NavigateRCChatScreenFailureAction {
 
 export type Case1NavigateRCChatScreenActionTypes = Case1NavigateRCChatScreenRequestAction | Case1NavigateRCChatScreenSuccessAction | Case1NavigateRCChatScreenFailureAction;
 
-export const case1NavigateRCChatScreenRequest = (channelID: number) => ({
+export const case1NavigateRCChatScreenRequest = () => ({
   type: CASE1_NAVIGATE_RC_CHAT_SCREEN_REQUEST,
-  payload: { channelID }
+  payload: { }
 });
 
 export const case1NavigateRCChatScreenSuccess = () => ({

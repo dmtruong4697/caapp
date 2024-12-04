@@ -25,6 +25,9 @@ import { RootStackParamList } from '../../../navigators/main';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { addMessageToChannel } from '../../../store/actions/channel/channel-chat-history-action';
+import { case1NavigateRCChatScreenRequest } from '../../../store/actions/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
+import { RCMessage } from '../../../models/rc/message/rc-message';
+import { addMessageToRCChannel } from '../../../store/actions/rc/channel/channel-chat-history';
 
 interface IProps {}
 
@@ -36,11 +39,47 @@ const RCChatScreen: React.FC<IProps> = () => {
   const dispatch = useDispatch();
   const route = useRoute<RouteProp<RootStackParamList, 'RCChat'>>();
 
-  const getChannelInfoState = useSelector((state: RootState) => state.channelInfo);
   const profileState = useSelector((state: RootState) => state.profile)
+  const currentRCChannelState = useSelector((state: RootState) => state.currentRCChannel)
+  const RCChannelChatHistoryState = useSelector((state: RootState) => state.RCChannelChatHistory)
 
   const [messageText, setMessageText] = useState("");
   const [socket, setSocket] = useState<WebSocket | null>(null);
+
+  useEffect(() => {
+    dispatch(case1NavigateRCChatScreenRequest())
+  }, []);
+
+  useEffect(() => {
+    if (currentRCChannelState.current_rc_channel?.id) {
+      const ws = new WebSocket(`ws://localhost:8910/rc/chat?channel_id=${currentRCChannelState.current_rc_channel?.id}`);
+
+      ws.onopen = () => console.log('WebSocket connected');
+      
+      ws.onmessage = (event) => {
+        const newMessage: RCMessage = JSON.parse(event.data);
+        dispatch(addMessageToRCChannel(newMessage));
+      };
+
+      ws.onclose = () => console.log('WebSocket closed');
+      
+      ws.onerror = (e) => console.log(e.message);
+      
+      setSocket(ws);
+
+      return () => {
+        ws.close();
+      };
+    }
+  }, [currentRCChannelState.current_rc_channel?.id]);
+
+  const sendMessage = () => {
+    if (socket && messageText) {
+      const message = { content: messageText, type: "0" };
+      socket.send(JSON.stringify(message));
+      setMessageText("");
+    }
+  };
 
   return (
     <View style={styles.viewContainer}>
@@ -54,7 +93,7 @@ const RCChatScreen: React.FC<IProps> = () => {
         </TouchableOpacity>
 
         <Pressable style={styles.btnHeaderUserName} onPress={() => {}}>
-          <Text style={styles.txtHeaderUserName}>{getChannelInfoState.friend_channel_info?.user.first_name} {getChannelInfoState.friend_channel_info?.user.middle_name} {getChannelInfoState.friend_channel_info?.user.last_name}</Text>
+          {/* <Text style={styles.txtHeaderUserName}>{getChannelInfoState.friend_channel_info?.user.first_name} {getChannelInfoState.friend_channel_info?.user.middle_name} {getChannelInfoState.friend_channel_info?.user.last_name}</Text> */}
         </Pressable>
 
         <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {}}>
@@ -63,18 +102,19 @@ const RCChatScreen: React.FC<IProps> = () => {
       </View>
 
       {/* message list view */}
-      {/* <View style={styles.viewChatHistoryContainer}>
+      <View style={styles.viewChatHistoryContainer}>
         <FlatList
-          data={messages}
+          data={RCChannelChatHistoryState.messages}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <ChatMessageItem message={item}/>
+            // <ChatMessageItem message={item}/>
             // <Text>{item.sender?.id}: {item.message.content}</Text>
+            <View/>
           )}
           style={{width: '100%',}}
           inverted
         />
-      </View> */}
+      </View>
 
       {/* bottom view */}
       <View style={styles.viewBottomContainer}>
@@ -96,7 +136,7 @@ const RCChatScreen: React.FC<IProps> = () => {
           />
         </View>
         {messageText !== "" && (
-          <TouchableOpacity style={styles.btnSend} onPress={() => {}}>
+          <TouchableOpacity style={styles.btnSend} onPress={() => {sendMessage}}>
             <FontAwesomeIcon icon={faPaperPlane} size={24} color={colors.Gray} />
           </TouchableOpacity>
         )}
