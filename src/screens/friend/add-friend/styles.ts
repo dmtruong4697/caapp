@@ -18,12 +18,47 @@ export const styles = StyleSheet.create({
 
     viewQRCode: {
         width: '100%',
-        height: scale(180),
+        height: scale(200),
         justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    viewQRCodeBorder: {
+        width: scale(200),
+        height: scale(200),
+
+        borderRadius: radius.Radius2,
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        padding: scale(10),
     },
 
     viewGroup: {
         width: '100%',
         flexDirection: 'column',
+    },
+
+    viewName: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+
+        gap: scale(3),
+
+        marginBottom: scale(15),
+    },
+
+    txtName: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: colors.PrimaryText,
+    },
+
+    txtHashtagName: {
+        fontSize: 18,
+        fontWeight: '400',
+        color: colors.SecondText,
     },
 })

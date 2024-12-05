@@ -24,6 +24,8 @@ export const styles = StyleSheet.create({
         width: scale(50),
         height: scale(50),
         borderRadius: 1000,
+
+        backgroundColor: colors.GrayBackground,
     },
 
     viewContentContainer: {

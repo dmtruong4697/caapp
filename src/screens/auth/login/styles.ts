@@ -117,4 +117,10 @@ export const styles = StyleSheet.create({
         width: scale(24),
         height: scale(24),
     },
+
+    imgCaapp: {
+        height: scale(20),
+        width: scale(50),
+        resizeMode: 'contain',
+    },
 })
