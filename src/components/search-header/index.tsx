@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface IProps {
     userInfo?: UserInfo
@@ -14,6 +16,7 @@ interface IProps {
 
 const SearchHeader: React.FC<IProps> = ({userInfo}) => {
 
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
@@ -32,7 +35,7 @@ const SearchHeader: React.FC<IProps> = ({userInfo}) => {
         <TouchableOpacity
             style={styles.btnAddFriend}
             onPress={() => {
-                
+                navigation.navigate("AddFriend")
             }}
         >
             <FontAwesomeIcon icon={faUserPlus} size={22} color={colors.White}/>
