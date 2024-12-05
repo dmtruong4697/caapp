@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, ScrollView, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, ScrollView, FlatList, RefreshControl } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
@@ -66,9 +66,18 @@ const ChatListScreen: React.FC<IProps>  = () => {
     }, [isFocused]);
 
   return (
-    <View style={styles.viewContainer}>
-      <CustomStatusBar backgroundColor={colors.PrimaryColor}/>
-      <ScrollView style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: colors.White}}>
+    {/* <CustomStatusBar backgroundColor={colors.PrimaryColor}/> */}
+    <SafeAreaView style={styles.viewContainer}>
+      <ScrollView 
+        style={{flex: 1}}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={pullToRefreshFunction}
+          />
+      }
+      >
         <View style={styles.viewTopSearch}>
           <Text style={styles.txtCaapp}>caapp</Text>
           <TouchableOpacity
@@ -84,19 +93,20 @@ const ChatListScreen: React.FC<IProps>  = () => {
         </View> */}
 
         <View style={styles.viewChatList}>
-          <View style={styles.viewChatListTitle}>
-            <Text style={styles.txtChatListTitle}>Chats</Text>
-            <TouchableOpacity
-              style={styles.btnChatListOption}
-              onPress={() => {
-                console.log(channelListState.channels);
-              }}
-            >
-              <FontAwesomeIcon icon={faEllipsis} size={20} color={colors.Black}/>
-            </TouchableOpacity>
-          </View>
+          {Object.keys(channelListState.channels).length > 0 && 
+            <>
+            <View style={styles.viewChatListTitle}>
+              <Text style={styles.txtChatListTitle}>Chats</Text>
+              <TouchableOpacity
+                style={styles.btnChatListOption}
+                onPress={() => {
+                  console.log(channelListState.channels);
+                }}
+              >
+                <FontAwesomeIcon icon={faEllipsis} size={20} color={colors.Black}/>
+              </TouchableOpacity>
+            </View>
 
-          {channelListState.channels && 
             <FlatList
               data={Object.values(channelListState.channels)}
               // keyExtractor={item => item.Id.toString()}
@@ -107,10 +117,20 @@ const ChatListScreen: React.FC<IProps>  = () => {
               contentContainerStyle={{gap: scale(15),}}
               style={{width: '100%'}}
             />
+            </>
+          }
+
+          {
+            Object.keys(channelListState.channels).length == 0 &&
+            <View style={styles.viewEmpty}>
+              <Image style={styles.imgEmpty} source={require('../../../assets/illustrations/empty-box-256px.png')}/>
+              <Text style={styles.txtEmpty}>🤔 No conversations yet! Start chatting to connect with someone now. 😊</Text>
+            </View>
           }
           
         </View>
       </ScrollView>
+    </SafeAreaView>
     </View>
   )
 }

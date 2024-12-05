@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
 
     txtTitle: {
         fontSize: 22,
-        fontWeight: '400',
+        fontWeight: 'bold',
         color: colors.PrimaryText,
         marginTop: scale(0),
         marginBottom: scale(20),

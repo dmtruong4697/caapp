@@ -50,6 +50,7 @@ const LoginScreen: React.FC<IProps>  = () => {
     }, [profileState]) 
 
   return (
+    <View style={{flex: 1, backgroundColor: colors.White}}>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader
@@ -164,6 +165,7 @@ const LoginScreen: React.FC<IProps>  = () => {
       </View>
 
     </SafeAreaView>
+    </View>
   )
 }
 

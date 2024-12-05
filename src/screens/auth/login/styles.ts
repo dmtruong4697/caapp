@@ -12,12 +12,13 @@ export const styles = StyleSheet.create({
 
     viewHeader: {
         width: '100%',
-        paddingTop: scale(8),
+        paddingTop: scale(10),
+        paddingBottom: scale(3),
     },
 
     txtTitle: {
         fontSize: 24,
-        fontWeight: '500',
+        fontWeight: '600',
         color: colors.PrimaryText,
 
         marginTop: scale(0),
@@ -87,16 +88,28 @@ export const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         gap: scale(30),
-        justifyContent: 'center'
+        justifyContent: 'center',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 1.41,
+
+        elevation: 2,
     },
 
     btnOAuth: {
-        width: scale(74),
+        width: scale(76),
         height: scale(48),
         justifyContent: 'center',
         alignItems: 'center',
 
         borderRadius: radius.Radius1,
+        borderWidth: 1,
+        borderColor: colors.PrimaryBorder,
         backgroundColor: colors.White,
     },
 

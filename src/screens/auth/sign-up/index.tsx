@@ -58,6 +58,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
   const [isCheck, setIsCheck] = useState(false);
 
   return (
+    <View style={{flex: 1, backgroundColor: colors.White}}>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader
@@ -153,7 +154,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
               <FontAwesomeIcon icon={faCheck} style={styles.imgCheck} size={18} color={colors.White}/>
           </TouchableOpacity>
 
-          <Text style={styles.txtTerm}>I certify that I am 18 years of age or older, and I agree to the <Text style={[styles.txtTerm, {color: colors.PrimaryColor}]}>User Agreement</Text> and <Text style={[styles.txtTerm, {color: colors.PrimaryColor}]}>Privacy Policy</Text></Text>
+          <Text style={styles.txtTerm}>I certify that I am 18 years of age or older, and I agree to the <Text style={[styles.txtTerm, {color: colors.DarkColor}]}>User Agreement</Text> and <Text style={[styles.txtTerm, {color: colors.DarkColor}]}>Privacy Policy</Text></Text>
       </View>
 
       <View style={styles.viewButtonGroup}>
@@ -164,6 +165,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
         />
       </View>
     </SafeAreaView>
+    </View>
   )
 }
 

@@ -35,7 +35,7 @@ const FriendListScreen: React.FC<IProps>  = () => {
           },
         }}
       >
-        <Tab.Screen name="Friend" component={FriendTab} />
+        <Tab.Screen name="Friend" component={FriendTab}/>
         <Tab.Screen name="Group" component={GroupTab} />
       </Tab.Navigator>
     </View>

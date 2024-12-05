@@ -86,6 +86,7 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
     },[validateEmailState.success_flg])
 
   return (
+    <View style={{flex: 1, backgroundColor: colors.White}}>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader
@@ -104,8 +105,6 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
       </View>
 
       <Text style={styles.txtSub}>An email with a verification code has been sent to your email</Text>
-
-      <Text>{secondToMinuteConvert(timeLeft)}</Text>
 
       <View style={styles.viewCodeInput}>
         <OtpInput
@@ -127,9 +126,11 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
         />
       </View>
 
+      <Text style={styles.txtTime}>{secondToMinuteConvert(timeLeft)}</Text>
+
       <Text style={styles.txtSub}>Didn't receive a code?{" "}
           <Text 
-            style={[styles.txtSub, {color: colors.PrimaryColor}]} 
+            style={[styles.txtSub, {color: colors.DarkColor}]} 
             onPress={() => {
               resendEmailValidateCode();
             }}
@@ -146,6 +147,7 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
         />
       </View>
     </SafeAreaView>
+    </View>
   )
 }
 

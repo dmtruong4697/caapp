@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from 'r
 import React from 'react'
 import { styles } from './styles';
 import { colors } from '../../styles/colors';
+import LinearGradient from 'react-native-linear-gradient';
 
 interface IProps {
   title?: string;
@@ -16,19 +17,22 @@ const TwoStatusButton: React.FC<IProps> = ({title, onPress, containerStyle, titl
 
   return (
     <TouchableOpacity
-        style={[styles.btnContainer,{
-            backgroundColor: (disabled)? colors.DisabledColor:colors.PrimaryColor,
-            borderColor: (disabled)? colors.DisabledColor:colors.PrimaryColor,
-        }, containerStyle,]}
+        style={[styles.btnContainer, containerStyle,]}
         onPress={onPress}
         disabled={disabled}
     >
+      <LinearGradient 
+        colors={(disabled)? [colors.DisabledPrimaryColor, colors.DisabledDarkColor]:[colors.PrimaryColor, colors.DarkColor]} 
+        style={styles.viewContainer}
+        locations={[0, 1]}
+      >
         <Text style={[styles.txtTitle, {
             color: colors.White,
         }, titleStyle]}
         >{title}</Text>
 
         {rightIcon}
+      </LinearGradient>
     </TouchableOpacity>
   )
 }

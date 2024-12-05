@@ -25,5 +25,6 @@ export const styles = StyleSheet.create({
         marginBottom: scale(20),
         marginVertical: scale(20),
         flexDirection: 'column',
+        gap: scale(5),
     },
 })

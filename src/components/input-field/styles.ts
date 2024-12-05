@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     txtTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: colors.PrimaryText,
+        color: colors.GrayText,
         marginBottom: scale(8),
     },
 

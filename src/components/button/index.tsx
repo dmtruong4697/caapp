@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, StyleProp, ViewStyle, TextStyle } from 'r
 import React from 'react'
 import { styles } from './styles';
 import { colors } from '../../styles/colors';
+import LinearGradient from 'react-native-linear-gradient';
 
 interface IProps {
   title?: string;
@@ -16,18 +17,22 @@ const Button: React.FC<IProps> = ({title, onPress, containerStyle, titleStyle, t
 
   return (
     <TouchableOpacity
-        style={[styles.btnContainer,{
-            backgroundColor: (type == 'solid')? 'transparent':colors.PrimaryColor,
-            borderColor: (type == 'solid')? colors.GrayBorder:colors.PrimaryColor,
-        }, containerStyle]}
+        style={[styles.btnContainer, containerStyle]}
         onPress={onPress}
     >
+
+      <LinearGradient 
+        colors={(type == 'solid')? [colors.White, colors.White]:[colors.PrimaryColor, colors.DarkColor]} 
+        style={styles.viewContainer}
+        locations={[0, 1]}
+      >
         <Text style={[styles.txtTitle, {
             color: (type == 'solid')? colors.PrimaryText:colors.White,
         }, titleStyle]}
         >{title}</Text>
 
         {rightIcon}
+      </LinearGradient>
     </TouchableOpacity>
   )
 }

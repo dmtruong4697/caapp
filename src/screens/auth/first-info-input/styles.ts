@@ -6,16 +6,13 @@ import { radius } from "../../../styles/radius";
 export const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        // paddingHorizontal: scale(12),
-        // marginHorizontal: scale(12),
         backgroundColor: colors.White,
     },
 
     viewScreenContainer: {
         flex: 1,
-        paddingHorizontal: scale(12),
-        // marginHorizontal: scale(12),
-        backgroundColor: colors.White,
+        padding: scale(12),
+        marginHorizontal: scale(12),
     },
 
     viewHeader: {
@@ -24,11 +21,11 @@ export const styles = StyleSheet.create({
     },
 
     txtTitle: {
-        fontSize: 22,
+        fontSize: 30,
         fontWeight: '400',
         color: colors.PrimaryText,
         marginTop: scale(0),
-        marginBottom: scale(20),
+        marginBottom: scale(10),
     },
 
     viewFormContainer: {

@@ -24,9 +24,9 @@ const InputField: React.FC<IProps> = ({title, onBlur, onChangeText, containerSty
 
   return (
     <View style={styles.viewContainer}>
-      {(title) && <Text style={[styles.txtTitle, {color: (isFocus)? colors.PrimaryColor: colors.PrimaryText,}]}>{title}</Text>}
+      {(title) && <Text style={[styles.txtTitle, {color: (isFocus)? colors.PrimaryColor: colors.GrayText,}]}>{title}</Text>}
       <View style={[styles.inputContainer, {
-        borderColor: (isFocus)? colors.PrimaryColor:colors.GrayBorder,
+        borderColor: (isFocus)? colors.PrimaryColor:colors.PrimaryBorder,
         borderWidth: (isFocus)? 2: 1,
       }, containerStyle]}>
         <TextInput

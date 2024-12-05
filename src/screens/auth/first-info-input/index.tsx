@@ -82,8 +82,8 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={styles.viewContainer}>
-      <CustomStatusBar backgroundColor={colors.PrimaryColor}/>
-      <View style={styles.viewScreenContainer}>
+      {/* <CustomStatusBar backgroundColor={colors.PrimaryColor}/> */}
+      <SafeAreaView style={styles.viewScreenContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader
           renderLeftButton={true}
@@ -250,7 +250,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
         </View>
 
       </ScrollView>
-      </View>
+      </SafeAreaView>
     </View>
   )
 }

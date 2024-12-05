@@ -5,14 +5,12 @@ import { colors } from "../../../styles/colors";
 export const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        // padding: scale(12),
-        // marginHorizontal: scale(12),
-        // backgroundColor: colors.DefaultBackground,
+        padding: scale(12),
+        marginHorizontal: scale(12),
     },
 
     viewTopSearch: {
         width: '100%',
-        paddingHorizontal: scale(10),
         paddingVertical: scale(2),
         flexDirection: 'row',
         alignItems: 'center',
@@ -21,7 +19,7 @@ export const styles = StyleSheet.create({
     },
 
     txtCaapp: {
-        fontSize: 32,
+        fontSize: 36,
         fontWeight: '600',
         color: colors.DarkColor,
     },
@@ -42,7 +40,7 @@ export const styles = StyleSheet.create({
 
     viewChatList: {
         flex: 1,
-        paddingHorizontal: scale(10),
+        // paddingHorizontal: scale(10),
         // backgroundColor: 'pink',
     },
 
@@ -68,5 +66,25 @@ export const styles = StyleSheet.create({
 
         alignItems: 'center',
         justifyContent: 'center',
+    },
+
+    viewEmpty: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: scale(150),
+    },
+
+    txtEmpty: {
+        fontSize: 16,
+        fontWeight: '400',
+        color: colors.SecondText,
+        textAlign: 'center',
+    },
+
+    imgEmpty: {
+        width: scale(100),
+        height: scale(100),
+        marginBottom: scale(20),
     },
 })

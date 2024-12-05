@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding: scale(12),
         marginHorizontal: scale(12),
-        // backgroundColor: colors.DefaultBackground,
     },
 
     viewHeader: {
@@ -19,6 +18,8 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '500',
         color: colors.PrimaryText,
+
+        alignSelf: 'center',
 
         marginTop: scale(0),
         marginBottom: scale(10),
@@ -55,12 +56,21 @@ export const styles = StyleSheet.create({
     viewCodeInput: {
         width: '100%',
         marginTop: scale(20),
-        marginBottom: scale(50),
+        marginBottom: scale(20),
     },
 
     pinCodeContainer: {
         borderColor: colors.GrayBorder, 
         borderWidth: 2, 
         borderRadius: 8,
+    },
+
+    txtTime: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: colors.PrimaryText,
+        alignSelf: 'center',
+
+        marginBottom: scale(30),
     },
 })
