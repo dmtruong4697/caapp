@@ -100,11 +100,11 @@ const HomeNavigator = () => {
                     tabBarIcon: ({focused}) => (
                         (focused)?
                         <View style={styles.rcCenterButton}>
-                            <FontAwesomeIcon icon={faHippo} color={colors.White} size={scale(24)}/>
+                            <FontAwesomeIcon icon={faHippo} color={colors.DarkColor} size={scale(24)}/>
                         </View>
                         :
                         <View style={styles.rcCenterButton}>
-                            <FontAwesomeIcon icon={faHippo} color={colors.DarkColor} size={scale(24)}/>
+                            <FontAwesomeIcon icon={faHippo} color={colors.PrimaryColor} size={scale(24)}/>
                         </View>
                     ),
                 }}

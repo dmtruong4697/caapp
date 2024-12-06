@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { createFriendRequestRequest, createFriendRequestSuccess } from '../../store/actions/friend/friend-request';
 import { RootState } from '../../store';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface IProps {
     userInfo?: UserInfo
@@ -16,6 +18,8 @@ const SuggestUserItem: React.FC<IProps> = ({userInfo}) => {
 
     const {t} = useTranslation();
     const dispatch = useDispatch();
+    const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+    
     const friendRequestState = useSelector((state: RootState) => state.friendRequest);
 
     const [isSentRequest, setIsSentRequest] = useState(userInfo!.request.id > 0 || friendRequestState.sent_request_list.includes(userInfo!.id))
@@ -32,7 +36,9 @@ const SuggestUserItem: React.FC<IProps> = ({userInfo}) => {
     <View style={styles.viewContainer}>
         <TouchableOpacity
             style={styles.imgAvatar}
-            onPress={() => {}}
+            onPress={() => {
+                navigation.navigate("UserProfile", {user: userInfo})
+            }}
         >
             <Image style={styles.imgAvatar} source={{uri: userInfo!.avatar_image}}/>
         </TouchableOpacity>

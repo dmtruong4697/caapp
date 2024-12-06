@@ -5,16 +5,16 @@ import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/na
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import SolidHeader from '../../../components/solid-header';
-import { Controller, useForm } from 'react-hook-form';
-import InputField from '../../../components/input-field';
-import Button from '../../../components/button';
 import { colors } from '../../../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest } from '../../../store/actions/auth/login';
 import { RootState } from '../../../store';
 import LinearGradient from 'react-native-linear-gradient';
 import QRCode from 'react-native-qrcode-svg';
 import { scale } from '../../../styles/scale';
+import HashtagNameInputField from '../../../components/hashtag-name-input-field';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faMagnifyingGlass, faQrcode, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { resetSearchByHashtagNameState, searchByHashtagNameRequest } from '../../../store/actions/search/search-by-hashtag-name';
 
 interface IProps {}
 
@@ -26,6 +26,29 @@ const AddFriendScreen: React.FC<IProps>  = () => {
     const dispatch = useDispatch();
 
     const profileState = useSelector((state: RootState) => state.profile)
+    const searchByHashtagNameState = useSelector((state: RootState) => state.searchByhashtagName)
+
+    const [hashtagName, setHashtagName] = useState<string | null>(null)
+    const [searchError, setSearchError] = useState<string | null>(null)
+
+    const search = async() => {
+      dispatch(searchByHashtagNameRequest(hashtagName!));
+    }
+
+    const isFocused = useIsFocused()
+    useEffect(() => {
+      dispatch(resetSearchByHashtagNameState());
+    },[isFocused])
+
+    useEffect(() => {
+      if (searchByHashtagNameState.is_found && searchByHashtagNameState.success_flg) {
+        navigation.navigate("UserProfile", {user: searchByHashtagNameState.user})
+      }
+
+      if (searchByHashtagNameState.success_flg && !searchByHashtagNameState.is_found) {
+        setSearchError("User not found")
+      }
+    }, [searchByHashtagNameState])
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
@@ -61,6 +84,57 @@ const AddFriendScreen: React.FC<IProps>  = () => {
             backgroundColor={'transparent'}
           />
         </LinearGradient>
+      </View>
+
+      <View style={styles.viewGroup}>
+        <View style={styles.viewGroupItem}>
+          <View style={styles.viewHashtagNameInputContainer}>
+            <HashtagNameInputField
+              inputMode='text'
+              onChangeText={value => setHashtagName(value)}
+              onFocus={() => setSearchError(null)}
+            />
+          </View>
+
+          <TouchableOpacity
+            style={styles.btnSearch}
+            disabled={hashtagName == null || hashtagName == ""}
+            onPress={() => {
+              search()
+            }}
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} size={24} color={(hashtagName == null || hashtagName == "")? colors.PlaceholderText:colors.Black}/>
+          </TouchableOpacity>
+        </View>
+        {searchError && <Text style={styles.txtSearchError}>{searchError}</Text>}
+
+        <TouchableOpacity 
+          style={styles.btnGroupItem}
+          onPress={() => {
+
+          }}
+        >
+          <View style={styles.viewIcon}>
+            <FontAwesomeIcon icon={faUserFriends} size={24} color={colors.DarkColor}/>
+          </View>
+          <View style={styles.viewButtonTitle}>
+            <Text style={styles.txtButtonTitle}>Suggest Friend</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+          style={styles.btnGroupItem}
+          onPress={() => {
+            navigation.navigate("QRScan");
+          }}
+        >
+          <View style={styles.viewIcon}>
+            <FontAwesomeIcon icon={faQrcode} size={24} color={colors.DarkColor}/>
+          </View>
+          <View style={styles.viewButtonTitle}>
+          <Text style={styles.txtButtonTitle}>Scan QR Code</Text>
+          </View>
+        </TouchableOpacity>
       </View>
 
     </SafeAreaView>

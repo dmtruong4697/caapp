@@ -4,6 +4,7 @@ import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
+import { colors } from '../../../styles/colors';
 
 interface IProps {}
 
@@ -14,9 +15,11 @@ const UserProfileScreen: React.FC<IProps>  = () => {
     const {t} = useTranslation();
 
   return (
-    <SafeAreaView style={styles.viewContainer}>
-        
-    </SafeAreaView>
+    <View style={{flex: 1, backgroundColor: colors.White}}>
+      <SafeAreaView style={styles.viewContainer}>
+          
+      </SafeAreaView>
+    </View>
   )
 }
 

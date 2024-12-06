@@ -37,6 +37,33 @@ export const styles = StyleSheet.create({
     viewGroup: {
         width: '100%',
         flexDirection: 'column',
+        marginVertical: scale(20),
+    },
+
+    viewGroupItem: {
+        width: '100%',
+        padding: scale(5),
+        paddingVertical: scale(10),
+        flexDirection: 'row',
+        gap: scale(5),
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: scale(18),
+    },
+
+    btnGroupItem: {
+        width: '100%',
+        padding: scale(5),
+        paddingVertical: scale(2),
+        marginBottom: scale(8),
+        flexDirection: 'row',
+        gap: scale(5),
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+
+    viewHashtagNameInputContainer: {
+        width: '90%',
     },
 
     viewName: {
@@ -60,5 +87,42 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '400',
         color: colors.SecondText,
+    },
+
+    btnSearch: {
+        width: scale(48),
+        height: scale(48),
+        borderRadius: radius.Radius1,
+
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    txtSearchError: {
+        paddingHorizontal: scale(5),
+        fontSize: 16,
+        fontWeight: '400',
+        color: colors.ErrorText,
+    },
+
+    viewIcon: {
+        height: scale(40),
+        width: scale(40),
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    txtButtonTitle: {
+        fontSize: 18,
+        fontWeight: '300',
+        color: colors.PrimaryText,
+    },
+
+    viewButtonTitle: {
+        flex: 1,
+        justifyContent: 'center',
+        borderBottomWidth: scale(0.4),
+        paddingVertical: scale(8),
+        borderBottomColor: colors.GrayBorder,
     },
 })

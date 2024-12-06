@@ -5,10 +5,11 @@ import { colors } from "../../styles/colors";
 export const styles = StyleSheet.create({
     viewContainer: {
         flex: 1,
-        backgroundColor: colors.PrimaryColor,
+        // backgroundColor: colors.PrimaryColor,
         alignItems: 'center',
         justifyContent: 'center',
         padding: scale(20),
+        zIndex: 2,
     },
 
     txtAppName: {
@@ -26,5 +27,12 @@ export const styles = StyleSheet.create({
         marginVertical: scale(20),
         flexDirection: 'column',
         gap: scale(5),
+    },
+
+    imgBackground: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        zIndex: 1,
     },
 })

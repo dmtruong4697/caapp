@@ -16,8 +16,10 @@ const WelcomeScreen: React.FC<IProps>  = () => {
     const {t} = useTranslation();
 
   return (
+    <View style={{flex: 1}}>
+    <Image style={styles.imgBackground} source={require('../../assets/backgrounds/welcome-background.png')}/>
     <SafeAreaView style={styles.viewContainer}>
-      <Text style={styles.txtAppName}>caapp</Text>
+      {/* <Text style={styles.txtAppName}>caapp</Text> */}
       <View style={styles.viewButtonGroup}>
           <Button
               title='Get started'
@@ -37,6 +39,7 @@ const WelcomeScreen: React.FC<IProps>  = () => {
           />
       </View>
     </SafeAreaView>
+    </View>
   )
 }
 

@@ -12,6 +12,8 @@ import FirstInfoInputScreen from "../../screens/auth/first-info-input";
 import SuccessFirstInfoInputScreen from "../../screens/auth/success-first-info-input";
 import RCChatScreen from "../../screens/rc/rc-chat";
 import AddFriendScreen from "../../screens/friend/add-friend";
+import UserProfileScreen from "../../screens/profile/user-profile";
+import QRScanScreen from "../../screens/qr/qr-scan";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -50,6 +52,12 @@ export type RootStackParamList = {
     SuccessFirstInfoInput: {};
 
     AddFriend: {};
+
+    UserProfile: {
+        userInfo: UserInfo | null,
+    };
+
+    QRScan: {};
 
 };
 
@@ -148,6 +156,23 @@ const MainNavigator = () => {
         <Stack.Screen
             name="AddFriend"
             component={AddFriendScreen}
+            options={{
+                headerShown: false,
+                // presentation: 'modal'
+            }}
+        />
+
+        <Stack.Screen
+            name="UserProfile"
+            component={UserProfileScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="QRScan"
+            component={QRScanScreen}
             options={{
                 headerShown: false,
             }}

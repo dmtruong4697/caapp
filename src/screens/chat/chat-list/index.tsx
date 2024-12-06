@@ -8,7 +8,7 @@ import Button from '../../../components/button';
 import InputField from '../../../components/input-field';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { colors } from '../../../styles/colors';
-import { faEllipsis, faMagnifyingGlass, faQrcode } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faMagnifyingGlass, faPlus, faQrcode } from '@fortawesome/free-solid-svg-icons';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
@@ -80,7 +80,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
       >
         <View style={styles.viewTopSearch}>
           <Image style={styles.imgCaapp} source={require('../../../assets/illustrations/caapp.png')}/>
-          <View style={{flexDirection: 'row', gap: scale(5)}}>
+          <View style={{flexDirection: 'row', gap: scale(8)}}>
             <TouchableOpacity
               style={styles.btnSearch}
               onPress={() => {}}
@@ -90,9 +90,16 @@ const ChatListScreen: React.FC<IProps>  = () => {
 
             <TouchableOpacity
               style={styles.btnSearch}
-              onPress={() => {}}
+              onPress={() => {navigation.navigate("QRScan")}}
             >
               <FontAwesomeIcon icon={faQrcode} size={20} color={colors.Black}/>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.btnSearch}
+              onPress={() => {}}
+            >
+              <FontAwesomeIcon icon={faPlus} size={20} color={colors.Black}/>
             </TouchableOpacity>
           </View>
         </View>

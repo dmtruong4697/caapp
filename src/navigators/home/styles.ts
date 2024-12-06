@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
         width: scale(50),
         height: scale(50),
 
-        borderRadius: radius.Radius1,
-        backgroundColor: colors.PrimaryColor,
+        // borderRadius: 10,
+        // backgroundColor: colors.PrimaryColor,
 
         alignItems: 'center',
         justifyContent: 'center',

@@ -10,8 +10,8 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: radius.Radius2,
-        borderWidth: 1,
-        borderColor: colors.PrimaryColor,
+        // borderWidth: 1,
+        // borderColor: colors.PrimaryColor,
         // backgroundColor: colors.PrimaryColor,
     },
 

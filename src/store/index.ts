@@ -42,6 +42,8 @@ import { RCChannelChatHistorySaga } from './sagas/rc/channel/channel-chat-histor
 import case1NavigateRCChatScreenReducer from './reducers/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 import { case1NavigateRCChatScreenFailure } from './actions/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 import { case1NavigateRCChatScreenSaga } from './sagas/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
+import { searchByhashtagNameSaga } from './sagas/search/search-by-hashtag-name';
+import searchByHashtagNameReducer from './reducers/search/search-by-hashtag-name';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -69,6 +71,9 @@ const rootReducer = combineReducers({
   currentRCChannel: getCurrentChannelReducer,
   RCChannelChatHistory: RCChannelChatHistoryReducer,
   case1NavigateRCChatScreen: case1NavigateRCChatScreenReducer,
+
+  // search
+  searchByhashtagName: searchByHashtagNameReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -100,6 +105,9 @@ function* rootSaga() {
     currentRCChannelSaga(),
     RCChannelChatHistorySaga(),
     case1NavigateRCChatScreenSaga(),
+
+    //search
+    searchByhashtagNameSaga(),
   ]);
 }
 
