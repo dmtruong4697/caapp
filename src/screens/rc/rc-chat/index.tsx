@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -28,6 +28,8 @@ import { addMessageToChannel } from '../../../store/actions/channel/channel-chat
 import { case1NavigateRCChatScreenRequest } from '../../../store/actions/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 import { RCMessage } from '../../../models/rc/message/rc-message';
 import { addMessageToRCChannel } from '../../../store/actions/rc/channel/channel-chat-history';
+import RCChatMessageItem from '../../../components/rc-chat-message-item';
+import { RCChatHistoryItem } from '../../../models/rc/message/rc-chat-history-item';
 
 interface IProps {}
 
@@ -43,6 +45,8 @@ const RCChatScreen: React.FC<IProps> = () => {
   const currentRCChannelState = useSelector((state: RootState) => state.currentRCChannel)
   const RCChannelChatHistoryState = useSelector((state: RootState) => state.RCChannelChatHistory)
 
+  let messages = RCChannelChatHistoryState.messages;
+
   const [messageText, setMessageText] = useState("");
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
@@ -57,8 +61,9 @@ const RCChatScreen: React.FC<IProps> = () => {
       ws.onopen = () => console.log('WebSocket connected');
       
       ws.onmessage = (event) => {
-        const newMessage: RCMessage = JSON.parse(event.data);
+        const newMessage: RCChatHistoryItem = JSON.parse(event.data);
         dispatch(addMessageToRCChannel(newMessage));
+        console.log(RCChannelChatHistoryState.messages);
       };
 
       ws.onclose = () => console.log('WebSocket closed');
@@ -75,11 +80,16 @@ const RCChatScreen: React.FC<IProps> = () => {
 
   const sendMessage = () => {
     if (socket && messageText) {
-      const message = { content: messageText, type: "0" };
+      const message = { content: messageText, type: "0", sender_id: profileState.profile?.id };
       socket.send(JSON.stringify(message));
       setMessageText("");
     }
   };
+
+  useEffect(() => {
+    messages = RCChannelChatHistoryState.messages;
+    console.log(messages.length);
+  }, [RCChannelChatHistoryState]);
 
   return (
     <View style={styles.viewContainer}>
@@ -96,7 +106,7 @@ const RCChatScreen: React.FC<IProps> = () => {
           {/* <Text style={styles.txtHeaderUserName}>{getChannelInfoState.friend_channel_info?.user.first_name} {getChannelInfoState.friend_channel_info?.user.middle_name} {getChannelInfoState.friend_channel_info?.user.last_name}</Text> */}
         </Pressable>
 
-        <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {}}>
+        <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {console.log(RCChannelChatHistoryState.messages);}}>
           <FontAwesomeIcon icon={faBars} size={22} color={colors.White} />
         </TouchableOpacity>
       </View>
@@ -105,12 +115,11 @@ const RCChatScreen: React.FC<IProps> = () => {
       <View style={styles.viewChatHistoryContainer}>
         <FlatList
           data={RCChannelChatHistoryState.messages}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => (
-            // <ChatMessageItem message={item}/>
-            // <Text>{item.sender?.id}: {item.message.content}</Text>
-            <View/>
-          )}
+          extraData={RCChannelChatHistoryState.messages}
+          keyExtractor={(item, index) => item.message.id.toString()}
+          renderItem={({ item }) => 
+            (<RCChatMessageItem message={item}/>)
+          }
           style={{width: '100%',}}
           inverted
         />
@@ -136,7 +145,7 @@ const RCChatScreen: React.FC<IProps> = () => {
           />
         </View>
         {messageText !== "" && (
-          <TouchableOpacity style={styles.btnSend} onPress={() => {sendMessage}}>
+          <TouchableOpacity style={styles.btnSend} onPress={sendMessage}>
             <FontAwesomeIcon icon={faPaperPlane} size={24} color={colors.Gray} />
           </TouchableOpacity>
         )}

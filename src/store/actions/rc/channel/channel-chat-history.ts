@@ -1,4 +1,5 @@
 import { GetRCChannelChatHistoryResponce } from "../../../../models/rc/channel/rc-channel-chat-history-response";
+import { RCChatHistoryItem } from "../../../../models/rc/message/rc-chat-history-item";
 import { RCMessage } from "../../../../models/rc/message/rc-message";
 
 export const GET_RC_CHANNEL_CHAT_HISTOTY_REQUEST = 'GET_RC_CHANNEL_CHAT_HISTOTY_REQUEST';
@@ -18,7 +19,7 @@ interface GetRCChannelChatHistoryRequestAction {
 interface GetRCChannelChatHistorySuccessAction {
   type: typeof GET_RC_CHANNEL_CHAT_HISTOTY_SUCCESS;
   payload: {
-    messages: GetRCChannelChatHistoryResponce;
+    messages: RCChatHistoryItem[];
     [key: string]: any;
   };
 }
@@ -34,7 +35,7 @@ interface GetRCChannelChatHistoryFailureAction {
 interface AddMessageToChannelAction {
   type: typeof ADD_MESSAGE_TO_RC_CHANNEL;
   payload: {
-    message: RCMessage;
+    message: RCChatHistoryItem;
     [key: string]: any;
   };
 }
@@ -56,7 +57,7 @@ export const getRCChannelChatHistoryFailure = (error: string) => ({
   payload: { error }
 });
 
-export const addMessageToRCChannel = (message: RCMessage) => ({
+export const addMessageToRCChannel = (message: RCChatHistoryItem) => ({
   type: ADD_MESSAGE_TO_RC_CHANNEL,
   payload: { message }
 });

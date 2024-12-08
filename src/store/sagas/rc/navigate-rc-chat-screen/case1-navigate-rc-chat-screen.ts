@@ -12,7 +12,7 @@ function* case1NavigateRCChatScreen(action: ReturnType<typeof case1NavigateRCCha
 
     // get chat history
     const getRCChannelChatHistoryResponse = yield call(RCChannelService.getRCChannelChatHistory, getRCChannelInfoResponse.id);
-    yield put(getRCChannelChatHistorySuccess(getRCChannelChatHistoryResponse))
+    yield put(getRCChannelChatHistorySuccess(getRCChannelChatHistoryResponse.messages))
 
     yield put(case1NavigateRCChatScreenSuccess());
 

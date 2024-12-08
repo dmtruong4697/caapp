@@ -13,9 +13,10 @@ import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MessageDetail } from '../../models/message/message-detail';
 import { RCMessage } from '../../models/rc/message/rc-message';
+import { RCChatHistoryItem } from '../../models/rc/message/rc-chat-history-item';
 
 interface IProps {
-    message?: RCMessage
+    message?: RCChatHistoryItem
 }
 
 const RCChatMessageItem: React.FC<IProps> = ({message}) => {
@@ -31,31 +32,19 @@ const RCChatMessageItem: React.FC<IProps> = ({message}) => {
         style={[
             styles.viewContainer,
             {
-                flexDirection: (message?.sender_id == profileState.profile?.id)? 'row-reverse':'row'
+                flexDirection: (message?.message.sender_id == profileState.profile?.id)? 'row-reverse':'row'
             }
         ]}
     >
-        {(message?.sender_id != profileState.profile?.id) &&
-            <View style={styles.viewAvatar}>
-                <TouchableOpacity
-                    style={styles.imgAvatar}
-                    onPress={() => {
-                        console.log(profileState.profile);
-                    }}
-                >
-                    {/* <Image style={styles.imgAvatar} source={{uri: message?.sender.avatar_image}}/> */}
-                </TouchableOpacity>
-            </View>
-        }
 
         <View 
             style={[
                 styles.viewMessageContent,
                 {
-                    backgroundColor: (message?.sender_id == profileState.profile?.id)? colors.LightColor : colors.White,
+                    backgroundColor: (message?.message.sender_id == profileState.profile?.id)? colors.LightColor : colors.White,
                 }
             ]}>
-            <Text style={styles.txtMessageContent}>{message?.content}</Text>
+            <Text style={styles.txtMessageContent}>{message?.message.content}</Text>
         </View>
     </View>
   )

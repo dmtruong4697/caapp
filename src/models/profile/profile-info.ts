@@ -23,4 +23,5 @@ export type ProfileInfo = {
     device_token: string;
     job_name: string;
     time_zone: string;
+    current_rc_channel_id: number;
 }

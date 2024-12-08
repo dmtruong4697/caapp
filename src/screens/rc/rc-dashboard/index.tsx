@@ -86,6 +86,12 @@ const RCDashboardScreen: React.FC = () => {
     if (!isFinding) setFindingTime(0);
   }, [socket, profile?.id, gender, targetGender, isFinding]);
 
+  // useEffect(() => {
+  //   if (profile!.current_rc_channel_id > 0) {
+  //     navigation.navigate("RCChat");
+  //   }
+  // })
+
   return (
     <View style={styles.viewContainer}>
       <CustomStatusBar backgroundColor={colors.PrimaryColor} />

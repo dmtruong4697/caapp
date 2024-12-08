@@ -2,14 +2,15 @@
 import { RCMessage } from "../../../../models/rc/message/rc-message";
 import { ADD_MESSAGE_TO_RC_CHANNEL, GET_RC_CHANNEL_CHAT_HISTOTY_FAILURE, GET_RC_CHANNEL_CHAT_HISTOTY_REQUEST, GET_RC_CHANNEL_CHAT_HISTOTY_SUCCESS, GetRCChannelChatHistoryActionTypes } from "../../../actions/rc/channel/channel-chat-history";
 import { createTwoButtonAlert } from "../../../../utils/alert";
+import { RCChatHistoryItem } from "../../../../models/rc/message/rc-chat-history-item";
 
 interface RCChannelChatHistoryState {
-  messages: RCMessage[] | null;
+  messages: RCChatHistoryItem[];
   error: any | null;
 }
 
 const initialState: RCChannelChatHistoryState = {
-  messages: null,
+  messages: [],
   error: null,
 };
 
@@ -25,7 +26,7 @@ const RCChannelChatHistoryReducer = (
       };
 
     case GET_RC_CHANNEL_CHAT_HISTOTY_SUCCESS:
-      const messagesArray = action.payload.messages.messages;
+      const messagesArray = action.payload.messages;
       return {
         ...state,
         messages: messagesArray,
@@ -42,6 +43,7 @@ const RCChannelChatHistoryReducer = (
     case ADD_MESSAGE_TO_RC_CHANNEL:
       return {
         ...state,
+        messages: [action.payload.message, ...state.messages],
       };
 
     default:

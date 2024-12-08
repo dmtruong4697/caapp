@@ -14,6 +14,7 @@ import RCChatScreen from "../../screens/rc/rc-chat";
 import AddFriendScreen from "../../screens/friend/add-friend";
 import UserProfileScreen from "../../screens/profile/user-profile";
 import QRScanScreen from "../../screens/qr/qr-scan";
+import RCChatDetailScreen from "../../screens/rc/rc-chat-detail";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -58,6 +59,8 @@ export type RootStackParamList = {
     };
 
     QRScan: {};
+
+    RCChatDetail: {};
 
 };
 
@@ -173,6 +176,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="QRScan"
             component={QRScanScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="RCChatDetail"
+            component={RCChatDetailScreen}
             options={{
                 headerShown: false,
             }}
