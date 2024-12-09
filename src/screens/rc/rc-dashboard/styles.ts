@@ -40,6 +40,27 @@ export const styles = StyleSheet.create({
         elevation: 3,
     },
 
+    btnCurrentChannel: {
+        width: '100%',
+        padding: scale(15),
+        flexDirection: 'row',
+
+        borderRadius: radius.Radius1,
+        borderColor: colors.GrayBorder,
+        borderWidth: 1,
+        backgroundColor: colors.White,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+        
+        elevation: 3,
+    },
+
     viewButtonGroup: {
         width: '100%',
         flexDirection: 'row',

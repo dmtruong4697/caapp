@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import {
   SafeAreaView,
   Text,
+  TouchableOpacity,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -97,6 +98,17 @@ const RCDashboardScreen: React.FC = () => {
       <CustomStatusBar backgroundColor={colors.PrimaryColor} />
       
       <View style={{padding: scale(12)}}>
+
+        <TouchableOpacity
+          style={styles.btnCurrentChannel}
+          onPress={() => {
+            navigation.navigate("RCChat");
+          }}
+          disabled={(profile!.current_rc_channel_id <= 0 || profile?.current_rc_channel_id == null)}
+        >
+          <Text style={styles.txtSelectTitle}>Current RC Channel</Text>
+        </TouchableOpacity>
+        
         {/* Gender Selection */}
         <View style={styles.viewSelectContainer}>
           <Text style={styles.txtSelectTitle}>You are:</Text>

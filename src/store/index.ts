@@ -44,6 +44,8 @@ import { case1NavigateRCChatScreenFailure } from './actions/rc/navigate-rc-chat-
 import { case1NavigateRCChatScreenSaga } from './sagas/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 import { searchByhashtagNameSaga } from './sagas/search/search-by-hashtag-name';
 import searchByHashtagNameReducer from './reducers/search/search-by-hashtag-name';
+import leaveRCChannelReducer from './reducers/rc/channel/leave-channel';
+import { leaveRCChannelSaga } from './sagas/rc/channel/leave-channel';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -71,6 +73,7 @@ const rootReducer = combineReducers({
   currentRCChannel: getCurrentChannelReducer,
   RCChannelChatHistory: RCChannelChatHistoryReducer,
   case1NavigateRCChatScreen: case1NavigateRCChatScreenReducer,
+  leaveRCChannel: leaveRCChannelReducer,
 
   // search
   searchByhashtagName: searchByHashtagNameReducer,
@@ -105,6 +108,7 @@ function* rootSaga() {
     currentRCChannelSaga(),
     RCChannelChatHistorySaga(),
     case1NavigateRCChatScreenSaga(),
+    leaveRCChannelSaga(),
 
     //search
     searchByhashtagNameSaga(),
