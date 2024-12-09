@@ -53,6 +53,30 @@ export const RCChannelService = {
     }
   },
 
+  async leaveCurrentRCChannel(): Promise<any> {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      console.log(token);
+  
+      const response = await api.post(
+        'rc-channel/leave-rc-channel',
+        {
+        }, 
+        {
+          headers: { 
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      // console.log(response.data);
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response);
+      throw error.response.data
+    }
+  },
+
 };
 
 export default RCChannelService;

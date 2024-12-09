@@ -106,7 +106,7 @@ const RCChatScreen: React.FC<IProps> = () => {
           {/* <Text style={styles.txtHeaderUserName}>{getChannelInfoState.friend_channel_info?.user.first_name} {getChannelInfoState.friend_channel_info?.user.middle_name} {getChannelInfoState.friend_channel_info?.user.last_name}</Text> */}
         </Pressable>
 
-        <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {console.log(RCChannelChatHistoryState.messages);}}>
+        <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {navigation.navigate("RCChatDetail")}}>
           <FontAwesomeIcon icon={faBars} size={22} color={colors.White} />
         </TouchableOpacity>
       </View>
