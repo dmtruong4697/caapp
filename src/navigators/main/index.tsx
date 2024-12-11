@@ -15,6 +15,8 @@ import AddFriendScreen from "../../screens/friend/add-friend";
 import UserProfileScreen from "../../screens/profile/user-profile";
 import QRScanScreen from "../../screens/qr/qr-scan";
 import RCChatDetailScreen from "../../screens/rc/rc-chat-detail";
+import { ProfileInfo } from "../../models/profile/profile-info";
+import MyProfileScreen from "../../screens/profile/my-profile";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -56,6 +58,10 @@ export type RootStackParamList = {
 
     UserProfile: {
         userInfo: UserInfo | null,
+    };
+
+    MyProfile: {
+        profile: ProfileInfo | null,
     };
 
     QRScan: {};
@@ -168,6 +174,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="UserProfile"
             component={UserProfileScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="MyProfile"
+            component={MyProfileScreen}
             options={{
                 headerShown: false,
             }}
