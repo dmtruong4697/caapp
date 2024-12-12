@@ -10,6 +10,11 @@ export const styles = StyleSheet.create({
         marginHorizontal: scale(12),
     },
 
+    viewLoadingContainer: {
+        flex: 1,
+        zIndex: 0,
+    },
+
     viewTopSearch: {
         width: '100%',
         paddingVertical: scale(2),
@@ -98,6 +103,7 @@ export const styles = StyleSheet.create({
     viewProfileCard: {
         width: '100%',
         borderRadius: radius.Radius2,
+        marginBottom: scale(20),
     },
 
     viewLinnear: {
@@ -141,5 +147,24 @@ export const styles = StyleSheet.create({
         height: scale(24),
         justifyContent: 'center',
         alignItems: 'center',
+    },
+
+    viewListContainer: {
+        width: '100%',
+        flexDirection: 'column',
+        gap: scale(5),
+        marginBottom: scale(10),
+    },
+
+    txtListTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: colors.PrimaryText,
+    },
+
+    viewList: {
+        width: '100%',
+        flexDirection: 'column',
+        gap: scale(5),
     },
 })

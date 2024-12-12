@@ -49,6 +49,15 @@ export const authService = {
       throw error.response.data
     }
   },
+
+  async logout(email: string, password: string): Promise<any> {
+    try {
+      const response = await api.post('auth/logout', { email, password });
+      return response.data;
+    } catch (error: any){
+      throw error.response.data
+    }
+  }
 };
 
 export default authService;

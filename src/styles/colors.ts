@@ -38,4 +38,29 @@ export const colors = {
     CheckSuccess: '#43a646',
     CheckFailure: '#f23c2f',
 
+    // red colors
+    LightRed: '#FFCDD2',
+    BasicRed: '#F44336',
+    DarkRed: '#D32F2F',
+
+    // green colors
+    LightGreen: '#C8E6C9',
+    BasicGreen: '#4CAF50',
+    DarkGreen: '#388E3C',
+
+    // blue colors
+    LightBlue: '#BBDEFB',
+    BasicBlue: '#2196F3',
+    DarkBlue: '#1976D2',
+
+    // yellow colors
+    LightYellow: '#FFF9C4',
+    BasicYellow: '#FFEB3B',
+    DarkYellow: '#FBC02D',
+
+    // orange colors
+    LightOrange: '#FFE0B2',
+    BasicOrange: '#FF9800',
+    DarkOrange: '#F57C00',
+
 }

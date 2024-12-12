@@ -46,9 +46,12 @@ import { searchByhashtagNameSaga } from './sagas/search/search-by-hashtag-name';
 import searchByHashtagNameReducer from './reducers/search/search-by-hashtag-name';
 import leaveRCChannelReducer from './reducers/rc/channel/leave-channel';
 import { leaveRCChannelSaga } from './sagas/rc/channel/leave-channel';
+import logoutReducer from './reducers/auth/logout';
+import { logoutSaga } from './sagas/auth/logout';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
+  logout: logoutReducer,
   friend: friendReducer,
   friendRequest: friendRequestReducer,
   channelList: channelListReducer,
@@ -84,6 +87,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 function* rootSaga() {
   yield all([
     loginSaga(),
+    logoutSaga(),
     friendSaga(),
     friendRequestSaga(),
     channelListSaga(),

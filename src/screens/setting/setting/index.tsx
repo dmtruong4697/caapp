@@ -8,7 +8,7 @@ import Button from '../../../components/button';
 import InputField from '../../../components/input-field';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { colors } from '../../../styles/colors';
-import { faArrowRight, faEllipsis, faMagnifyingGlass, faPlus, faQrcode } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faBell, faEllipsis, faMagnifyingGlass, faPlus, faPowerOff, faQrcode, faUser } from '@fortawesome/free-solid-svg-icons';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
@@ -16,6 +16,8 @@ import ChannelListItem from '../../../components/channel-list-item';
 import { scale } from '../../../styles/scale';
 import { getChannelListRequest, updateChannelListItem } from '../../../store/actions/channel/get-channel-list-action';
 import LinearGradient from 'react-native-linear-gradient';
+import SettingItem from '../../../components/setting-item';
+import LoadingOverlay from '../../../components/loading-overlay';
 
 interface IProps {}
 
@@ -25,7 +27,14 @@ const SettingScreen: React.FC<IProps>  = () => {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
     const dispatch = useDispatch();
-    const profileState = useSelector((state: RootState) => state.profile)
+    const [isLoading, setIsLoading] = useState(false);
+    const profileState = useSelector((state: RootState) => state.profile);
+
+    const logout = async() => {
+      setIsLoading(true);
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      setIsLoading(false);
+    }
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
@@ -80,6 +89,47 @@ const SettingScreen: React.FC<IProps>  = () => {
             </View>
           </LinearGradient>
         </TouchableOpacity>
+
+        <View style={styles.viewListContainer}>
+          <Text style={styles.txtListTitle}>Account</Text>
+          <View style={styles.viewList}>
+            <SettingItem
+              icon={<FontAwesomeIcon icon={faUser} size={22} color={colors.DarkColor}/>}
+              title='Profile'
+              iconBackgroundColor={colors.LightColor}
+              onPress={() => {
+
+              }}
+            />
+          </View>
+        </View>
+
+        <View style={styles.viewListContainer}>
+          <Text style={styles.txtListTitle}>Notifications</Text>
+          <View style={styles.viewList}>
+            <SettingItem
+              icon={<FontAwesomeIcon icon={faBell} size={22} color={colors.DarkYellow}/>}
+              title='Thong bao'
+              iconBackgroundColor={colors.LightYellow}
+              onPress={() => {
+
+              }}
+            />
+          </View>
+        </View>
+
+        <View style={styles.viewListContainer}>
+          <View style={styles.viewList}>
+            <SettingItem
+              icon={<FontAwesomeIcon icon={faPowerOff} size={22} color={colors.DarkRed}/>}
+              title='Dang xuat'
+              iconBackgroundColor={colors.LightRed}
+              onPress={() => {
+                logout();
+              }}
+            />
+          </View>
+        </View>
 
       </ScrollView>
     </SafeAreaView>

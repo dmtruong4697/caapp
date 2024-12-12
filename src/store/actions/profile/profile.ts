@@ -3,6 +3,7 @@ import { ProfileInfo } from "../../../models/profile/profile-info";
 export const GET_PROFILE_INFO_REQUEST = 'GET_PROFILE_INFO_REQUEST';
 export const GET_PROFILE_INFO_SUCCESS = 'GET_PROFILE_INFO_SUCCESS';
 export const GET_PROFILE_INFO_FAILURE = 'GET_PROFILE_INFO_FAILURE';
+export const RESET_PROFILE_INFO = 'RESET_PROFILE_INFO'
 
 interface GetProfileInfoRequestAction {
   type: typeof GET_PROFILE_INFO_REQUEST;
@@ -27,7 +28,14 @@ interface GetProfileInfoFailureAction {
   };
 }
 
-export type ProfileActionTypes = GetProfileInfoRequestAction | GetProfileInfoSuccessAction | GetProfileInfoFailureAction;
+interface ResetProfileInfoAction {
+  type: typeof RESET_PROFILE_INFO;
+  payload: {
+    [key: string]: any;
+  };
+}
+
+export type ProfileActionTypes = GetProfileInfoRequestAction | GetProfileInfoSuccessAction | GetProfileInfoFailureAction | ResetProfileInfoAction;
 
 export const getProfileInfoRequest = () => ({
   type: GET_PROFILE_INFO_REQUEST,
@@ -42,4 +50,9 @@ export const getProfileInfoSuccess = (profile: ProfileInfo) => ({
 export const getProfileInfoFailure = (error: string) => ({
   type: GET_PROFILE_INFO_FAILURE,
   payload: { error }
+});
+
+export const resetProfileInfo = () => ({
+  type: RESET_PROFILE_INFO,
+  payload: {}
 });
