@@ -38,6 +38,7 @@ const SettingScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
+    <LoadingOverlay visiable={isLoading}/>
     <SafeAreaView style={styles.viewContainer}>
       <ScrollView 
         style={{flex: 1}}
