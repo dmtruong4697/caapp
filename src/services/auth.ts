@@ -50,9 +50,18 @@ export const authService = {
     }
   },
 
-  async logout(email: string, password: string): Promise<any> {
+  async logout(): Promise<any> {
     try {
-      const response = await api.post('auth/logout', { email, password });
+      const token = await AsyncStorage.getItem('token');
+      const response = await api.post('auth/logout', 
+        {},
+        {
+          headers: { 
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       return response.data;
     } catch (error: any){
       throw error.response.data

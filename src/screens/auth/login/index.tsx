@@ -12,6 +12,7 @@ import { colors } from '../../../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest } from '../../../store/actions/auth/login';
 import { RootState } from '../../../store';
+import LoadingOverlay from '../../../components/loading-overlay';
 
 interface IProps {}
 
@@ -51,6 +52,7 @@ const LoginScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
+    <LoadingOverlay visiable={isLoading}/>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader

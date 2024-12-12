@@ -1,12 +1,11 @@
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
+export const RESET_LOGOUT_STATE = 'RESET_LOGOUT_STATE';
 
 interface LogoutRequestAction {
   type: typeof LOGOUT_REQUEST;
   payload: {
-    email: string;
-    password: string;
     [key: string]: any;
   };
 }
@@ -26,11 +25,18 @@ interface LogoutFailureAction {
   };
 }
 
-export type LogoutActionTypes = LogoutRequestAction | LogoutSuccessAction | LogoutFailureAction;
+interface ResetLogoutStateAction {
+  type: typeof RESET_LOGOUT_STATE;
+  payload: {
+    [key: string]: any;
+  };
+}
 
-export const logoutRequest = (email: string, password: string) => ({
+export type LogoutActionTypes = LogoutRequestAction | LogoutSuccessAction | LogoutFailureAction | ResetLogoutStateAction;
+
+export const logoutRequest = () => ({
   type: LOGOUT_REQUEST,
-  payload: { email, password }
+  payload: { }
 });
 
 export const logoutSuccess = () => ({
@@ -41,4 +47,9 @@ export const logoutSuccess = () => ({
 export const logoutFailure = (error: string) => ({
   type: LOGOUT_FAILURE,
   payload: { error }
+});
+
+export const resetLogoutState = () => ({
+  type: RESET_LOGOUT_STATE,
+  payload: { }
 });

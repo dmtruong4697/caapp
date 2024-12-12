@@ -16,6 +16,7 @@ import TwoStatusButton from '../../../components/2-status-button';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { registerRequest, resetRegisterState } from '../../../store/actions/auth/register';
+import LoadingOverlay from '../../../components/loading-overlay';
 
 interface IProps {}
 
@@ -59,6 +60,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
+    <LoadingOverlay visiable={isLoading}/>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader

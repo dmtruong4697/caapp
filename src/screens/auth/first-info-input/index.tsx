@@ -20,6 +20,7 @@ import TwoStatusButton from '../../../components/2-status-button';
 import { FirstUpdateProfileInfoRequest } from '../../../models/profile-request/first-update-profile-info-request';
 import { firstUpdateProfileInfoRequest } from '../../../store/actions/profile/first-update-profile-info';
 import { checkDuplicateHashtagNameRequest, resetCheckDuplicateHashtagNameResult } from '../../../store/actions/profile/check-duplicate-hashtag-name';
+import LoadingOverlay from '../../../components/loading-overlay';
 
 interface IProps {}
 
@@ -83,6 +84,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
   return (
     <View style={styles.viewContainer}>
       {/* <CustomStatusBar backgroundColor={colors.PrimaryColor}/> */}
+      <LoadingOverlay visiable={isLoading}/>
       <SafeAreaView style={styles.viewScreenContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader

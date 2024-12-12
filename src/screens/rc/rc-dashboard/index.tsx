@@ -104,7 +104,7 @@ const RCDashboardScreen: React.FC = () => {
           onPress={() => {
             navigation.navigate("RCChat");
           }}
-          disabled={(profile!.current_rc_channel_id <= 0 || profile?.current_rc_channel_id == null)}
+          disabled={(profile?.current_rc_channel_id <= 0 || profile?.current_rc_channel_id == null)}
         >
           <Text style={styles.txtSelectTitle}>Current RC Channel</Text>
         </TouchableOpacity>

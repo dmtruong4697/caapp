@@ -18,6 +18,7 @@ import { getChannelListRequest, updateChannelListItem } from '../../../store/act
 import LinearGradient from 'react-native-linear-gradient';
 import SettingItem from '../../../components/setting-item';
 import LoadingOverlay from '../../../components/loading-overlay';
+import { logoutRequest } from '../../../store/actions/auth/logout';
 
 interface IProps {}
 
@@ -29,12 +30,19 @@ const SettingScreen: React.FC<IProps>  = () => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const profileState = useSelector((state: RootState) => state.profile);
+    const logoutState = useSelector((state: RootState) => state.logout);
 
     const logout = async() => {
       setIsLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      dispatch(logoutRequest());
       setIsLoading(false);
     }
+
+    useEffect(() => {
+      if (logoutState.success_flg) {
+        navigation.navigate("Login");
+      }
+    },[logoutState.success_flg])
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
@@ -110,7 +118,7 @@ const SettingScreen: React.FC<IProps>  = () => {
           <View style={styles.viewList}>
             <SettingItem
               icon={<FontAwesomeIcon icon={faBell} size={22} color={colors.DarkYellow}/>}
-              title='Thong bao'
+              title='Notifications'
               iconBackgroundColor={colors.LightYellow}
               onPress={() => {
 
@@ -123,7 +131,7 @@ const SettingScreen: React.FC<IProps>  = () => {
           <View style={styles.viewList}>
             <SettingItem
               icon={<FontAwesomeIcon icon={faPowerOff} size={22} color={colors.DarkRed}/>}
-              title='Dang xuat'
+              title='Logout'
               iconBackgroundColor={colors.LightRed}
               onPress={() => {
                 logout();

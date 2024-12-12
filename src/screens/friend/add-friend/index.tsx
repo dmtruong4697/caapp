@@ -15,6 +15,7 @@ import HashtagNameInputField from '../../../components/hashtag-name-input-field'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faMagnifyingGlass, faQrcode, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { resetSearchByHashtagNameState, searchByHashtagNameRequest } from '../../../store/actions/search/search-by-hashtag-name';
+import LoadingOverlay from '../../../components/loading-overlay';
 
 interface IProps {}
 
@@ -25,6 +26,7 @@ const AddFriendScreen: React.FC<IProps>  = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
+    const [isLoading, setIsLoading] = useState(false);
     const profileState = useSelector((state: RootState) => state.profile)
     const searchByHashtagNameState = useSelector((state: RootState) => state.searchByhashtagName)
 
@@ -32,7 +34,9 @@ const AddFriendScreen: React.FC<IProps>  = () => {
     const [searchError, setSearchError] = useState<string | null>(null)
 
     const search = async() => {
+      setIsLoading(true);
       dispatch(searchByHashtagNameRequest(hashtagName!));
+      setIsLoading(false);
     }
 
     const isFocused = useIsFocused()
@@ -52,6 +56,7 @@ const AddFriendScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
+    <LoadingOverlay visiable={isLoading}/>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader

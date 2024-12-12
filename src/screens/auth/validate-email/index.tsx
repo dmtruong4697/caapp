@@ -15,6 +15,7 @@ import { RootStackParamList } from '../../../navigators/main';
 import { validateEmailRequest } from '../../../store/actions/auth/validate-email';
 import { resendCodeRequest } from '../../../store/actions/auth/resend-code';
 import { secondToMinuteConvert } from '../../../utils/date-time/date-time-convert';
+import LoadingOverlay from '../../../components/loading-overlay';
 
 interface IProps {}
 
@@ -87,6 +88,7 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
+    <LoadingOverlay visiable={isLoading}/>
     <SafeAreaView style={styles.viewContainer}>
       <View style={styles.viewHeader}>
         <SolidHeader
