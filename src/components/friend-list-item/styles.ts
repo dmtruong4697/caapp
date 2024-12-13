@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
         width: scale(40),
         height: scale(40),
         borderRadius: 1000,
+        backgroundColor: colors.GrayBackground,
     },
 
     viewNameContainer: {
@@ -24,7 +25,18 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
 
-        gap: scale(5),
+        gap: scale(3),
+    },
+
+    viewFullName: {
+        flexDirection: 'row',
+        gap: scale(6),
+        alignItems: 'center',
+    },
+
+    imgVerify: {
+        width: scale(16),
+        height: scale(16),
     },
 
     txtFullName: {

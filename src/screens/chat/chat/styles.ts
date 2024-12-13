@@ -35,15 +35,25 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: scale(5),
-        paddingHorizontal: scale(8),
-        // backgroundColor: 'pink'
+        // paddingHorizontal: scale(8),
+    },
+
+    viewFullName: {
+        flexDirection: 'row',
+        gap: scale(8),
+        alignItems: 'center',
+    },
+
+    imgVerify: {
+        width: scale(18),
+        height: scale(18),
     },
 
     txtHeaderUserName: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: '500',
         color: colors.White,
-        marginLeft: scale(25),
+        marginLeft: scale(10),
     },
 
     btnHeaderMenu: {

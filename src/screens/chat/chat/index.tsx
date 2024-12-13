@@ -8,7 +8,8 @@ import {
   FlatList,
   useWindowDimensions,
   StatusBar,
-  Platform
+  Platform,
+  Image
 } from 'react-native';
 import { styles } from './styles';
 import { ParamListBase, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -115,7 +116,21 @@ const ChatScreen: React.FC<IProps> = () => {
         </TouchableOpacity>
 
         <Pressable style={styles.btnHeaderUserName} onPress={() => {}}>
+          <View style={styles.viewFullName}>
           <Text style={styles.txtHeaderUserName}>{getChannelInfoState.friend_channel_info?.user.first_name} {getChannelInfoState.friend_channel_info?.user.middle_name} {getChannelInfoState.friend_channel_info?.user.last_name}</Text>
+            {
+                userInfo?.verification_status == '1' &&
+                <Image style={styles.imgVerify} source={require('../../../assets/icons/verification-status/verified-blue-64px.png')}/>
+            }
+            {
+                userInfo?.verification_status == '990' &&
+                <Image style={styles.imgVerify} source={require('../../../assets/icons/verification-status/verified-yellow-64px.png')}/>
+            }
+            {
+                userInfo?.verification_status == '999' &&
+                <Image style={styles.imgVerify} source={require('../../../assets/icons/verification-status/verified-red-64px.png')}/>
+            }
+          </View>
         </Pressable>
 
         <TouchableOpacity style={styles.btnHeaderMenu} onPress={() => {}}>

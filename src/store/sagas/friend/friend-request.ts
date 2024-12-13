@@ -14,7 +14,7 @@ function* createFriendRequest(action: ReturnType<typeof createFriendRequestReque
 function* getAllReceivedRequest(action: ReturnType<typeof getAllReceivedRequestRequest>): Generator<any, void, any> {
     try {
         const response = yield call(friendRequestService.getAllReceivedRequest);
-        yield put(getAllReceivedRequestSuccess(response!.requests));
+        yield put(getAllReceivedRequestSuccess(response));
     } catch (error: any) {
         yield put(getAllReceivedRequestFailure(error));
     }

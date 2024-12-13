@@ -58,7 +58,21 @@ const ChannelListItem: React.FC<IProps> = ({channelInfo}) => {
 
             <View style={styles.viewContentContainer}>
                 <View style={styles.viewNameAndTime}>
-                    <Text style={styles.txtName}>{channelName}</Text>
+                    <View style={styles.viewFullName}>
+                        <Text style={styles.txtName}>{channelName}</Text>
+                        {
+                            (channelInfo.users[0]?.verification_status == '1' && channelInfo?.channel.type == 'friend') &&
+                            <Image style={styles.imgVerify} source={require('../../assets/icons/verification-status/verified-blue-64px.png')}/>
+                        }
+                        {
+                            (channelInfo.users[0]?.verification_status == '990' && channelInfo?.channel.type == 'friend') &&
+                            <Image style={styles.imgVerify} source={require('../../assets/icons/verification-status/verified-yellow-64px.png')}/>
+                        }
+                        {
+                            (channelInfo.users[0]?.verification_status == '999' && channelInfo?.channel.type == 'friend') &&
+                            <Image style={styles.imgVerify} source={require('../../assets/icons/verification-status/verified-red-64px.png')}/>
+                        }
+                    </View>
                     <Text style={styles.txtTime}>{hhmmConvert(channelInfo?.last_message.create_at.toString())}</Text>
                 </View>
 

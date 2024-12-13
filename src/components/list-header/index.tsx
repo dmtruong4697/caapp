@@ -24,7 +24,7 @@ const ListHeader: React.FC<IProps> = ({title, renderSeeAll, onPressSeeAll}) => {
         onPress={onPressSeeAll}
       >
         <Text style={styles.txtSeeAll}>See all</Text>
-        <FontAwesomeIcon icon={faAngleRight} style={styles.imgRightArrow} size={14}/>
+        <FontAwesomeIcon icon={faAngleRight} style={styles.imgRightArrow} size={14} color={colors.Gray}/>
       </TouchableOpacity>
       }
     </View>

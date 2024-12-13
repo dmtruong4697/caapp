@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     txtSeeAll: {
         fontSize: 16,
         fontWeight: '300',
-        color: colors.PrimaryText,
+        color: colors.Gray,
     },
 
     imgRightArrow: {

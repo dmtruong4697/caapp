@@ -3,7 +3,9 @@ import { scale } from "../../../styles/scale";
 
 export const styles = StyleSheet.create({
     viewContainer: {
-        flex: 1,
+        // flex: 1,
+        width: '100%',
+        height: '130%',
         padding: scale(12),
     },
 

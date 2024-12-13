@@ -65,8 +65,8 @@ const LoginScreen: React.FC<IProps>  = () => {
       </View>
 
       <Text style={styles.txtTitle}>Sign in to 
-        <Text style={[styles.txtTitle, {color: colors.DarkColor}]}> CA
-          <Text style={[styles.txtTitle, {color: colors.PrimaryColor}]}>APP</Text>
+        <Text style={[styles.txtTitle, {color: colors.DarkColor, fontWeight: 'bold'}]}> CA
+          <Text style={[styles.txtTitle, {color: colors.PrimaryColor, fontWeight: 'bold'}]}>APP</Text>
         </Text>
       </Text>
       
@@ -112,7 +112,7 @@ const LoginScreen: React.FC<IProps>  = () => {
       <View style={styles.viewOption}>
         <Text
           style={styles.txtOption}
-          onPress={() => {}}
+          onPress={() => {navigation.navigate("ForgotPassword")}}
         >Forgot password?</Text>
 
         <Text

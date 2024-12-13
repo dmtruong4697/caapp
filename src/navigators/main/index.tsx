@@ -17,11 +17,14 @@ import QRScanScreen from "../../screens/qr/qr-scan";
 import RCChatDetailScreen from "../../screens/rc/rc-chat-detail";
 import { ProfileInfo } from "../../models/profile/profile-info";
 import MyProfileScreen from "../../screens/profile/my-profile";
+import ForgotPasswordScreen from "../../screens/auth/forgot-password";
 
 export type RootStackParamList = {
     Welcome: {};
 
     Login: {};
+
+    ForgotPassword: {};
 
     SignUp: {};
 
@@ -198,6 +201,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="RCChatDetail"
             component={RCChatDetailScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPasswordScreen}
             options={{
                 headerShown: false,
             }}

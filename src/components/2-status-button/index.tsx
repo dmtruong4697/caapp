@@ -24,7 +24,7 @@ const TwoStatusButton: React.FC<IProps> = ({title, onPress, containerStyle, titl
       <LinearGradient 
         colors={(disabled)? [colors.DisabledPrimaryColor, colors.DisabledDarkColor]:[colors.PrimaryColor, colors.DarkColor]} 
         style={styles.viewContainer}
-        locations={[0, 1]}
+        locations={[0.9, 1]}
       >
         <Text style={[styles.txtTitle, {
             color: colors.White,

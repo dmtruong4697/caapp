@@ -48,29 +48,34 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
     }, [friendState.suggest_users, friendState.error_suggest_users]);
 
   return (
-    <View style={{flex: 1}}>
-      <CustomStatusBar backgroundColor={colors.PrimaryColor}/>
+    <SafeAreaView style={{flex: 1}}>
+      {/* <CustomStatusBar backgroundColor={colors.PrimaryColor}/> */}
       <ScrollView 
-        style={styles.viewContainer}
+        contentContainerStyle={styles.viewContainer}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
             onRefresh={pullToRefreshFunction }
           />}
       >
+        {friendRequestState.received_requests?.requests.length > 0 &&
         <View style={styles.viewListContainer}>
           <ListHeader
             title='Received Request'
             onPressSeeAll={() => {
               // console.log(friendRequestState.received_requests!);
+              console.log(friendRequestState.received_requests?.requests);
             }}
             renderSeeAll
           />
           <View style={styles.viewFlatListContainer}>
             {friendRequestState.received_requests && 
               <FlatList
-                data={friendRequestState.received_requests}
-                // keyExtractor={item => item.Id.toString()}
+                data={friendRequestState.received_requests.requests}
+                keyExtractor={item => item.user.id.toString()}
+                extraData={friendRequestState.received_requests}
                 scrollEnabled={false}
                 renderItem={({item}) => (
                   <ReceivedRequestItem userInfo={item.user}/>
@@ -80,6 +85,7 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
             }
           </View>
         </View>
+        } 
 
         <View style={styles.viewListContainer}>
           <ListHeader
@@ -93,7 +99,8 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
             {friendState.suggest_users && 
               <FlatList
                 data={friendState.suggest_users}
-                // keyExtractor={item => item.Id.toString()}
+                keyExtractor={item => item.id.toString()}
+                extraData={friendRequestState.received_requests}
                 scrollEnabled={false}
                 renderItem={({item}) => (
                   <SuggestUserItem userInfo={item}/>
@@ -104,7 +111,7 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
           </View>
         </View>
       </ScrollView >
-    </View>
+    </SafeAreaView>
   )
 }
 

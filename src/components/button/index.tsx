@@ -24,7 +24,7 @@ const Button: React.FC<IProps> = ({title, onPress, containerStyle, titleStyle, t
       <LinearGradient 
         colors={(type == 'solid')? [colors.White, colors.White]:[colors.PrimaryColor, colors.DarkColor]} 
         style={styles.viewContainer}
-        locations={[0, 1]}
+        locations={[0.9, 1]}
       >
         <Text style={[styles.txtTitle, {
             color: (type == 'solid')? colors.PrimaryText:colors.White,

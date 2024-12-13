@@ -49,6 +49,17 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
+    viewFullName: {
+        flexDirection: 'row',
+        gap: scale(8),
+        alignItems: 'center',
+    },
+
+    imgVerify: {
+        width: scale(17),
+        height: scale(17),
+    },
+
     txtName: {
         fontSize: 18,
         fontWeight: '600',
