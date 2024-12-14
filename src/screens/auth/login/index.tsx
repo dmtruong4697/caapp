@@ -10,9 +10,13 @@ import InputField from '../../../components/input-field';
 import Button from '../../../components/button';
 import { colors } from '../../../styles/colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest } from '../../../store/actions/auth/login';
+import { loginRequest, loginSuccess } from '../../../store/actions/auth/login';
 import { RootState } from '../../../store';
 import LoadingOverlay from '../../../components/loading-overlay';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getProfileInfoRequest } from '../../../store/actions/profile/profile';
 
 interface IProps {}
 
@@ -49,6 +53,33 @@ const LoginScreen: React.FC<IProps>  = () => {
         navigation.navigate("FirstInfoInput")
       }
     }, [profileState]) 
+
+    //////////////////////////////////////////google auth////////////////////////////////////////////////////////
+    const signInWithGoogle = async () => {
+      try {
+        await GoogleSignin.hasPlayServices(); 
+        const userInfo = await GoogleSignin.signIn(); 
+        // console.log(userInfo);
+        const idToken = userInfo.data?.idToken;
+    
+        const response = await axios.post('http://192.168.1.113:8910/oauth2/google-login', {
+          token: idToken,
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        const data = await response.data;
+        console.log("data",data);
+        AsyncStorage.setItem('token', data.token);
+        dispatch(loginSuccess(data.token ));
+        dispatch(getProfileInfoRequest())
+      } catch (error) {
+        console.error('Google sign-in error:', error);
+      }
+    };
+    //////////////////////////////////////////google auth////////////////////////////////////////////////////////
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
@@ -148,7 +179,7 @@ const LoginScreen: React.FC<IProps>  = () => {
           <TouchableOpacity
             style={styles.btnOAuth}
             onPress={() => {
-
+              signInWithGoogle()
             }}
           >
             <Image style={styles.imgOAuth} source={require('../../../assets/icons/social-media-platform/google-64px.png')}/>

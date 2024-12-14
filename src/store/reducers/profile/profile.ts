@@ -32,6 +32,7 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
       };
 
     case GET_PROFILE_INFO_FAILURE:
+      console.log("GET_PROFILE_INFO_FAILURE",action.payload.error);
       createTwoButtonAlert(action.payload.error.error_code, action.payload.error.error_code)
       return {
         ...state,

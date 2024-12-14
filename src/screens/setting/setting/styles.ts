@@ -130,6 +130,17 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
 
+    viewFullName: {
+        flexDirection: 'row',
+        gap: scale(8),
+        alignItems: 'center',
+    },
+
+    imgVerify: {
+        width: scale(17),
+        height: scale(17),
+    },
+
     txtFullName: {
         fontSize: 18,
         fontWeight: '400',

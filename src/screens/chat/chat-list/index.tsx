@@ -43,7 +43,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
     const isFocused = useIsFocused();
     const [socket, setSocket] = useState<WebSocket | null>(null);
     useEffect(() => {
-        const ws = new WebSocket(`ws://localhost:8910/ws-chatlist/connect?user_id=${profileState.profile?.id}`);
+        const ws = new WebSocket(`ws://192.168.1.113:8910/ws-chatlist/connect?user_id=${profileState.profile?.id}`);
   
         ws.onopen = () => console.log('WebSocket for chat list connected');
         

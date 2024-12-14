@@ -18,6 +18,7 @@ import RCChatDetailScreen from "../../screens/rc/rc-chat-detail";
 import { ProfileInfo } from "../../models/profile/profile-info";
 import MyProfileScreen from "../../screens/profile/my-profile";
 import ForgotPasswordScreen from "../../screens/auth/forgot-password";
+import LanguageSettingScreen from "../../screens/setting/language-setting";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -48,6 +49,8 @@ export type RootStackParamList = {
     FriendRequest: {};
 
     Setting: {};
+
+    LanguageSetting: {};
 
     RCDashboard: {};
 
@@ -209,6 +212,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="ForgotPassword"
             component={ForgotPasswordScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="LanguageSetting"
+            component={LanguageSettingScreen}
             options={{
                 headerShown: false,
             }}

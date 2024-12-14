@@ -8,7 +8,7 @@ import Button from '../../../components/button';
 import InputField from '../../../components/input-field';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { colors } from '../../../styles/colors';
-import { faArrowRight, faBell, faEllipsis, faMagnifyingGlass, faPlus, faPowerOff, faQrcode, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faBell, faEllipsis, faLanguage, faMagnifyingGlass, faPlus, faPowerOff, faQrcode, faUser } from '@fortawesome/free-solid-svg-icons';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
@@ -90,7 +90,21 @@ const SettingScreen: React.FC<IProps>  = () => {
           >
             <Image style={styles.imgAvavtar} source={{uri: profileState.profile?.avatar_image}}/>
             <View style={styles.viewNameContainer}>
-              <Text style={styles.txtFullName}>{profileState.profile?.first_name} {profileState.profile?.middle_name} {profileState.profile?.last_name}</Text>
+              <View style={styles.viewFullName}>
+                <Text style={styles.txtFullName}>{profileState.profile?.first_name} {profileState.profile?.middle_name} {profileState.profile?.last_name}</Text>
+                {
+                    profileState.profile?.verification_status == '1' &&
+                    <Image style={styles.imgVerify} source={require('../../../assets/icons/verification-status/verified-blue-64px.png')}/>
+                }
+                {
+                    profileState.profile?.verification_status == '990' &&
+                    <Image style={styles.imgVerify} source={require('../../../assets/icons/verification-status/verified-yellow-64px.png')}/>
+                }
+                {
+                    profileState.profile?.verification_status == '999' &&
+                    <Image style={styles.imgVerify} source={require('../../../assets/icons/verification-status/verified-red-64px.png')}/>
+                }
+              </View>
               <Text style={styles.txtHashtagName}>@{profileState.profile?.hashtag_name}</Text>
             </View>
             <View style={styles.viewImageRight}>
@@ -120,6 +134,15 @@ const SettingScreen: React.FC<IProps>  = () => {
               icon={<FontAwesomeIcon icon={faBell} size={22} color={colors.DarkYellow}/>}
               title='Notifications'
               iconBackgroundColor={colors.LightYellow}
+              onPress={() => {
+
+              }}
+            />
+
+            <SettingItem
+              icon={<FontAwesomeIcon icon={faLanguage} size={22} color={colors.DarkOrange}/>}
+              title='Language'
+              iconBackgroundColor={colors.LightOrange}
               onPress={() => {
 
               }}

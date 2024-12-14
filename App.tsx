@@ -8,6 +8,7 @@ import KeyboardManager from 'react-native-keyboard-manager';
 import { createStore } from 'redux';
 import { Provider, useSelector } from 'react-redux';
 import store, { RootState } from './src/store';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 if (Platform.OS === 'ios') {
   KeyboardManager.setEnable(true);
@@ -33,6 +34,12 @@ if (Platform.OS === 'ios') {
 }
 
 function App(): React.JSX.Element {
+
+  GoogleSignin.configure({
+    androidClientId: '537208903435-r2chnosbfqo3cst7p72ts5aos6hnroja.apps.googleusercontent.com',
+    webClientId: '537208903435-h7fvpeq8utrr1hhl4thaca6jvj4n4gv9.apps.googleusercontent.com', 
+    scopes: ['profile', 'email'],
+  });
 
   return (
     <Provider store={store}>
