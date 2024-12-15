@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest } from '../../../store/actions/auth/login';
 import { RootState } from '../../../store';
 import LoadingOverlay from '../../../components/loading-overlay';
+import TwoStatusButton from '../../../components/2-status-button';
 
 interface IProps {}
 
@@ -24,6 +25,20 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
     const dispatch = useDispatch();
 
     const [isLoading, setIsLoading] = useState(false);
+
+    const {
+      register,
+      handleSubmit,
+      control,
+      getValues,
+      formState: { errors },
+    } = useForm();
+
+    const onSubmit = async()=> {
+      setIsLoading(true);
+      const { email } = getValues();
+      setIsLoading(false);
+    };
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
@@ -39,10 +54,36 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
         />
       </View>
 
-      <Text style={styles.txtTitle}>Sign in to </Text>
+      <Text style={styles.txtTitle}>Forgot Password</Text>
+
+      <Image style={styles.imgForgotPassword} source={require('../../../assets/illustrations/forgot-password.png')}/>
+      <Text style={styles.txtDescription}>Please enter yout Email address to receive a verification code</Text>
       
       <View style={styles.viewFormContainer}>
-       
+        <Controller
+          control={control}
+          render={({field: {onChange, onBlur, value}}) => (
+          <InputField
+              title='Email'
+              inputMode='email'
+              value={value}
+              onChangeText={value => onChange(value)}
+              onBlur={onBlur}
+          />
+          )}
+          name='email'
+          rules={{
+              required: true,
+          }}
+        />
+        {errors.email && <Text style={styles.txtError}>Email is required.</Text>}
+      </View>
+
+      <View style={styles.viewButtonGroup}>
+        <Button
+          title='COUNTINUE'
+          onPress={handleSubmit(onSubmit)}
+        />
       </View>
 
     </SafeAreaView>

@@ -54,4 +54,19 @@ export const styles = StyleSheet.create({
         marginBottom: scale(40),
         marginTop: scale(30),
     },
+
+    imgForgotPassword: {
+        width: scale(220),
+        height: scale(220),
+        alignSelf: 'center',
+        marginBottom: scale(30),
+    },
+
+    txtDescription: {
+        fontSize: 18,
+        fontWeight: '400',
+        color: colors.PrimaryText,
+        textAlign: 'center',
+        marginBottom: scale(20),
+    },
 })
