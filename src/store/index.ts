@@ -30,7 +30,6 @@ import { resendCodeSaga } from './sagas/auth/resend-code';
 import { validateEmailSaga } from './sagas/auth/validate-email';
 import getLanguageListReducer from './reducers/constant-data/get-language-list';
 import { getLanguageListSaga } from './sagas/constant-data/get-language-list';
-import { checkDuplicateHashtagNameFailure } from './actions/profile/check-duplicate-hashtag-name';
 import checkDuplicateHashtagNameReducer from './reducers/profile/check-duplicate-hashtag-name';
 import { checkDuplicateHashtagNameSaga } from './sagas/profile/check-duplicate-hashtag-name';
 import { firstUpdateProfileInfoSaga } from './sagas/profile/first-update-profile-info';
@@ -40,7 +39,6 @@ import { currentRCChannelSaga } from './sagas/rc/channel/get-current-channel';
 import RCChannelChatHistoryReducer from './reducers/rc/channel/channel-chat-history';
 import { RCChannelChatHistorySaga } from './sagas/rc/channel/channel-chat-history';
 import case1NavigateRCChatScreenReducer from './reducers/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
-import { case1NavigateRCChatScreenFailure } from './actions/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 import { case1NavigateRCChatScreenSaga } from './sagas/rc/navigate-rc-chat-screen/case1-navigate-rc-chat-screen';
 import { searchByhashtagNameSaga } from './sagas/search/search-by-hashtag-name';
 import searchByHashtagNameReducer from './reducers/search/search-by-hashtag-name';
@@ -48,6 +46,14 @@ import leaveRCChannelReducer from './reducers/rc/channel/leave-channel';
 import { leaveRCChannelSaga } from './sagas/rc/channel/leave-channel';
 import logoutReducer from './reducers/auth/logout';
 import { logoutSaga } from './sagas/auth/logout';
+import { forgotPasswordSaga } from './sagas/auth/forgot-password';
+import forgotPasswordReducer from './reducers/auth/forgot-password';
+import forgotPasswordValidateEmailReducer from './reducers/auth/forgot-pasword-validate-email';
+import { forgotPasswordValidateEmailSaga } from './sagas/auth/forgot-password-validate-email';
+import forgotPasswordChangePasswordReducer from './reducers/auth/forgot-password-change-password';
+import { forgotPasswordChangePasswordSaga } from './sagas/auth/forgot-password-change-password';
+import resendForgotPasswordValidateCodeReducer from './reducers/auth/resend-forgot-password-validate-code';
+import { resendForgotPasswordValidateCodeSaga } from './sagas/auth/resend-forgot-password-validate-code';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -63,6 +69,10 @@ const rootReducer = combineReducers({
   register: registerReducer,
   resendCode: resendCodeReducer,
   validateEmail: validateEmailReducer,
+  forgotPassword: forgotPasswordReducer,
+  forgotPasswordValidateEmail: forgotPasswordValidateEmailReducer,
+  forgotPasswordChangePassword: forgotPasswordChangePasswordReducer,
+  resendForgotPasswordValidateCode: resendForgotPasswordValidateCodeReducer,
 
   //profile
   profile: profileReducer,
@@ -99,6 +109,10 @@ function* rootSaga() {
     registerSaga(),
     resendCodeSaga(),
     validateEmailSaga(),
+    forgotPasswordSaga(),
+    forgotPasswordValidateEmailSaga(),
+    forgotPasswordChangePasswordSaga(),
+    resendForgotPasswordValidateCodeSaga(),
 
     //profile
     profileSaga(),

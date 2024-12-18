@@ -66,7 +66,61 @@ export const authService = {
     } catch (error: any){
       throw error.response.data
     }
-  }
+  },
+
+  async forgotPassword(email: string): Promise<any> {
+    try {
+      const response = await api.post('auth/forgot-password', 
+        {
+          email: email,
+        },
+      );
+      return response.data;
+    } catch (error: any){
+      throw error.response.data
+    }
+  },
+
+  async forgotPasswordValidateEmail(email: string, validateCode: string): Promise<any> {
+    try {
+      const response = await api.post('auth/forgot-password-validate', 
+        {
+          email: email,
+          validate_code: validateCode
+        },
+      );
+      return response.data;
+    } catch (error: any){
+      throw error.response.data
+    }
+  },
+
+  async forgotPasswordChangePassword(email: string, password: string): Promise<any> {
+    try {
+      const response = await api.post('auth/forgot-password-change-password', 
+        {
+          email: email,
+          password: password
+        },
+      );
+      return response.data;
+    } catch (error: any){
+      throw error.response.data
+    }
+  },
+
+  async resendForgotPasswordValidateCode(email: string): Promise<any> {
+    try {
+      const response = await api.post('auth/resend-forgot-password-validate-code', 
+        {
+          email: email,
+        },
+      );
+      return response.data;
+    } catch (error: any){
+      throw error.response.data
+    }
+  },
 };
 
 export default authService;
