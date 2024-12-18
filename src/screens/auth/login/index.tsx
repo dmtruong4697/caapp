@@ -40,7 +40,6 @@ const LoginScreen: React.FC<IProps>  = () => {
       setIsLoading(true);
       const { email, password } = getValues();
       dispatch(loginRequest(email, password, ""));
-      setIsLoading(false);
     };
 
     const authState = useSelector((state: RootState) => state.auth);
@@ -49,8 +48,10 @@ const LoginScreen: React.FC<IProps>  = () => {
     useEffect(() => {
       if (profileState.profile?.account_status == "1") {
         navigation.navigate("Home")
+        setIsLoading(false);
       } else if (profileState.profile?.account_status == "0") {
         navigation.navigate("FirstInfoInput")
+        setIsLoading(false);
       }
     }, [profileState]) 
 
@@ -62,7 +63,7 @@ const LoginScreen: React.FC<IProps>  = () => {
         // console.log(userInfo);
         const idToken = userInfo.data?.idToken;
     
-        const response = await axios.post('http://192.168.1.113:8910/oauth2/google-login', {
+        const response = await axios.post('http://localhost:8910/oauth2/google-login', {
           token: idToken,
         }, {
           headers: {

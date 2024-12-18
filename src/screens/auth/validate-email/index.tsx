@@ -77,12 +77,14 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
     const resendEmailValidateCode = async() => {
       setIsLoading(true);
       dispatch(resendCodeRequest(email));
-      setIsLoading(false);
     }
 
     useEffect(() => {
       if (validateEmailState.success_flg == true) {
+        setIsLoading(false);
         navigation.navigate('FirstInfoInput');
+      } else {
+        setIsLoading(false);
       }
     },[validateEmailState.success_flg])
 

@@ -35,11 +35,11 @@ if (Platform.OS === 'ios') {
 
 function App(): React.JSX.Element {
 
-  GoogleSignin.configure({
-    androidClientId: '537208903435-r2chnosbfqo3cst7p72ts5aos6hnroja.apps.googleusercontent.com',
-    webClientId: '537208903435-h7fvpeq8utrr1hhl4thaca6jvj4n4gv9.apps.googleusercontent.com', 
-    scopes: ['profile', 'email'],
-  });
+  // GoogleSignin.configure({
+  //   androidClientId: '537208903435-r2chnosbfqo3cst7p72ts5aos6hnroja.apps.googleusercontent.com',
+  //   webClientId: '537208903435-h7fvpeq8utrr1hhl4thaca6jvj4n4gv9.apps.googleusercontent.com', 
+  //   scopes: ['profile', 'email'],
+  // });
 
   return (
     <Provider store={store}>

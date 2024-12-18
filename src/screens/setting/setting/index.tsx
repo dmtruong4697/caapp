@@ -35,11 +35,12 @@ const SettingScreen: React.FC<IProps>  = () => {
     const logout = async() => {
       setIsLoading(true);
       dispatch(logoutRequest());
-      setIsLoading(false);
+      // setIsLoading(false);
     }
 
     useEffect(() => {
       if (logoutState.success_flg) {
+        setIsLoading(false);
         navigation.navigate("Login");
       }
     },[logoutState.success_flg])

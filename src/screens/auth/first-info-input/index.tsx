@@ -63,7 +63,6 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
         language: "",
       }
       dispatch(firstUpdateProfileInfoRequest(req));
-      setIsLoading(false);
       console.log(getValues());
     };
 
@@ -78,6 +77,9 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
     useEffect(() => {
       if (firstUpdateProfileInfoState.success_flg == true) {
         navigation.navigate("Home");
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
       }
     }, [firstUpdateProfileInfoState.success_flg])
 

@@ -1,7 +1,7 @@
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-
+export const RESET_LOGIN_STATE = 'RESET_LOGIN_STATE';
 interface LoginRequestAction {
   type: typeof LOGIN_REQUEST;
   payload: {
@@ -28,7 +28,14 @@ interface LoginFailureAction {
   };
 }
 
-export type AuthActionTypes = LoginRequestAction | LoginSuccessAction | LoginFailureAction;
+interface ResetLoginStateAction {
+  type: typeof RESET_LOGIN_STATE;
+  payload: {
+    [key: string]: any;
+  };
+}
+
+export type AuthActionTypes = LoginRequestAction | LoginSuccessAction | LoginFailureAction |ResetLoginStateAction;
 
 export const loginRequest = (email: string, password: string, deviceToken: string) => ({
   type: LOGIN_REQUEST,
@@ -44,3 +51,8 @@ export const loginFailure = (error: string) => ({
   type: LOGIN_FAILURE,
   payload: { error }
 });
+
+export const resetLoginState = () => ({
+  type: RESET_LOGIN_STATE,
+  payload: {}
+})

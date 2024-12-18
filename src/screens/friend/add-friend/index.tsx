@@ -36,7 +36,6 @@ const AddFriendScreen: React.FC<IProps>  = () => {
     const search = async() => {
       setIsLoading(true);
       dispatch(searchByHashtagNameRequest(hashtagName!));
-      setIsLoading(false);
     }
 
     const isFocused = useIsFocused()
@@ -46,10 +45,12 @@ const AddFriendScreen: React.FC<IProps>  = () => {
 
     useEffect(() => {
       if (searchByHashtagNameState.is_found && searchByHashtagNameState.success_flg) {
+        setIsLoading(false);
         navigation.navigate("UserProfile", {user: searchByHashtagNameState.user})
-      }
+      } 
 
       if (searchByHashtagNameState.success_flg && !searchByHashtagNameState.is_found) {
+        setIsLoading(false);
         setSearchError("User not found")
       }
     }, [searchByHashtagNameState])

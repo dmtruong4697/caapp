@@ -42,17 +42,19 @@ const SignUpScreen: React.FC<IProps>  = () => {
       setIsLoading(true);
       const { email, password } = getValues();
       dispatch(registerRequest(email, password));
-      setIsLoading(false);
       console.log(getValues());
     };
 
     useEffect(() => {
       if(registerState.success_flg == true) {
         dispatch(resetRegisterState());
+        setIsLoading(false);
         navigation.navigate("ValidateEmail", {
           email: getValues().email,
           password: getValues().password,
         })
+      } else {
+        setIsLoading(false);
       }
     },[registerState.success_flg])
   

@@ -1,14 +1,16 @@
 import { ProfileInfo } from "../../../models/profile/profile-info";
 import { createTwoButtonAlert } from "../../../utils/alert";
-import { AuthActionTypes, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../../actions/auth/login";
+import { AuthActionTypes, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, RESET_LOGIN_STATE } from "../../actions/auth/login";
 
 interface AuthState {
   token: string | null;
+  success_flg: boolean;
   error: any | null;
 }
 
 const initialState: AuthState = {
   token: null,
+  success_flg: false,
   error: null,
 };
 
@@ -23,6 +25,7 @@ const loginReducer = (state = initialState, action: AuthActionTypes): AuthState 
       return {
         ...state,
         token: action.payload.token,
+        success_flg: true,
         error: null,
       };
     case LOGIN_FAILURE:
@@ -31,6 +34,12 @@ const loginReducer = (state = initialState, action: AuthActionTypes): AuthState 
         ...state,
         error: action.payload.error,
         token: null,
+      };
+    case RESET_LOGIN_STATE:
+      return {
+        ...state,
+        error: null,
+        success_flg: false,
       };
     default:
       return state;
