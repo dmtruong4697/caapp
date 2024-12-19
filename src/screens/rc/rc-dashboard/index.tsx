@@ -50,7 +50,7 @@ const RCDashboardScreen: React.FC = () => {
   }, [isFinding]);
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://localhost:8910/rc/queue?user_id=${profile?.id}`);
+    const ws = new WebSocket(`ws://192.168.1.117:8910/rc/queue?user_id=${profile?.id}`);
 
     ws.onopen = () => console.log('WebSocket connected');
     // ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));

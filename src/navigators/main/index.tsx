@@ -79,9 +79,7 @@ export type RootStackParamList = {
         userInfo: UserInfo | null,
     };
 
-    MyProfile: {
-        profile: ProfileInfo | null,
-    };
+    MyProfile: {};
 
     QRScan: {};
 
