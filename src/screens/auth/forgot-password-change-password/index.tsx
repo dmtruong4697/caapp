@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, Linking } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
-import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
+import { ParamListBase, RouteProp, useIsFocused, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import SolidHeader from '../../../components/solid-header';
@@ -15,17 +15,22 @@ import { RootState } from '../../../store';
 import LoadingOverlay from '../../../components/loading-overlay';
 import TwoStatusButton from '../../../components/2-status-button';
 import { forgotPasswordRequest } from '../../../store/actions/auth/forgot-password';
+import { RootStackParamList } from '../../../navigators/main';
+import { forgotPasswordChangePasswordRequest } from '../../../store/actions/auth/forgot-password-change-password';
 
 interface IProps {}
 
-const ForgotPasswordScreen: React.FC<IProps>  = () => {
+const ForgotPasswordChangePasswordScreen: React.FC<IProps>  = () => {
 
     const layout = useWindowDimensions();
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
-    const forgotPasswordState = useSelector((state: RootState) => state.forgotPassword);
+    const route = useRoute<RouteProp<RootStackParamList, 'ForgotPasswordChangePassword'>>();
+    const {email} = route.params;
+
+    const forgotPasswordChangePasswordState = useSelector((state: RootState) => state.forgotPasswordChangePassword);
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -38,19 +43,18 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
 
     const onSubmit = async()=> {
       setIsLoading(true);
-      const { email } = getValues();
-      dispatch(forgotPasswordRequest(email));
+      const { password } = getValues();
+      dispatch(forgotPasswordChangePasswordRequest(email, password));
     };
 
     useEffect(() => {
-      if (forgotPasswordState.success_flg) {
+      if (forgotPasswordChangePasswordState.success_flg) {
         setIsLoading(false);
-        const { email } = getValues();
-        navigation.navigate("ValidateEmailForgotPassword", {email: email});
+        navigation.navigate("ForgotPasswordSuccessChangePassword");
       } else {
         setIsLoading(false);
       }
-    },[forgotPasswordState.success_flg])
+    },[forgotPasswordChangePasswordState.success_flg])
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
@@ -66,29 +70,49 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
         />
       </View>
 
-      <Text style={styles.txtTitle}>Forgot Password</Text>
+      {/* <Text style={styles.txtTitle}>Forgot Password</Text> */}
 
       <Image style={styles.imgForgotPassword} source={require('../../../assets/illustrations/forgot-password.png')}/>
-      <Text style={styles.txtDescription}>Please enter yout Email address to receive a verification code</Text>
+      <Text style={styles.txtDescription}>Change password</Text>
       
       <View style={styles.viewFormContainer}>
         <Controller
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
           <InputField
-              title='Email'
-              inputMode='email'
+              title='New Password'
+              inputMode='text'
               value={value}
               onChangeText={value => onChange(value)}
               onBlur={onBlur}
+              isPassword
           />
           )}
-          name='email'
+          name='password'
           rules={{
               required: true,
           }}
         />
-        {errors.email && <Text style={styles.txtError}>Email is required.</Text>}
+        {errors.password && <Text style={styles.txtError}>Password is required.</Text>}
+
+        <Controller
+          control={control}
+          render={({field: {onChange, onBlur, value}}) => (
+          <InputField
+              title='Confirm Password'
+              inputMode='text'
+              value={value}
+              onChangeText={value => onChange(value)}
+              onBlur={onBlur}
+              isPassword
+          />
+          )}
+          name='confirmPassword'
+          rules={{
+              required: true,
+          }}
+        />
+        {errors.confirmPassword && <Text style={styles.txtError}>Confirm Password is required.</Text>}
       </View>
 
       <View style={styles.viewButtonGroup}>
@@ -103,4 +127,4 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
   )
 }
 
-export default ForgotPasswordScreen    
+export default ForgotPasswordChangePasswordScreen    

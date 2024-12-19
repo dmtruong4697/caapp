@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
         fontWeight: '600',
         color: colors.PrimaryText,
 
-        marginTop: scale(0),
+        marginTop: scale(10),
         marginBottom: scale(35),
     },
 
@@ -32,18 +32,19 @@ export const styles = StyleSheet.create({
         marginBottom: scale(15),
     },
 
-    viewFormContainer: {
-        width: '100%',
-        flexDirection: 'column',
-        gap: scale(12),
-
-        marginBottom: scale(15),
+    txtDescription: {
+        fontSize: 18,
+        fontWeight: '400',
+        color: colors.SecondText,
+        textAlign: 'center',
+        marginBottom: scale(20),
     },
 
-    txtError: {
-        fontSize: 14,
-        fontWeight: '400',
-        color: colors.ErrorText,
+    imgDone: {
+        width: scale(250),
+        height: scale(250),
+        alignSelf: 'center',
+        marginBottom: scale(30),
     },
 
     viewButtonGroup: {
@@ -53,20 +54,5 @@ export const styles = StyleSheet.create({
 
         marginBottom: scale(40),
         marginTop: scale(30),
-    },
-
-    imgForgotPassword: {
-        width: scale(220),
-        height: scale(220),
-        alignSelf: 'center',
-        marginBottom: scale(30),
-    },
-
-    txtDescription: {
-        fontSize: 18,
-        fontWeight: '400',
-        color: colors.SecondText,
-        textAlign: 'center',
-        marginBottom: scale(20),
     },
 })

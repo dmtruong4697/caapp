@@ -19,6 +19,9 @@ import { ProfileInfo } from "../../models/profile/profile-info";
 import MyProfileScreen from "../../screens/profile/my-profile";
 import ForgotPasswordScreen from "../../screens/auth/forgot-password";
 import LanguageSettingScreen from "../../screens/setting/language-setting";
+import ValidateEmailForgotPasswordScreen from "../../screens/auth/validate-email-forgot-password";
+import ForgotPasswordChangePasswordScreen from "../../screens/auth/forgot-password-change-password";
+import ForgotPasswordSuccessChangePasswordScreen from "../../screens/auth/forgot-password-success-change-password";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -26,6 +29,16 @@ export type RootStackParamList = {
     Login: {};
 
     ForgotPassword: {};
+
+    ValidateEmailForgotPassword: {
+        email: string,
+    };
+
+    ForgotPasswordChangePassword: {
+        email: string,
+    };
+
+    ForgotPasswordSuccessChangePassword: {};
 
     SignUp: {};
 
@@ -222,6 +235,31 @@ const MainNavigator = () => {
             component={LanguageSettingScreen}
             options={{
                 headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="ValidateEmailForgotPassword"
+            component={ValidateEmailForgotPasswordScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="ForgotPasswordChangePassword"
+            component={ForgotPasswordChangePasswordScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="ForgotPasswordSuccessChangePassword"
+            component={ForgotPasswordSuccessChangePasswordScreen}
+            options={{
+                headerShown: false,
+                gestureEnabled: false,
             }}
         />
 

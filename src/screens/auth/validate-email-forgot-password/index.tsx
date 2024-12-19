@@ -16,6 +16,9 @@ import { validateEmailRequest } from '../../../store/actions/auth/validate-email
 import { resendCodeRequest } from '../../../store/actions/auth/resend-code';
 import { secondToMinuteConvert } from '../../../utils/date-time/date-time-convert';
 import LoadingOverlay from '../../../components/loading-overlay';
+import forgotPasswordValidateEmailReducer from '../../../store/reducers/auth/forgot-pasword-validate-email';
+import { forgotPasswordValidateEmailRequest } from '../../../store/actions/auth/forgot-password-validate-email';
+import { resendForgotPasswordValidateCodeRequest } from '../../../store/actions/auth/resend-forgot-password-validate-code';
 
 interface IProps {}
 
@@ -26,11 +29,11 @@ const ValidateEmailForgotPasswordScreen: React.FC<IProps>  = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
-    const route = useRoute<RouteProp<RootStackParamList, 'ValidateEmail'>>();
-    const {email, password} = route.params;
+    const route = useRoute<RouteProp<RootStackParamList, 'ValidateEmailForgotPassword'>>();
+    const {email} = route.params;
 
-    const validateEmailState = useSelector((state: RootState) => state.validateEmail);
-    const resendCodeState = useSelector((state: RootState) => state.resendCode);
+    const validateEmailForgotPasswordState = useSelector((state: RootState) => state.forgotPasswordValidateEmail);
+    const resendForgotPasswordValidateCodeState = useSelector((state: RootState) => state.resendForgotPasswordValidateCode);
 
     const [validateCode, setValidateCode] = useState("");
     const [timeLeft, setTimeLeft] = useState<number>(0); 
@@ -61,30 +64,32 @@ const ValidateEmailForgotPasswordScreen: React.FC<IProps>  = () => {
     },[]);
 
     useEffect(() => {
-      if (resendCodeState.success_flg == true) {
+      if (resendForgotPasswordValidateCodeState.success_flg == true) {
+        setIsLoading(false);
         startCountdown();
       }
-    },[resendCodeState.success_flg])
+    },[resendForgotPasswordValidateCodeState.success_flg])
 
     const [isLoading, setIsLoading] = useState(false);
     const validateEmail = async()=> {
       setIsLoading(true);
-      dispatch(validateEmailRequest(email, password, validateCode));
+      dispatch(forgotPasswordValidateEmailRequest(email, validateCode));
       console.log(email);
-      setIsLoading(false);
     };
 
     const resendEmailValidateCode = async() => {
       setIsLoading(true);
-      dispatch(resendCodeRequest(email));
-      setIsLoading(false);
+      dispatch(resendForgotPasswordValidateCodeRequest(email));
     }
 
     useEffect(() => {
-      if (validateEmailState.success_flg == true) {
-        navigation.navigate('FirstInfoInput');
+      if (validateEmailForgotPasswordState.success_flg == true) {
+        setIsLoading(false);
+        navigation.navigate('ForgotPasswordChangePassword', {email: email});
+      } else {
+        setIsLoading(false);
       }
-    },[validateEmailState.success_flg])
+    },[validateEmailForgotPasswordState.success_flg])
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
