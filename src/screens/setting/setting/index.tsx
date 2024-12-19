@@ -145,7 +145,7 @@ const SettingScreen: React.FC<IProps>  = () => {
               title='Language'
               iconBackgroundColor={colors.LightOrange}
               onPress={() => {
-
+                navigation.navigate("LanguageSetting");
               }}
             />
           </View>

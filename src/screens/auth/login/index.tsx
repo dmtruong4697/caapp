@@ -53,7 +53,8 @@ const LoginScreen: React.FC<IProps>  = () => {
         navigation.navigate("FirstInfoInput")
         setIsLoading(false);
       }
-    }, [profileState]) 
+      setIsLoading(false);
+    }, [profileState, authState]) 
 
     //////////////////////////////////////////google auth////////////////////////////////////////////////////////
     const signInWithGoogle = async () => {
@@ -90,7 +91,7 @@ const LoginScreen: React.FC<IProps>  = () => {
         <SolidHeader
           renderLeftButton={true}
           renderRightButton={false}
-          leftButtonType='BACK'
+          leftButtonType='CANCEL'
           title=''
           onPressLeftButton={() => {navigation.goBack()}}
         />
@@ -157,7 +158,7 @@ const LoginScreen: React.FC<IProps>  = () => {
 
       <View style={styles.viewButtonGroup}>
         <Button
-          title='SIGN IN'
+          title={t('hn-friend')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

@@ -20,13 +20,13 @@ export const styles = StyleSheet.create({
     },
 
     iconCancel: {
-        width: scale(32),
-        height: scale(32),
+        width: scale(30),
+        height: scale(30),
     },
 
     iconBack: {
-        width: scale(34),
-        height: scale(34),
+        width: scale(32),
+        height: scale(32),
     },
 
     iconOption: {
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     },
 
     txtTitle: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: '400',
         color: colors.PrimaryText,
     },

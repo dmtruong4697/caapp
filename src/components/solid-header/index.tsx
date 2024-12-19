@@ -34,7 +34,7 @@ const SolidHeader: React.FC<IProps> = ({
                     <Image style={styles.iconBack} source={require('../../assets/icons/navigate/back-64px.png')}/>
                 }
                 {(leftButtonType == 'CANCEL') && 
-                    <Image style={styles.iconBack} source={require('../../assets/icons/navigate/cancel-64px.png')}/>
+                    <Image style={styles.iconCancel} source={require('../../assets/icons/navigate/cancel-64px.png')}/>
                 }
             </TouchableOpacity>
             }

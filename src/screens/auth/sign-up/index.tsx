@@ -68,7 +68,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
         <SolidHeader
             renderLeftButton={true}
             renderRightButton={false}
-            leftButtonType='BACK'
+            leftButtonType='CANCEL'
             title=''
             onPressLeftButton={() => {navigation.goBack()}}
         />
