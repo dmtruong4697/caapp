@@ -64,7 +64,7 @@ const LoginScreen: React.FC<IProps>  = () => {
         // console.log(userInfo);
         const idToken = userInfo.data?.idToken;
     
-        const response = await axios.post('http://192.168.1.117:8910/oauth2/google-login', {
+        const response = await axios.post('http://localhost:8910/oauth2/google-login', {
           token: idToken,
         }, {
           headers: {

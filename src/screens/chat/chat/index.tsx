@@ -75,7 +75,7 @@ const ChatScreen: React.FC<IProps> = () => {
 
   useEffect(() => {
     if (channelId) {
-      const ws = new WebSocket(`ws://192.168.1.117:8910/chat/ws?channel_id=${channelId}`);
+      const ws = new WebSocket(`ws://localhost:8910/chat/ws?channel_id=${channelId}`);
 
       ws.onopen = () => console.log('WebSocket connected');
       

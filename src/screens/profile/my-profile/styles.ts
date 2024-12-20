@@ -15,6 +15,27 @@ export const styles = StyleSheet.create({
 
     },
 
+    btnBack: {
+        width: scale(32),
+        height: scale(32),
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 1000,
+        backgroundColor: colors.LightColor,
+
+        position: 'absolute',
+
+        top: scale(10),
+        left: scale(10),
+
+        zIndex: 1,
+    },
+
+    imgBack: {
+        width: scale(30),
+        height: scale(30),
+    },
+
     viewCoverImage: {
         width: '100%',
         height: scale(140),
@@ -72,7 +93,7 @@ export const styles = StyleSheet.create({
     viewFriendContainer: {
         width: '100%',
         flexDirection: 'row',
-        gap: scale(20),
+        gap: scale(26),
 
         justifyContent: 'center',
     },
@@ -86,7 +107,7 @@ export const styles = StyleSheet.create({
     txtTop: {
         fontSize: 26,
         fontWeight: 'bold',
-        color: colors.DarkColor,
+        color: colors.PrimaryColor,
     },
 
     txtBottom: {

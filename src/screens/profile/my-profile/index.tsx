@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
@@ -28,8 +28,17 @@ const MyProfileScreen: React.FC<IProps>  = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
-    <SafeAreaView style={styles.viewContainer}>
+    <ScrollView style={styles.viewContainer}>
       <View style={styles.viewImageContainer}>
+        {/* <TouchableOpacity
+          style={styles.btnBack}
+          onPress={() => {
+
+          }}
+        >
+          <Image style={styles.imgBack} source={require('../../../assets/icons/navigate/cancel-64px.png')}/>
+        </TouchableOpacity> */}
+
         <View style={styles.viewCoverImage}>
           <Image style={styles.imgCover} source={{uri: profileState.profile?.cover_image}}/>
         </View>
@@ -61,7 +70,7 @@ const MyProfileScreen: React.FC<IProps>  = () => {
         </TouchableOpacity>
       </View>
 
-    </SafeAreaView>
+    </ScrollView>
     </View>
   )
 }
