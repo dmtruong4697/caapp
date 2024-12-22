@@ -38,13 +38,24 @@ export const styles = StyleSheet.create({
         borderRadius: scale(26),
         backgroundColor: colors.White,
         padding: scale(20),
+        gap: scale(10),
         flexDirection: 'column',
         alignItems: 'center',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+        
+        elevation: 8,
     },
 
     imgUser: {
-        width: scale(50),
-        height: scale(50),
+        width: scale(110),
+        height: scale(110),
     },
 
     txtUser: {
@@ -71,12 +82,22 @@ export const styles = StyleSheet.create({
 
     btnSearch: {
         width: '80%',
-        height: scale(40),
+        height: scale(46),
         borderRadius: radius.Radius2,
         backgroundColor: colors.BasicOrange,
 
         justifyContent: 'center',
         alignItems: 'center',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+        
+        elevation: 8,
     },
 
     txtSearchButton: {
@@ -105,11 +126,48 @@ export const styles = StyleSheet.create({
         borderRadius: radius.Radius2,
         justifyContent: 'center',
         alignItems: 'center',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.30,
+        shadowRadius: 4.65,
+        
+        elevation: 8,
     },
 
     txtCurrentChannel: {
         fontSize: 24,
         fontWeight: 'bold',
+        color: colors.PrimaryText,
+    },
+
+    viewModal: {
+        width: '90%',
+        padding: scale(15),
+        flexDirection: 'column',
+        backgroundColor: colors.White,
+        borderRadius: scale(20),
+    },
+
+    btnModalItem: {
+        flexDirection: 'row',
+        gap: scale(20),
+        marginBottom: scale(20),
+
+        alignItems: 'center',
+    },
+
+    imgModalItem: {
+        height: scale(40),
+        width: scale(40),
+    },
+
+    txtModalItem: {
+        fontSize: 18,
+        fontWeight: '400',
         color: colors.PrimaryText,
     },
 })

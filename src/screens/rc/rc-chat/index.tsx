@@ -56,7 +56,7 @@ const RCChatScreen: React.FC<IProps> = () => {
 
   useEffect(() => {
     if (currentRCChannelState.current_rc_channel?.id) {
-      const ws = new WebSocket(`ws://localhost:8910/rc/chat?channel_id=${currentRCChannelState.current_rc_channel?.id}`);
+      const ws = new WebSocket(`ws://192.168.1.117:8910/rc/chat?channel_id=${currentRCChannelState.current_rc_channel?.id}`);
 
       ws.onopen = () => console.log('WebSocket connected');
       
@@ -116,7 +116,7 @@ const RCChatScreen: React.FC<IProps> = () => {
         <FlatList
           data={RCChannelChatHistoryState.messages}
           extraData={RCChannelChatHistoryState.messages}
-          keyExtractor={(item, index) => item.message.id.toString()}
+          // keyExtractor={(item, index) => item.message.id.toString()}
           renderItem={({ item }) => 
             (<RCChatMessageItem message={item}/>)
           }

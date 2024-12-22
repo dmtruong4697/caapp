@@ -28,24 +28,34 @@ const RCChatMessageItem: React.FC<IProps> = ({message}) => {
     const profileState = useSelector((state: RootState) => state.profile)
 
   return (
-    <View 
-        style={[
-            styles.viewContainer,
-            {
-                flexDirection: (message?.message.sender_id == profileState.profile?.id)? 'row-reverse':'row'
-            }
-        ]}
-    >
-
+    <View>
+        {message?.message.type != '2' &&
         <View 
             style={[
-                styles.viewMessageContent,
+                styles.viewContainer,
                 {
-                    backgroundColor: (message?.message.sender_id == profileState.profile?.id)? colors.LightColor : colors.White,
+                    flexDirection: (message?.message.sender_id == profileState.profile?.id)? 'row-reverse':'row'
                 }
-            ]}>
-            <Text style={styles.txtMessageContent}>{message?.message.content}</Text>
+            ]}
+        >
+
+            <View 
+                style={[
+                    styles.viewMessageContent,
+                    {
+                        backgroundColor: (message?.message.sender_id == profileState.profile?.id)? colors.LightColor : colors.White,
+                    }
+                ]}>
+                <Text style={styles.txtMessageContent}>{message?.message.content}</Text>
+            </View>
         </View>
+        }
+        {
+            message?.message.type == '2' &&
+            <View style={styles.viewNotification}>
+                <Text style={styles.txtNotification}>Stranger left the chat</Text>
+            </View>
+        }
     </View>
   )
 }

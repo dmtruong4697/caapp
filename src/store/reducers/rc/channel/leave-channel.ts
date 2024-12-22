@@ -1,5 +1,5 @@
 import { createTwoButtonAlert } from "../../../../utils/alert";
-import { LEAVE_RC_CHANNEL_FAILURE, LEAVE_RC_CHANNEL_REQUEST, LEAVE_RC_CHANNEL_SUCCESS, LeaveRCChannelActionTypes } from "../../../actions/rc/channel/leave-channel";
+import { LEAVE_RC_CHANNEL_FAILURE, LEAVE_RC_CHANNEL_REQUEST, LEAVE_RC_CHANNEL_SUCCESS, LeaveRCChannelActionTypes, RESET_LEAVE_RC_CHANNEL_STATE } from "../../../actions/rc/channel/leave-channel";
 
 interface LeaveRCChannelState {
   success_flg: boolean | null;
@@ -30,6 +30,12 @@ const leaveRCChannelReducer = (state = initialState, action: LeaveRCChannelActio
       return {
         ...state,
         error: action.payload.error,
+        success_flg: false,
+      };
+    case RESET_LEAVE_RC_CHANNEL_STATE:
+      return {
+        ...state,
+        error: null,
         success_flg: false,
       };
     default:

@@ -36,25 +36,23 @@ const RCChatDetailScreen: React.FC<IProps> = () => {
   const leaveRCChannelState = useSelector((state: RootState) => state.leaveRCChannel)
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isLeaving, setIsLeaving] = useState(false);
   const leaveChannel = async() => {
     setIsLoading(true);
-    setIsLeaving(true);
     dispatch(leaveRCChannelRequest());
     setIsLoading(false);
   };
 
   useEffect(() => {
-    if (leaveRCChannelState.success_flg && isLeaving) {
+    if (leaveRCChannelState.success_flg) {
       dispatch(getProfileInfoRequest())
     }
-  }, [leaveRCChannelState.success_flg, ])
+  }, [leaveRCChannelState.success_flg])
 
   useEffect(() => {
-    if (profileState.success_flg && isLeaving) {
+    if (profileState.success_flg) {
       navigation.navigate("RCDashboard");
     }
-  }, [profileState.success_flg, ])
+  }, [profileState.success_flg])
 
   return (
     <View style={styles.viewContainer}>

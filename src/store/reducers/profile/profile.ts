@@ -44,7 +44,6 @@ const profileReducer = (state = initialState, action: ProfileActionTypes): Profi
       return {
         ...state,
         error: null,
-        profile: null,
         success_flg: false,
       };
     default:

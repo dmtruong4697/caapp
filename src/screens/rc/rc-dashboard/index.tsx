@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import {
   Image,
+  Modal,
   SafeAreaView,
   Text,
   TouchableOpacity,
@@ -22,6 +23,7 @@ import { colors } from '../../../styles/colors';
 import { scale } from '../../../styles/scale';
 import { setCurrentRCChannel } from '../../../store/actions/rc/channel/current-channel';
 import LinearGradient from 'react-native-linear-gradient';
+import { getProfileInfoRequest } from '../../../store/actions/profile/profile';
 
 const RCDashboardScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();
@@ -52,7 +54,7 @@ const RCDashboardScreen: React.FC = () => {
   }, [isFinding]);
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://localhost:8910/rc/queue?user_id=${profile?.id}`);
+    const ws = new WebSocket(`ws://192.168.1.117:8910/rc/queue?user_id=${profile?.id}`);
 
     ws.onopen = () => console.log('WebSocket connected');
     // ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));
@@ -69,6 +71,8 @@ const RCDashboardScreen: React.FC = () => {
     const message = JSON.parse(event.data);
     if (message.id > 0) {
       setCurrentRCChannel(message.id);
+      toggleFinding();
+      dispatch(getProfileInfoRequest());
       navigation.navigate("RCChat");
     }
   }
@@ -88,6 +92,13 @@ const RCDashboardScreen: React.FC = () => {
 
     if (!isFinding) setFindingTime(0);
   }, [socket, profile?.id, gender, targetGender, isFinding]);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const [selectingType, setSelectingType] = useState(0);
 
   return (
     <View style={styles.viewContainer}>
@@ -110,17 +121,27 @@ const RCDashboardScreen: React.FC = () => {
         <View style={styles.viewSelectContainer}>
           <TouchableOpacity
             style={styles.viewSelectItem}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectingType(0);
+              toggleModal();
+            }}
           >
-            {/* <Image style={styles.imgUser} source={}/> */}
+            {gender == 'male' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/boy.png')}/>}
+            {gender == 'female' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/girl.png')}/>}
+            {gender == 'other' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/rainbow.png')}/>}
             <Text style={styles.txtUser}>You</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.viewSelectItem}
-            onPress={() => {}}
+            onPress={() => {
+              setSelectingType(1);
+              toggleModal();
+            }}
           >
-            {/* <Image style={styles.imgUser} source={}/> */}
+            {targetGender == 'male' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/boy.png')}/>}
+            {targetGender == 'female' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/girl.png')}/>}
+            {targetGender == 'other' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/rainbow.png')}/>}
             <Text style={styles.txtUser}>Stranger</Text>
           </TouchableOpacity>
         </View>
@@ -128,7 +149,7 @@ const RCDashboardScreen: React.FC = () => {
         <View style={styles.viewButtonGroup}>
           <View style={styles.viewSearchContainer}>
             <TouchableOpacity
-              style={styles.btnSearch}
+              style={[styles.btnSearch, {backgroundColor: isFinding? colors.BasicRed:colors.BasicOrange}]}
               onPress={toggleFinding}
               disabled={!gender || !targetGender}
             >
@@ -152,6 +173,72 @@ const RCDashboardScreen: React.FC = () => {
         </View>
 
         </SafeAreaView>
+
+        <Modal
+          visible={isModalVisible}
+          transparent
+          animationType="fade"
+          onRequestClose={toggleModal} 
+        >
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            activeOpacity={1}
+            onPressOut={toggleModal}
+          >
+            <View style={styles.viewModal}>
+              <TouchableOpacity
+                style={styles.btnModalItem}
+                onPress={() => {
+                  if (selectingType == 0) {
+                    setGender('male')
+                  } else {
+                    setTargetGender('male')
+                  }
+                  toggleModal()
+                }}
+              >
+                <Image style={styles.imgModalItem} source={require('../../../assets/illustrations/boy.png')}/>
+                <Text style={styles.txtModalItem}>Male</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.btnModalItem}
+                onPress={() => {
+                  if (selectingType == 0) {
+                    setGender('female')
+                  } else {
+                    setTargetGender('female')
+                  }
+                  toggleModal()
+                }}
+              >
+                <Image style={styles.imgModalItem} source={require('../../../assets/illustrations/girl.png')}/>
+                <Text style={styles.txtModalItem}>Female</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.btnModalItem}
+                onPress={() => {
+                  if (selectingType == 0) {
+                    setGender('other')
+                  } else {
+                    setTargetGender('other')
+                  }
+
+                  toggleModal()
+                }}
+              >
+                <Image style={styles.imgModalItem} source={require('../../../assets/illustrations/rainbow.png')}/>
+                <Text style={styles.txtModalItem}>Other</Text>
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        </Modal>
       </LinearGradient>
     </View>
   );

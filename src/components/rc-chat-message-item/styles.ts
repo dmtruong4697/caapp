@@ -42,4 +42,18 @@ export const styles = StyleSheet.create({
         color: colors.Black,
         textAlign: 'left',
     },
+
+    viewNotification: {
+        width: '100%',
+        padding: scale(10),
+
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    txtNotification: {
+        fontSize: 18,
+        fontWeight: '400',
+        color: colors.PrimaryText,
+    },
 })
