@@ -60,7 +60,6 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
             onRefresh={pullToRefreshFunction }
           />}
       >
-        {friendRequestState.received_requests?.requests.length > 0 &&
         <View style={styles.viewListContainer}>
           <ListHeader
             title='Received Request'
@@ -68,10 +67,10 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
               // console.log(friendRequestState.received_requests!);
               console.log(friendRequestState.received_requests?.requests);
             }}
-            renderSeeAll
+            renderSeeAll={friendRequestState.received_requests?.requests.length > 0}
           />
           <View style={styles.viewFlatListContainer}>
-            {friendRequestState.received_requests && 
+            {friendRequestState.received_requests?.requests.length > 0 && 
               <FlatList
                 data={friendRequestState.received_requests.requests}
                 keyExtractor={item => item.user.id.toString()}
@@ -83,9 +82,15 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
                 contentContainerStyle={{gap: 10,}}
               />
             }
+            {
+              friendRequestState.received_requests?.requests.length <= 0 &&
+              <View style={styles.viewEmpty}>
+                <Image style={styles.imgEmpty} source={require('../../../assets/illustrations/empty-box-256px.png')}/>
+                <Text style={styles.txtEmpty}>🤔 No conversations yet! Start chatting to connect with someone now. 😊</Text>
+              </View>
+            }
           </View>
         </View>
-        } 
 
         <View style={styles.viewListContainer}>
           <ListHeader

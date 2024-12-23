@@ -28,6 +28,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomStatusBar from '../../../components/custom-status-bar';
 import { case1NavigateChatScreenRequest } from '../../../store/actions/navigate-chat-screen/case1-navigate-chat-screen-action';
 import { addMessageToChannel } from '../../../store/actions/channel/channel-chat-history-action';
+import Config from 'react-native-config';
 
 interface IProps {}
 
@@ -75,7 +76,7 @@ const ChatScreen: React.FC<IProps> = () => {
 
   useEffect(() => {
     if (channelId) {
-      const ws = new WebSocket(`ws://192.168.1.117:8910/chat/ws?channel_id=${channelId}`);
+      const ws = new WebSocket(`${Config.WS_BASE_URL}/chat/ws?channel_id=${channelId}`);
 
       ws.onopen = () => console.log('WebSocket connected');
       
@@ -98,9 +99,9 @@ const ChatScreen: React.FC<IProps> = () => {
 
   const sendMessage = () => {
     if (socket && messageText) {
+      setMessageText("");
       const message = { content: messageText, sender_id: profileState.profile!.id };
       socket.send(JSON.stringify(message));
-      setMessageText("");
     }
   };
 

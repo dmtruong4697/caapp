@@ -9,6 +9,7 @@ import { colors } from '../../../styles/colors';
 import { RootState } from '../../../store';
 import { getProfileInfoRequest, resetProfileInfo } from '../../../store/actions/profile/profile';
 import { getLanguageListRequest } from '../../../store/actions/constant-data/get-language-list';
+import { profileInfoRequest } from '../../../store/actions/profile/profile-info';
 
 interface IProps {}
 
@@ -19,11 +20,11 @@ const MyProfileScreen: React.FC<IProps>  = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
-  const profileState = useSelector((state: RootState) => state.profile)
+  const profileInfoState = useSelector((state: RootState) => state.profileInfo)
 
   const isFocused = useIsFocused();
   useEffect(() => {
-    // dispatch(getProfileInfoRequest());
+    dispatch(profileInfoRequest());
   },[]);
 
   return (
@@ -40,17 +41,17 @@ const MyProfileScreen: React.FC<IProps>  = () => {
         </TouchableOpacity> */}
 
         <View style={styles.viewCoverImage}>
-          <Image style={styles.imgCover} source={{uri: profileState.profile?.cover_image}}/>
+          <Image style={styles.imgCover} source={{uri: profileInfoState.profile?.cover_image}}/>
         </View>
 
         <View style={styles.viewAvatarImage}>
-          <Image style={styles.imgAvatar} source={{uri: profileState.profile?.avatar_image}}/>
+          <Image style={styles.imgAvatar} source={{uri: profileInfoState.profile?.avatar_image}}/>
         </View>
       </View>
 
       <View style={styles.viewNameContainer}>
-        <Text style={styles.txtFullName}>{profileState.profile?.first_name} {profileState.profile?.middle_name} {profileState.profile?.last_name}</Text>
-        <Text style={styles.txtHashtagName}>@{profileState.profile?.hashtag_name}</Text>
+        <Text style={styles.txtFullName}>{profileInfoState.profile?.first_name} {profileInfoState.profile?.middle_name} {profileInfoState.profile?.last_name}</Text>
+        <Text style={styles.txtHashtagName}>@{profileInfoState.profile?.hashtag_name}</Text>
       </View>
 
       <View style={styles.viewFriendContainer}>

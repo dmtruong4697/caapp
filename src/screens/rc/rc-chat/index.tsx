@@ -30,6 +30,7 @@ import { RCMessage } from '../../../models/rc/message/rc-message';
 import { addMessageToRCChannel } from '../../../store/actions/rc/channel/channel-chat-history';
 import RCChatMessageItem from '../../../components/rc-chat-message-item';
 import { RCChatHistoryItem } from '../../../models/rc/message/rc-chat-history-item';
+import Config from 'react-native-config';
 
 interface IProps {}
 
@@ -56,7 +57,7 @@ const RCChatScreen: React.FC<IProps> = () => {
 
   useEffect(() => {
     if (currentRCChannelState.current_rc_channel?.id) {
-      const ws = new WebSocket(`ws://192.168.1.117:8910/rc/chat?channel_id=${currentRCChannelState.current_rc_channel?.id}`);
+      const ws = new WebSocket(`${Config.WS_BASE_URL}/rc/chat?channel_id=${currentRCChannelState.current_rc_channel?.id}`);
 
       ws.onopen = () => console.log('WebSocket connected');
       

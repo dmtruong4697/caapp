@@ -75,3 +75,6 @@ yarn-error.log
 
 # env
 .env
+.env.dev 
+.env.prod
+.env.stg

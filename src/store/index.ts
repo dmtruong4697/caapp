@@ -54,6 +54,8 @@ import forgotPasswordChangePasswordReducer from './reducers/auth/forgot-password
 import { forgotPasswordChangePasswordSaga } from './sagas/auth/forgot-password-change-password';
 import resendForgotPasswordValidateCodeReducer from './reducers/auth/resend-forgot-password-validate-code';
 import { resendForgotPasswordValidateCodeSaga } from './sagas/auth/resend-forgot-password-validate-code';
+import { profileInfoSaga } from './sagas/profile/profile-info';
+import profileInfoReducer from './reducers/profile/profile-info';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
@@ -76,6 +78,7 @@ const rootReducer = combineReducers({
 
   //profile
   profile: profileReducer,
+  profileInfo: profileInfoReducer,
   checkDuplicateHashtagName: checkDuplicateHashtagNameReducer,
   firstUpdateProfileInfo: firstUpdateProfileInfoReducer,
 
@@ -116,6 +119,7 @@ function* rootSaga() {
 
     //profile
     profileSaga(),
+    profileInfoSaga(),
     checkDuplicateHashtagNameSaga(),
     firstUpdateProfileInfoSaga(),
 

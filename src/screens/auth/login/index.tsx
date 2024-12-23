@@ -43,18 +43,18 @@ const LoginScreen: React.FC<IProps>  = () => {
     };
 
     const authState = useSelector((state: RootState) => state.auth);
-    const profileState = useSelector((state: RootState) => state.profile);
+    const profileInfoState = useSelector((state: RootState) => state.profile);
 
     useEffect(() => {
-      if (profileState.profile?.account_status == "1") {
+      if (profileInfoState.profile?.account_status == "1") {
         navigation.navigate("Home")
         setIsLoading(false);
-      } else if (profileState.profile?.account_status == "0") {
+      } else if (profileInfoState.profile?.account_status == "0") {
         navigation.navigate("FirstInfoInput")
         setIsLoading(false);
       }
       setIsLoading(false);
-    }, [profileState, authState]) 
+    }, [profileInfoState, authState]) 
 
     //////////////////////////////////////////google auth////////////////////////////////////////////////////////
     const signInWithGoogle = async () => {

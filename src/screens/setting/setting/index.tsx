@@ -129,7 +129,7 @@ const SettingScreen: React.FC<IProps>  = () => {
         </View>
 
         <View style={styles.viewListContainer}>
-          <Text style={styles.txtListTitle}>Notifications</Text>
+          <Text style={styles.txtListTitle}>App settings</Text>
           <View style={styles.viewList}>
             <SettingItem
               icon={<FontAwesomeIcon icon={faBell} size={22} color={colors.DarkYellow}/>}

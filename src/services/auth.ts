@@ -11,7 +11,7 @@ interface LoginResponse {
 export const authService = {
   async login(email: string, password: string, deviceToken: string): Promise<LoginResponse> {
     try {
-        console.log("hêhhe");
+      console.log(Config.API_BASE_URL);
       const response = await api.post('auth/login', { email, password, deviceToken });
       console.log(response);
       return response.data;

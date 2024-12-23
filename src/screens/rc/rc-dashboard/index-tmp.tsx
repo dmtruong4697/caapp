@@ -20,6 +20,7 @@ import CustomStatusBar from '../../../components/custom-status-bar';
 import { colors } from '../../../styles/colors';
 import { scale } from '../../../styles/scale';
 import { setCurrentRCChannel } from '../../../store/actions/rc/channel/current-channel';
+import Config from 'react-native-config';
 
 const RCDashboardScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();
@@ -50,7 +51,7 @@ const RCDashboardScreen: React.FC = () => {
   }, [isFinding]);
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://192.168.1.117:8910/rc/queue?user_id=${profile?.id}`);
+    const ws = new WebSocket(`${Config.WS_BASE_URL}/rc/queue?user_id=${profile?.id}`);
 
     ws.onopen = () => console.log('WebSocket connected');
     // ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));

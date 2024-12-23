@@ -15,6 +15,7 @@ import { RootState } from '../../../store';
 import ChannelListItem from '../../../components/channel-list-item';
 import { scale } from '../../../styles/scale';
 import { getChannelListRequest, updateChannelListItem } from '../../../store/actions/channel/get-channel-list-action';
+import Config from 'react-native-config';
 
 interface IProps {}
 
@@ -43,7 +44,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
     const isFocused = useIsFocused();
     const [socket, setSocket] = useState<WebSocket | null>(null);
     useEffect(() => {
-        const ws = new WebSocket(`ws://192.168.1.117:8910/ws-chatlist/connect?user_id=${profileState.profile?.id}`);
+        const ws = new WebSocket(`${Config.WS_BASE_URL}/ws-chatlist/connect?user_id=${profileState.profile?.id}`);
   
         ws.onopen = () => console.log('WebSocket for chat list connected');
         

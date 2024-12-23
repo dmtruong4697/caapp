@@ -12,7 +12,8 @@ export const profileService = {
   
       const response = await api.post(
         'profile/profile-info',
-        {}, 
+        {
+        }, 
         {
           headers: { 
             'Authorization': token,
@@ -20,7 +21,6 @@ export const profileService = {
           }
         }
       );
-      console.log(response.data);
       return response.data;
     } catch (error: any) {
       console.log(error.response);

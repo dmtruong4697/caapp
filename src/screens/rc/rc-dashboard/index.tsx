@@ -24,6 +24,8 @@ import { scale } from '../../../styles/scale';
 import { setCurrentRCChannel } from '../../../store/actions/rc/channel/current-channel';
 import LinearGradient from 'react-native-linear-gradient';
 import { getProfileInfoRequest } from '../../../store/actions/profile/profile';
+import Config from 'react-native-config';
+import { profileInfoRequest } from '../../../store/actions/profile/profile-info';
 
 const RCDashboardScreen: React.FC = () => {
   const { width, height } = useWindowDimensions();
@@ -32,7 +34,7 @@ const RCDashboardScreen: React.FC = () => {
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
 
-  const profile = useSelector((state: RootState) => state.profile.profile);
+  const profile = useSelector((state: RootState) => state.profileInfo);
   const [gender, setGender] = useState<string | null>("male");
   const [targetGender, setTargetGender] = useState<string | null>("male");
   const [isFinding, setIsFinding] = useState(false);
@@ -54,7 +56,7 @@ const RCDashboardScreen: React.FC = () => {
   }, [isFinding]);
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://192.168.1.117:8910/rc/queue?user_id=${profile?.id}`);
+    const ws = new WebSocket(`${Config.WS_BASE_URL}/rc/queue?user_id=${profile.profile?.id}`);
 
     ws.onopen = () => console.log('WebSocket connected');
     // ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));
@@ -65,14 +67,14 @@ const RCDashboardScreen: React.FC = () => {
     setSocket(ws);
 
     return () => ws.close();
-  }, [isFocused, profile?.id]);
+  }, [isFocused, profile.profile?.id]);
 
   const onMessage = (event: WebSocketMessageEvent) => {
     const message = JSON.parse(event.data);
     if (message.id > 0) {
       setCurrentRCChannel(message.id);
       toggleFinding();
-      dispatch(getProfileInfoRequest());
+      dispatch(profileInfoRequest());
       navigation.navigate("RCChat");
     }
   }
@@ -81,7 +83,7 @@ const RCDashboardScreen: React.FC = () => {
     if (!socket) return;
 
     const message = {
-      user_id: profile?.id,
+      user_id: profile.profile?.id,
       gender,
       target_gender: targetGender,
       request_type: isFinding ? '1' : '0',
@@ -91,7 +93,7 @@ const RCDashboardScreen: React.FC = () => {
     setIsFinding((prev) => !prev);
 
     if (!isFinding) setFindingTime(0);
-  }, [socket, profile?.id, gender, targetGender, isFinding]);
+  }, [socket, profile.profile?.id, gender, targetGender, isFinding]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const toggleModal = () => {
@@ -166,9 +168,9 @@ const RCDashboardScreen: React.FC = () => {
             onPress={() => {
               navigation.navigate("RCChat");
             }}
-            disabled={(profile?.current_rc_channel_id <= 0 || profile?.current_rc_channel_id == null)}
+            disabled={(profile.profile?.current_rc_channel_id <= 0 || profile.profile?.current_rc_channel_id == null)}
           >
-            <Text style={[styles.txtCurrentChannel,{color: (profile?.current_rc_channel_id <= 0 || profile?.current_rc_channel_id == null)? colors.PlaceholderText:colors.PrimaryText}]}>Keep talking?</Text>
+            <Text style={[styles.txtCurrentChannel,{color: (profile.profile?.current_rc_channel_id <= 0 || profile.profile?.current_rc_channel_id == null)? colors.PlaceholderText:colors.PrimaryText}]}>Keep talking?</Text>
           </TouchableOpacity>
         </View>
 
