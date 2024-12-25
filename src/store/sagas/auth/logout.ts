@@ -7,7 +7,7 @@ import { resetProfileInfo } from '../../actions/profile/profile';
 function* logout(action: ReturnType<typeof logoutRequest>): Generator<any, void, any> {
   try {
     const response = yield call(authService.logout);
-    // yield AsyncStorage.setItem('token', null);
+    yield AsyncStorage.setItem('token', "");
     yield put(resetProfileInfo());
     yield put(logoutSuccess());
     yield put(resetLogoutState());

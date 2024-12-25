@@ -1,15 +1,19 @@
 import { Alert } from "react-native";
+import i18n from "../i18n/i18n";
 
-export const createTwoButtonAlert = (title: string, message: string) => {
-    Alert.alert(title, message, [
-      {
-        text: 'Cancel',
-        onPress: () => {},
-        style: 'cancel',
-      },
-      {text: 'OK', onPress: () => {}},
-    ]);
-}
+export const createTwoButtonAlert = (errorCode: string, errorCode2: string) => {
+  // const title = i18n.t('alert.error_title');
+  const message = i18n.t(`${errorCode}`);
+  
+  Alert.alert(message, "", [
+    {
+      text: "Cancel", 
+      onPress: () => {},
+      style: 'cancel',
+    },
+    { text: "OK", onPress: () => {} }, 
+  ]);
+};
 
 export const createThreeButtonAlert = () => {
     Alert.alert('Alert Title', 'My Alert Msg', [

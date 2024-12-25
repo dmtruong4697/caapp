@@ -3,6 +3,12 @@
       "hn-chat": "Chat",
       "hn-friend": "Bạn bè",
       "hn-request": "Lời mời",
-      "hn-setting": "Cài đặt"
+      "hn-setting": "Cài đặt",
+
+      "api_error_400_004001": "Lỗi hệ thống. Vui lòng thử lại sau. [400/004001]",
+      "api_error_500_004002": "Lỗi hệ thống. Vui lòng thử lại sau. [400/004002]",
+      "api_error_400_004003": "Email hoặc mật khẩu không đúng. Vui lòng thử lại.",
+      "api_error_500_004004": "Lỗi hệ thống. Vui lòng thử lại sau. [500/004004]",
+      "api_error_500_004005": "Lỗi hệ thống. Vui lòng thử lại sau. [500/004005]"
     }
 }

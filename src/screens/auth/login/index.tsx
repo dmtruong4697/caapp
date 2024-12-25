@@ -46,14 +46,16 @@ const LoginScreen: React.FC<IProps>  = () => {
     const profileInfoState = useSelector((state: RootState) => state.profile);
 
     useEffect(() => {
-      if (profileInfoState.profile?.account_status == "1") {
+      if (profileInfoState.profile?.account_status == "1" && authState.success_flg) {
         navigation.navigate("Home")
         setIsLoading(false);
       } else if (profileInfoState.profile?.account_status == "0") {
         navigation.navigate("FirstInfoInput")
         setIsLoading(false);
+      } else {
+        console.log("else");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }, [profileInfoState, authState]) 
 
     //////////////////////////////////////////google auth////////////////////////////////////////////////////////
@@ -93,7 +95,7 @@ const LoginScreen: React.FC<IProps>  = () => {
           renderRightButton={false}
           leftButtonType='CANCEL'
           title=''
-          onPressLeftButton={() => {navigation.goBack()}}
+          onPressLeftButton={() => {navigation.navigate("Welcome")}}
         />
       </View>
 

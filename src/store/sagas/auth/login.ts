@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import authService from '../../../services/auth';
-import { LOGIN_REQUEST, loginFailure, loginRequest, loginSuccess } from '../../actions/auth/login';
+import { LOGIN_REQUEST, loginFailure, loginRequest, loginSuccess, resetLoginState } from '../../actions/auth/login';
 import profileService from '../../../services/profile';
 import { getProfileInfoSuccess, resetProfileInfo } from '../../actions/profile/profile';
 import { profileInfoRequest, profileInfoSuccess, resetProfileInfoState } from '../../actions/profile/profile-info';
@@ -20,6 +20,7 @@ function* login(action: ReturnType<typeof loginRequest>): Generator<any, void, a
 
     // yield AsyncStorage.setItem('token', response!.token);
     yield put(loginSuccess(response!.token ));
+    yield put(resetLoginState());
 
     // yield put({ type: LOGIN_SUCCESS });
   } catch (error: any) {
