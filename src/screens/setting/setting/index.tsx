@@ -60,7 +60,7 @@ const SettingScreen: React.FC<IProps>  = () => {
         style={{flex: 1}}
       >
         <View style={styles.viewTopSearch}>
-          <Text style={styles.txtCaapp}>Setting</Text>
+          <Text style={styles.txtCaapp}>{t('setting_screen_title')}</Text>
           <View style={{flexDirection: 'row', gap: scale(8)}}>
             <TouchableOpacity
               style={styles.btnSearch}

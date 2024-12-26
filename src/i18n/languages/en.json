@@ -70,6 +70,8 @@
       "validate_email_screen_not_receive": "Didn't receive mail",
       "validate_email_screen_resend": "Resend code",
 
+      "setting_screen_title": "Setting",
+
       "api_error_400_004001": "System error. Please try again later. [400/004001]",
       "api_error_500_004002": "System error. Please try again later. [400/004002]",
       "api_error_400_004003": "Incorrect email or password. Please try again.",
