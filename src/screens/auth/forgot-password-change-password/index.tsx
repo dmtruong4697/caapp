@@ -73,14 +73,14 @@ const ForgotPasswordChangePasswordScreen: React.FC<IProps>  = () => {
       {/* <Text style={styles.txtTitle}>Forgot Password</Text> */}
 
       <Image style={styles.imgForgotPassword} source={require('../../../assets/illustrations/forgot-password.png')}/>
-      <Text style={styles.txtDescription}>Change password</Text>
+      <Text style={styles.txtDescription}>{t('forgot_password_change_password_screen_title')}</Text>
       
       <View style={styles.viewFormContainer}>
         <Controller
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
           <InputField
-              title='New Password'
+              title={t('common_password')}
               inputMode='text'
               value={value}
               onChangeText={value => onChange(value)}
@@ -93,13 +93,13 @@ const ForgotPasswordChangePasswordScreen: React.FC<IProps>  = () => {
               required: true,
           }}
         />
-        {errors.password && <Text style={styles.txtError}>Password is required.</Text>}
+        {errors.password && <Text style={styles.txtError}>{t('validate_password_required')}</Text>}
 
         <Controller
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
           <InputField
-              title='Confirm Password'
+              title={t('common_confirm_password')}
               inputMode='text'
               value={value}
               onChangeText={value => onChange(value)}
@@ -112,12 +112,12 @@ const ForgotPasswordChangePasswordScreen: React.FC<IProps>  = () => {
               required: true,
           }}
         />
-        {errors.confirmPassword && <Text style={styles.txtError}>Confirm Password is required.</Text>}
+        {errors.confirmPassword && <Text style={styles.txtError}>{t('validate_confirm_password_required')}</Text>}
       </View>
 
       <View style={styles.viewButtonGroup}>
         <Button
-          title='COUNTINUE'
+          title={t('common_countinue')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

@@ -102,13 +102,13 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
         />
       </View>
 
-      <Text style={styles.txtTitle}>Verify email</Text>
+      <Text style={styles.txtTitle}>{t('validate_email_screen_title')}</Text>
 
       <View style={styles.viewImageEmail}>
         <Image style={styles.imgEmail} source={require('../../../assets/illustrations/mail-sent.png')}/>
       </View>
 
-      <Text style={styles.txtSub}>An email with a verification code has been sent to your email</Text>
+      <Text style={styles.txtSub}>{t('validate_email_screen_description')}</Text>
 
       <View style={styles.viewCodeInput}>
         <OtpInput
@@ -132,18 +132,18 @@ const ValidateEmailScreen: React.FC<IProps>  = () => {
 
       <Text style={styles.txtTime}>{secondToMinuteConvert(timeLeft)}</Text>
 
-      <Text style={styles.txtSub}>Didn't receive a code?{" "}
+      <Text style={styles.txtSub}>{t('validate_email_screen_not_receive')}?{" "}
           <Text 
             style={[styles.txtSub, {color: colors.DarkColor}]} 
             onPress={() => {
               resendEmailValidateCode();
             }}
-          >Resend code</Text>
+          >{t('validate_email_screen_resend')}</Text>
       </Text>
 
       <View style={styles.viewButtonGroup}>
         <TwoStatusButton
-            title='NEXT'
+            title={t('common_next')}
             onPress={() => {
               validateEmail();
             }}

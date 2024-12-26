@@ -75,13 +75,13 @@ const SignUpScreen: React.FC<IProps>  = () => {
       </View>
 
       <View style={styles.viewFormContainer}>
-        <Text style={styles.txtTitle}>Create your account</Text>
+        <Text style={styles.txtTitle}>{t('sign_up_screen_title')}</Text>
 
         <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InputField
-                title='Email'
+                title={t('common_email')}
                 inputMode='email'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -91,10 +91,10 @@ const SignUpScreen: React.FC<IProps>  = () => {
             )}
             name='email'
             rules={{
-                required: 'Email is required.',
+                required: t('validate_email_required'),
                 pattern: {
                   value: regex.Email, 
-                  message: 'Please enter a valid email address',
+                  message: t('validate_email_invalid'),
               },
             }}
         />
@@ -104,7 +104,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InputField
-                title='Password'
+                title={t('common_password')}
                 inputMode='text'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -114,10 +114,10 @@ const SignUpScreen: React.FC<IProps>  = () => {
             )}
             name='password'
             rules={{
-                required: 'Password is required.',
+                required: t('validate_password_required'),
                 minLength: {
                     value: 6,
-                    message: 'Password must be at least 6 characters.',
+                    message: t('validate_password_length'),
                 },
             }}
         />
@@ -127,7 +127,7 @@ const SignUpScreen: React.FC<IProps>  = () => {
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InputField
-                title='Confirm Password'
+                title={t('common_confirm_password')}
                 inputMode='text'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -137,9 +137,9 @@ const SignUpScreen: React.FC<IProps>  = () => {
             )}
             name='confirmPassword'
             rules={{
-                required: 'Confirm Password is required.',
+                required: t('validate_confirm_password_required'),
                 validate: (value) =>
-                    value === getValues('password') || 'Passwords do not match.',
+                    value === getValues('password') || t('validate_password_match'),
             }}
         />
         {errors.confirmPassword && <Text style={styles.txtError}>{errors.confirmPassword.message?.toString()}</Text>}
@@ -158,12 +158,12 @@ const SignUpScreen: React.FC<IProps>  = () => {
               <FontAwesomeIcon icon={faCheck} style={styles.imgCheck} size={18} color={colors.White}/>
           </TouchableOpacity>
 
-          <Text style={styles.txtTerm}>I certify that I am 18 years of age or older, and I agree to the <Text style={[styles.txtTerm, {color: colors.DarkColor}]}>User Agreement</Text> and <Text style={[styles.txtTerm, {color: colors.DarkColor}]}>Privacy Policy</Text></Text>
+          <Text style={styles.txtTerm}>{t('sign_up_screen_term1')} <Text style={[styles.txtTerm, {color: colors.DarkColor}]}>{t('sign_up_screen_term2')}</Text> {t('sign_up_screen_term3')} <Text style={[styles.txtTerm, {color: colors.DarkColor}]}>{t('sign_up_screen_term4')}</Text></Text>
       </View>
 
       <View style={styles.viewButtonGroup}>
         <TwoStatusButton
-            title='NEXT'
+            title={t('common_next')}
             onPress={handleSubmit(onSubmit)}
             disabled={errors.email || errors.password || errors.confirmPassword || !isCheck}
         />

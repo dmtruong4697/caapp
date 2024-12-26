@@ -27,11 +27,11 @@ const ForgotPasswordSuccessChangePasswordScreen: React.FC<IProps>  = () => {
         <Text style={styles.txtTitle}>Forgot Password Conplete</Text>
 
         <Image style={styles.imgDone} source={require('../../../assets/illustrations/done.png')}/>
-        <Text style={styles.txtDescription}>for got password complete description</Text>
+        <Text style={styles.txtDescription}>{t('forgot_password_success_screen_title')}</Text>
 
         <View style={styles.viewButtonGroup}>
             <Button
-                title='COUNTINUE'
+                title={t('common_countinue')}
                 onPress={() => {navigation.navigate("Login")}}
             />
         </View>

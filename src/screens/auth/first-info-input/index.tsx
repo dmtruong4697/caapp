@@ -99,14 +99,14 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
       </View>
 
       <ScrollView contentContainerStyle={styles.viewFormContainer}>
-        <Text style={styles.txtTitle}>Input profile info</Text>
+        <Text style={styles.txtTitle}>{t('first_info_input_screen_title')}</Text>
 
         <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InfoInputTextField
-                title='Hashtag Name'
-                placeHolder='hashtag name'
+                title={t('common_hashtag_name')}
+                placeHolder={t('placeholder_hashtag_name')}
                 inputMode='text'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -119,7 +119,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             )}
             name='hashtagName'
             rules={{
-                required: 'Hashtag name is required.',
+                required: t('validate_hashtag_name_required'),
             }}
         />
         {errors.hashtagName && <Text style={styles.txtError}>{errors.hashtagName.message?.toString()}</Text>}
@@ -128,8 +128,8 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InfoInputTextField
-                title='First Name'
-                placeHolder='first name'
+                title={t('common_first_name')}
+                placeHolder={t('placeholder_first_name')}
                 inputMode='text'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -138,10 +138,10 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             )}
             name='firstName'
             rules={{
-                required: 'First name is required.',
+                required: t('validate_first_name_required'),
                 pattern: {
                   value: regex.CommonName, 
-                  message: 'Please enter a valid name',
+                  message: t('validate_first_name_invalid'),
               },
             }}
         />
@@ -151,8 +151,8 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InfoInputTextField
-                title='Last Name'
-                placeHolder='last name'
+                title={t('common_last_name')}
+                placeHolder={t('placeholder_last_name')}
                 inputMode='text'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -161,10 +161,10 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             )}
             name='lastName'
             rules={{
-              required: 'Last name is required.',
+              required: t('validate_last_name_required'),
               pattern: {
                 value: regex.CommonName, 
-                message: 'Please enter a valid name',
+                message: t('validate_last_name_invalid'),
             },
           }}
         />
@@ -174,8 +174,8 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InfoInputTextField
-                title='Phone Number'
-                placeHolder='0123456789'
+                title={t('common_phone_number')}
+                placeHolder={t('placeholder_phone_number')}
                 inputMode='numeric'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -187,14 +187,14 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
               // required: 'Phone number is required.',
               pattern: {
                 value: regex.VietNamPhoneNumber, 
-                message: 'Please enter a valid phone number',
+                message: t('validate_phone_number_invalid'),
             },
           }}
         />
         {errors.phoneNumber && <Text style={styles.txtError}>{errors.phoneNumber.message?.toString()}</Text>}
 
         <InfoInputDatePicker
-          title='Date of Birth'
+          title={t('common_date_of_birth')}
           date={dateOfBirth}
           onPickedDate={(date: Date) => {
             setDateOfBirth(date);
@@ -213,7 +213,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             ]}
             onPress={() => {setSelectedGender("0")}}
           >
-            <Text style={styles.txtGenderSelect}>🙋🏻‍♂️ Male</Text>
+            <Text style={styles.txtGenderSelect}>🙋🏻‍♂️ {t('common_male')}</Text>
           </TouchableOpacity>
 
           {/* female */}
@@ -227,7 +227,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             ]}
             onPress={() => {setSelectedGender("1")}}
           >
-            <Text style={styles.txtGenderSelect}>🙋🏻‍♀️ Female</Text>
+            <Text style={styles.txtGenderSelect}>🙋🏻‍♀️ {t('common_female')}</Text>
           </TouchableOpacity>
 
           {/* other */}
@@ -241,7 +241,7 @@ const FirstInfoInputScreen: React.FC<IProps>  = () => {
             ]}
             onPress={() => {setSelectedGender("2")}}
           >
-            <Text style={styles.txtGenderSelect}>🤨 Other</Text>
+            <Text style={styles.txtGenderSelect}>🤨 {t('common_other')}</Text>
           </TouchableOpacity>
         </View>
 

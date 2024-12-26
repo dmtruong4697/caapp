@@ -99,7 +99,7 @@ const LoginScreen: React.FC<IProps>  = () => {
         />
       </View>
 
-      <Text style={styles.txtTitle}>Sign in to 
+      <Text style={styles.txtTitle}>{t('login_screen_title')} 
         <Text style={[styles.txtTitle, {color: colors.DarkColor, fontWeight: 'bold'}]}> CA
           <Text style={[styles.txtTitle, {color: colors.PrimaryColor, fontWeight: 'bold'}]}>APP</Text>
         </Text>
@@ -110,7 +110,7 @@ const LoginScreen: React.FC<IProps>  = () => {
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
           <InputField
-              title='Email'
+              title={t('common_email')}
               inputMode='email'
               value={value}
               onChangeText={value => onChange(value)}
@@ -122,13 +122,13 @@ const LoginScreen: React.FC<IProps>  = () => {
               required: true,
           }}
         />
-        {errors.email && <Text style={styles.txtError}>Email is required.</Text>}
+        {errors.email && <Text style={styles.txtError}>{t('validate_email_required')}</Text>}
 
         <Controller
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
             <InputField
-                title='Password'
+                title={t('common_password')}
                 inputMode='text'
                 value={value}
                 onChangeText={value => onChange(value)}
@@ -141,21 +141,21 @@ const LoginScreen: React.FC<IProps>  = () => {
                 required: true,
             }}
         />
-        {errors.password && <Text style={styles.txtError}>Password is required.</Text>}
+        {errors.password && <Text style={styles.txtError}>{t('validate_password_required')}</Text>}
       </View>
 
       <View style={styles.viewOption}>
         <Text
           style={styles.txtOption}
           onPress={() => {navigation.navigate("ForgotPassword")}}
-        >Forgot password?</Text>
+        >{t('login_screen_forgot_password')}?</Text>
 
         <Text
           style={styles.txtOption}
           onPress={() => {
             Linking.openURL("https://google.com.vn/")
           }}
-        >Privacy policy</Text>
+        >{t('login_screen_privacy_policy')}</Text>
       </View>
 
       <View style={styles.viewButtonGroup}>
@@ -166,7 +166,7 @@ const LoginScreen: React.FC<IProps>  = () => {
       </View>
 
       <View style={styles.viewOAuthContainer}>
-        <Text style={styles.txtOrSignInWith}>Or Sign In with</Text>
+        <Text style={styles.txtOrSignInWith}>{t('login_screen_sign_in_with')}</Text>
 
         <View style={styles.viewOAuth}>
           {/* facebook */}

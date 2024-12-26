@@ -22,7 +22,7 @@ const WelcomeScreen: React.FC<IProps>  = () => {
       {/* <Text style={styles.txtAppName}>caapp</Text> */}
       <View style={styles.viewButtonGroup}>
           <Button
-              title='Get started'
+              title={t('welcome_screen_get_started')}
               type='solid'
               onPress={() => {
                   navigation.navigate('SignUp');
@@ -31,7 +31,7 @@ const WelcomeScreen: React.FC<IProps>  = () => {
           />
 
           <Button
-              title='Sign in'
+              title={t('common_login')}
               type='default'
               onPress={() => {
                   navigation.navigate('Login');

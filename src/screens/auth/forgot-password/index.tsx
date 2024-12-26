@@ -66,17 +66,17 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
         />
       </View>
 
-      <Text style={styles.txtTitle}>Forgot Password</Text>
+      <Text style={styles.txtTitle}>{t('forgot_password_screen_title')}</Text>
 
       <Image style={styles.imgForgotPassword} source={require('../../../assets/illustrations/forgot-password.png')}/>
-      <Text style={styles.txtDescription}>Please enter yout Email address to receive a verification code</Text>
+      <Text style={styles.txtDescription}>{t('forgot_password_screen_description')}</Text>
       
       <View style={styles.viewFormContainer}>
         <Controller
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
           <InputField
-              title='Email'
+              title={t('common_email')}
               inputMode='email'
               value={value}
               onChangeText={value => onChange(value)}
@@ -88,12 +88,12 @@ const ForgotPasswordScreen: React.FC<IProps>  = () => {
               required: true,
           }}
         />
-        {errors.email && <Text style={styles.txtError}>Email is required.</Text>}
+        {errors.email && <Text style={styles.txtError}>{t('validate_email_required')}</Text>}
       </View>
 
       <View style={styles.viewButtonGroup}>
         <Button
-          title='COUNTINUE'
+          title={t('common_countinue')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

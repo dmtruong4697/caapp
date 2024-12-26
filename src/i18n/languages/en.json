@@ -5,10 +5,119 @@
       "hn-request": "Request",
       "hn-setting": "Setting",
 
+      "common_next": "Next",
+      "common_countinue": "Countinue",
+      "common_done": "Done",
+      "common_save": "Save",
+      "common_ok": "OK",
+      "common_cancel": "Cancel",
+      "common_login": "Sign in",
+      "common_signup": "Sign up",
+      "common_email": "Email",
+      "common_password": "Pasword",
+      "common_confirm_password": "Confirm password",
+      "common_hashtag_name": "Hashtag name",
+      "common_first_name": "First name",
+      "common_last_name": "Last name",
+      "common_phone_number": "Phone number",
+      "common_date_of_birth": "Date of birth",
+      "common_male": "Male",
+      "common_female": "Female",
+      "common_other": "Other",
+
+      "placeholder_hashtag_name": "abcdef",
+      "placeholder_first_name": "Emma",
+      "placeholder_last_name": "Watson",
+      "placeholder_phone_number": "0379999999",
+
+      "validate_email_required": "Email is required",
+      "validate_email_invalid": "Please enter a valid email address",
+      "validate_password_required": "Password is required",
+      "validate_password_length": "Password must be at least 6 characters",
+      "validate_confirm_password_required": "Confirm password is required",
+      "validate_password_match": "Passwords do not match",
+      "validate_hashtag_name_required": "Hashtag name is required",
+      "validate_first_name_required": "First name is required",
+      "validate_first_name_invalid": "Please enter a valid name",
+      "validate_last_name_required": "Last name is required",
+      "validate_last_name_invalid": "Please enter a valid name",
+      "validate_phone_number_invalid": "Please enter a valid phone number",
+
+      "welcome_screen_get_started": "Get started",
+
+      "sign_up_screen_title": "Create your account",
+      "sign_up_screen_term1": "I certify that I am 18 years of age or older, and I agree to the",
+      "sign_up_screen_term2": "User Agreement",
+      "sign_up_screen_term3": "and",
+      "sign_up_screen_term4": "Privacy Policy",
+
+      "login_screen_title": "Sign in to",
+      "login_screen_forgot_password": "Forgot password",
+      "login_screen_privacy_policy": "Privacy policy",
+      "login_screen_sign_in_with": "Or Sign In with",
+
+      "first_info_input_screen_title": "Profile Info",
+
+      "forgot_password_screen_title": "Forgot Password",
+      "forgot_password_screen_description": "Please enter your Email address to receive a verification code",
+
+      "forgot_password_change_password_screen_title": "Enter your new password",
+
+      "forgot_password_success_screen_title": "Your password has been updated. Please use your new password to log in.",
+
+      "validate_email_screen_title": "Verify your email",
+      "validate_email_screen_description": "An email with a verification code has been sent to your email",
+      "validate_email_screen_not_receive": "Didn't receive mail",
+      "validate_email_screen_resend": "Resend code",
+
       "api_error_400_004001": "System error. Please try again later. [400/004001]",
       "api_error_500_004002": "System error. Please try again later. [400/004002]",
       "api_error_400_004003": "Incorrect email or password. Please try again.",
       "api_error_500_004004": "System error. Please try again later. [500/004004]",
-      "api_error_500_004005": "System error. Please try again later. [500/004005]"
+      "api_error_500_004005": "System error. Please try again later. [500/004005]",
+
+      "api_error_409_001002": "Email has been registered. Please use a different email or log in with an existing account.",
+      "api_error_500_001003": "System error. Please try again later. [500/001003]",
+      "api_error_400_001001": "System error. Please try again later. [400/001001]",
+      "api_error_500_001004": "System error. Please try again later. [500/001004]",
+      "api_error_500_001005": "System error. Please try again later. [500/001005]",
+
+      "api_error_400_002001": "System error. Please try again later. [400/002001]",
+      "api_error_500_002002": "System error. Please try again later. [500/002002]",
+      "api_error_500_002003": "System error. Please try again later. [500/002003]",
+
+      "api_error_400_003001": "System error. Please try again later. [400/003001]",
+      "api_error_500_003002": "System error. Please try again later. [500/003002]",
+      "api_error_400_003003": "The authentication code has expired. Please request a new code and try again.",
+      "api_error_400_003004": "The authentication code is incorrect. Please check again or request a new authentication code.",
+      "api_error_500_003005": "System error. Please try again later. [500/003005]",
+      "api_error_500_003006": "System error. Please try again later. [500/003006]",
+      "api_error_500_003007": "System error. Please try again later. [500/003007]",
+
+      "api_error_500_005001": "System error. Please try again later. [500/005001]",
+      "api_error_500_005002": "System error. Please try again later. [500/005002]",
+
+      "api_error_400_006001": "System error. Please try again later. [400/006001]",
+      "api_error_500_006002": "System error. Please try again later. [500/006002]",
+      "api_error_500_006003": "System error. Please try again later. [500/006003]",
+      "api_error_500_006004": "System error. Please try again later. [500/006004]",
+      "api_error_500_006005": "System error. Please try again later. [500/006005]",
+
+      "api_error_400_007001": "System error. Please try again later. [400/007001]",
+      "api_error_500_007002": "System error. Please try again later. [500/007002]",
+      "api_error_400_007003": "The authentication code has expired. Please request a new code and try again.",
+      "api_error_400_007004": "The authentication code is incorrect. Please check again or request a new authentication code.",
+      "api_error_500_007005": "System error. Please try again later. [500/007005]",
+
+      "api_error_400_008001": "System error. Please try again later. [400/008001]",
+      "api_error_500_008002": "System error. Please try again later. [500/008002]",
+      "api_error_500_008003": "System error. Please try again later. [500/008003]",
+
+      "api_error_400_009001": "System error. Please try again later. [400/009001]",
+      "api_error_500_009002": "System error. Please try again later. [500/009002]",
+      "api_error_500_009003": "System error. Please try again later. [500/009003]",
+
+      "api_error_400_017001": "System error. Please try again later. [400/017001]",
+      "api_error_500_017002": "System error. Please try again later. [500/017002]"
     }
 }

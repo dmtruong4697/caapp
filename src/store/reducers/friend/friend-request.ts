@@ -79,7 +79,7 @@ const friendRequestReducer = (state = initialState, action: FriendRequestActionT
         case ACCEPT_FRIEND_REQUEST_REQUEST:
             return {
                 ...state,
-                accept_request_list: [],
+                // accept_request_list: [],
                 error_accept_friend_request: null,
             };
         case ACCEPT_FRIEND_REQUEST_SUCCESS:
@@ -87,6 +87,14 @@ const friendRequestReducer = (state = initialState, action: FriendRequestActionT
             return {
                 ...state,
                 accept_request_list: [...state.accept_request_list, action.payload.id],
+                received_requests: state.received_requests
+                ? {
+                      ...state.received_requests,
+                      requests: state.received_requests.requests.filter(
+                          (request) => request.friend_request.id !== action.payload.id
+                      ),
+                  }
+                : state.received_requests,
                 error_accept_friend_request: null,
             };
         case ACCEPT_FRIEND_REQUEST_FAILURE:

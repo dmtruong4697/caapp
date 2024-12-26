@@ -19,6 +19,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import SettingItem from '../../../components/setting-item';
 import LoadingOverlay from '../../../components/loading-overlay';
 import { logoutRequest } from '../../../store/actions/auth/logout';
+import { getProfileInfoRequest } from '../../../store/actions/profile/profile';
 
 interface IProps {}
 
@@ -28,6 +29,7 @@ const SettingScreen: React.FC<IProps>  = () => {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     const {t} = useTranslation();
     const dispatch = useDispatch();
+    const isFocused = useIsFocused();
     const [isLoading, setIsLoading] = useState(false);
     const profileState = useSelector((state: RootState) => state.profile);
     const logoutState = useSelector((state: RootState) => state.logout);
@@ -45,6 +47,10 @@ const SettingScreen: React.FC<IProps>  = () => {
         navigation.navigate("Login");
       }
     },[logoutState.success_flg])
+
+    useEffect(() => {
+      dispatch(getProfileInfoRequest());
+    },[isFocused])
 
   return (
     <View style={{flex: 1, backgroundColor: colors.White}}>
