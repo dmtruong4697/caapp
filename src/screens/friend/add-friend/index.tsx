@@ -124,7 +124,7 @@ const AddFriendScreen: React.FC<IProps>  = () => {
             <FontAwesomeIcon icon={faUserFriends} size={24} color={colors.DarkColor}/>
           </View>
           <View style={styles.viewButtonTitle}>
-            <Text style={styles.txtButtonTitle}>Suggest Friend</Text>
+            <Text style={styles.txtButtonTitle}>{t('add_friend_screen_suggest_friend')}</Text>
           </View>
         </TouchableOpacity>
 
@@ -138,7 +138,7 @@ const AddFriendScreen: React.FC<IProps>  = () => {
             <FontAwesomeIcon icon={faQrcode} size={24} color={colors.DarkColor}/>
           </View>
           <View style={styles.viewButtonTitle}>
-          <Text style={styles.txtButtonTitle}>Scan QR Code</Text>
+          <Text style={styles.txtButtonTitle}>{t('add_friend_screen_scan_qr')}</Text>
           </View>
         </TouchableOpacity>
       </View>

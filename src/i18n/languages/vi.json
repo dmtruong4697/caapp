@@ -29,6 +29,7 @@
       "placeholder_first_name": "Nam",
       "placeholder_last_name": "Nguyễn",
       "placeholder_phone_number": "0379999999",
+      "placeholder_message": "Tin nhắn",
 
       "validate_email_required": "Vui lòng nhập email",
       "validate_email_invalid": "Vui lòng nhập địa chỉ email đúng định dạng",
@@ -71,6 +72,33 @@
       "validate_email_screen_resend": "Gửi lại mã",
 
       "setting_screen_title": "Cài đặt",
+
+      "chat_list_screen_title": "Tin nhắn",
+      "chat_list_screen_no_chat": "Chưa có cuộc trò chuyện nào! Bắt đầu trò chuyện để kết nối với ai đó ngay bây giờ.",
+
+      "add_friend_screen_suggest_friend": "Gợi ý kết bạn",
+      "add_friend_screen_scan_qr": "Quét mã QR",
+      "friend_list_screen_friend": "Bạn bè",
+      "friend_list_screen_group": "Nhóm",
+
+      "received_request_screen_received_request": "Lời mời kết bạn",
+      "received_request_screen_suggest_user": "Gợi ý kết bạn",
+      "received_request_screen_no_request": "Bạn không có lời mời kết bạn nào. Bắt đầu trò chuyện để kết nối với mọi người ngay bây giờ!",
+
+      "rc_chat_detal_screen_report": "Báo cáo",
+      "rc_chat_detal_screen_leave_chat": "Rời cuộc trò chuyện",
+
+      "rc_dashboard_screen_setting": "Cài đặt",
+      "rc_dashboard_screen_you": "Bạn",
+      "rc_dashboard_screen_stranger": "Người lạ",
+      "rc_dashboard_screen_stop": "DỪNG",
+      "rc_dashboard_screen_start": "BẮT ĐẦU",
+      "rc_dashboard_screen_keep_talking": "Tiếp tục trò chuyện",
+      "rc_dashboard_screen_keep_male": "Nam",
+      "rc_dashboard_screen_keep_female": "Nữ",
+      "rc_dashboard_screen_keep_other": "Khác",
+
+      "language_setting_screen_title": "Ngôn ngữ",
 
       "api_error_400_004001": "Lỗi hệ thống. Vui lòng thử lại sau. [400/004001]",
       "api_error_500_004002": "Lỗi hệ thống. Vui lòng thử lại sau. [400/004002]",

@@ -82,7 +82,7 @@ const RCChatDetailScreen: React.FC<IProps> = () => {
             <FontAwesomeIcon icon={faExclamation} size={24} color={colors.DarkColor}/>
           </View>
           <View style={styles.viewButtonTitle}>
-          <Text style={styles.txtButtonTitle}>Report</Text>
+          <Text style={styles.txtButtonTitle}>{t('rc_chat_detal_screen_report')}</Text>
           </View>
         </TouchableOpacity>
 
@@ -96,7 +96,7 @@ const RCChatDetailScreen: React.FC<IProps> = () => {
             <FontAwesomeIcon icon={faDoorOpen} size={24} color={colors.DarkColor}/>
           </View>
           <View style={styles.viewButtonTitle}>
-          <Text style={styles.txtButtonTitle}>Leave chat</Text>
+          <Text style={styles.txtButtonTitle}>{t('rc_chat_detal_screen_leave_chat')}</Text>
           </View>
         </TouchableOpacity>
       </View>

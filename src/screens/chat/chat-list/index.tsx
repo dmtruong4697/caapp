@@ -113,7 +113,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
           {Object.keys(channelListState.channels).length > 0 && 
             <>
             <View style={styles.viewChatListTitle}>
-              <Text style={styles.txtChatListTitle}>Chats</Text>
+              <Text style={styles.txtChatListTitle}>{t('chat_list_screen_title')}</Text>
               <TouchableOpacity
                 style={styles.btnChatListOption}
                 onPress={() => {
@@ -141,7 +141,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
             Object.keys(channelListState.channels).length == 0 &&
             <View style={styles.viewEmpty}>
               <Image style={styles.imgEmpty} source={require('../../../assets/illustrations/empty-box-256px.png')}/>
-              <Text style={styles.txtEmpty}>🤔 No conversations yet! Start chatting to connect with someone now. 😊</Text>
+              <Text style={styles.txtEmpty}>🤔 {t('chat_list_screen_no_chat')} 😊</Text>
             </View>
           }
           

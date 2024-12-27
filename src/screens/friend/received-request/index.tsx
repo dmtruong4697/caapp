@@ -62,7 +62,7 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
       >
         <View style={styles.viewListContainer}>
           <ListHeader
-            title='Received Request'
+            title={t('received_request_screen_received_request')}
             onPressSeeAll={() => {
               // console.log(friendRequestState.received_requests!);
               console.log(friendRequestState.received_requests?.requests);
@@ -86,7 +86,7 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
               friendRequestState.received_requests?.requests.length <= 0 &&
               <View style={styles.viewEmpty}>
                 <Image style={styles.imgEmpty} source={require('../../../assets/illustrations/empty-box-256px.png')}/>
-                <Text style={styles.txtEmpty}>🤔 No conversations yet! Start chatting to connect with someone now. 😊</Text>
+                <Text style={styles.txtEmpty}>🤔 {t('received_request_screen_no_request')} 😊</Text>
               </View>
             }
           </View>
@@ -94,7 +94,7 @@ const ReceivedRequestScreen: React.FC<IProps>  = () => {
 
         <View style={styles.viewListContainer}>
           <ListHeader
-            title='Suggest User'
+            title={t('received_request_screen_suggest_user')}
             onPressSeeAll={() => {
 
             }}

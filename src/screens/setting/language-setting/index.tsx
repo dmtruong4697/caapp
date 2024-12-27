@@ -43,7 +43,7 @@ const LanguageSettingScreen: React.FC<IProps>  = () => {
           renderLeftButton={true}
           renderRightButton={false}
           leftButtonType='BACK'
-          title='Language'
+          title={t('language_setting_screen_title')}
           onPressLeftButton={() => {navigation.goBack()}}
         />
       </View>
@@ -80,7 +80,7 @@ const LanguageSettingScreen: React.FC<IProps>  = () => {
 
       <View style={styles.viewButtonGroup}>
         <TwoStatusButton
-          title='SAVE'
+          title={t('common_save')}
           onPress={() => {changeLanguage()}}
           disabled={seletedLanguage == i18n.language}
         />

@@ -138,7 +138,7 @@ const RCChatScreen: React.FC<IProps> = () => {
 
         <View style={styles.viewTextInputContainer}>
           <TextInput
-            placeholder="Tin nhắn"
+            placeholder={t('placeholder_message')}
             placeholderTextColor={colors.PlaceholderText}
             style={styles.txtMessageInput}
             onChangeText={setMessageText}

@@ -160,7 +160,7 @@ const LoginScreen: React.FC<IProps>  = () => {
 
       <View style={styles.viewButtonGroup}>
         <Button
-          title={t('hn-friend')}
+          title={t('common_login')}
           onPress={handleSubmit(onSubmit)}
         />
       </View>

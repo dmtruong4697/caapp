@@ -29,6 +29,7 @@
       "placeholder_first_name": "Emma",
       "placeholder_last_name": "Watson",
       "placeholder_phone_number": "0379999999",
+      "placeholder_message": "Message",
 
       "validate_email_required": "Email is required",
       "validate_email_invalid": "Please enter a valid email address",
@@ -71,6 +72,34 @@
       "validate_email_screen_resend": "Resend code",
 
       "setting_screen_title": "Setting",
+
+      "chat_list_screen_title": "Chats",
+      "chat_list_screen_no_chat": "No conversations yet! Start chatting to connect with someone now.",
+
+      "add_friend_screen_suggest_friend": "Suggest friend",
+      "add_friend_screen_scan_qr": "Scan QR code",
+
+      "friend_list_screen_friend": "Friend",
+      "friend_list_screen_group": "Group",
+
+      "received_request_screen_received_request": "Received requests",
+      "received_request_screen_suggest_user": "Suggest user",
+      "received_request_screen_no_request": "You don’t have any friend requests. Start chatting to connect with someone now!",
+
+      "rc_chat_detal_screen_report": "Report",
+      "rc_chat_detal_screen_leave_chat": "Leave chat",
+
+      "rc_dashboard_screen_setting": "Setting",
+      "rc_dashboard_screen_you": "You",
+      "rc_dashboard_screen_stranger": "Stranger",
+      "rc_dashboard_screen_stop": "STOP",
+      "rc_dashboard_screen_start": "START",
+      "rc_dashboard_screen_keep_talking": "Keep talking",
+      "rc_dashboard_screen_keep_male": "Male",
+      "rc_dashboard_screen_keep_female": "Female",
+      "rc_dashboard_screen_keep_other": "Other",
+
+      "language_setting_screen_title": "Language",
 
       "api_error_400_004001": "System error. Please try again later. [400/004001]",
       "api_error_500_004002": "System error. Please try again later. [400/004002]",

@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
         marginBottom: scale(40),
         marginTop: scale(30),
 
+        justifyContent: 'center',
+        alignItems: 'center',
+
         position: 'absolute',
         bottom: 0,
     },

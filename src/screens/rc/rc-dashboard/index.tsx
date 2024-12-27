@@ -116,7 +116,7 @@ const RCDashboardScreen: React.FC = () => {
 
             }}
           >
-            <Text style={styles.txtSetting}>Settings</Text>
+            <Text style={styles.txtSetting}>{t('rc_dashboard_screen_setting')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -131,7 +131,7 @@ const RCDashboardScreen: React.FC = () => {
             {gender == 'male' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/boy.png')}/>}
             {gender == 'female' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/girl.png')}/>}
             {gender == 'other' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/rainbow.png')}/>}
-            <Text style={styles.txtUser}>You</Text>
+            <Text style={styles.txtUser}>{t('rc_dashboard_screen_you')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -144,7 +144,7 @@ const RCDashboardScreen: React.FC = () => {
             {targetGender == 'male' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/boy.png')}/>}
             {targetGender == 'female' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/girl.png')}/>}
             {targetGender == 'other' && <Image style={styles.imgUser} source={require('../../../assets/illustrations/rainbow.png')}/>}
-            <Text style={styles.txtUser}>Stranger</Text>
+            <Text style={styles.txtUser}>{t('rc_dashboard_screen_stranger')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -155,7 +155,7 @@ const RCDashboardScreen: React.FC = () => {
               onPress={toggleFinding}
               disabled={!gender || !targetGender}
             >
-              <Text style={styles.txtSearchButton}>{isFinding? 'STOP' : 'START'}</Text>
+              <Text style={styles.txtSearchButton}>{isFinding? t('rc_dashboard_screen_stop') : t('rc_dashboard_screen_start')}</Text>
             </TouchableOpacity>
 
             <View style={styles.viewCount}>
@@ -170,7 +170,7 @@ const RCDashboardScreen: React.FC = () => {
             }}
             disabled={(profile.profile?.current_rc_channel_id <= 0 || profile.profile?.current_rc_channel_id == null)}
           >
-            <Text style={[styles.txtCurrentChannel,{color: (profile.profile?.current_rc_channel_id <= 0 || profile.profile?.current_rc_channel_id == null)? colors.PlaceholderText:colors.PrimaryText}]}>Keep talking?</Text>
+            <Text style={[styles.txtCurrentChannel,{color: (profile.profile?.current_rc_channel_id <= 0 || profile.profile?.current_rc_channel_id == null)? colors.PlaceholderText:colors.PrimaryText}]}>{t('rc_dashboard_screen_keep_talking')}?</Text>
           </TouchableOpacity>
         </View>
 
@@ -205,7 +205,7 @@ const RCDashboardScreen: React.FC = () => {
                 }}
               >
                 <Image style={styles.imgModalItem} source={require('../../../assets/illustrations/boy.png')}/>
-                <Text style={styles.txtModalItem}>Male</Text>
+                <Text style={styles.txtModalItem}>{t('rc_dashboard_screen_keep_male')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -220,7 +220,7 @@ const RCDashboardScreen: React.FC = () => {
                 }}
               >
                 <Image style={styles.imgModalItem} source={require('../../../assets/illustrations/girl.png')}/>
-                <Text style={styles.txtModalItem}>Female</Text>
+                <Text style={styles.txtModalItem}>{t('rc_dashboard_screen_keep_female')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -236,7 +236,7 @@ const RCDashboardScreen: React.FC = () => {
                 }}
               >
                 <Image style={styles.imgModalItem} source={require('../../../assets/illustrations/rainbow.png')}/>
-                <Text style={styles.txtModalItem}>Other</Text>
+                <Text style={styles.txtModalItem}>{t('rc_dashboard_screen_keep_other')}</Text>
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
