@@ -3,6 +3,7 @@ import axios from 'axios';
 import Config from 'react-native-config';
 import { api } from '.';
 import { FirstUpdateProfileInfoRequest } from '../models/profile-request/first-update-profile-info-request';
+import { UpdateProfileInfoRequest } from '../models/profile-request/update-profile-info-request';
 
 export const profileService = {
   async getProfileInfo(): Promise<any> {
@@ -53,6 +54,28 @@ export const profileService = {
           middle_name: request.middle_name,
           country: request.country,
           language: request.language,
+        },
+        {
+          headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        });
+      console.log(response.data);
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response);
+      throw error.response.data
+    }
+  },
+
+  async updateProfileInfo(request: UpdateProfileInfoRequest): Promise<any> {
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const response = await api.post(
+        'profile/update-profile-info', 
+        {
+          request
         },
         {
           headers: {

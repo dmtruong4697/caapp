@@ -22,6 +22,7 @@ import LanguageSettingScreen from "../../screens/setting/language-setting";
 import ValidateEmailForgotPasswordScreen from "../../screens/auth/validate-email-forgot-password";
 import ForgotPasswordChangePasswordScreen from "../../screens/auth/forgot-password-change-password";
 import ForgotPasswordSuccessChangePasswordScreen from "../../screens/auth/forgot-password-success-change-password";
+import ProfileSettingScreen from "../../screens/setting/profile-setting";
 
 export type RootStackParamList = {
     Welcome: {};
@@ -64,6 +65,8 @@ export type RootStackParamList = {
     Setting: {};
 
     LanguageSetting: {};
+
+    ProfileSetting: {};
 
     RCDashboard: {};
 
@@ -231,6 +234,14 @@ const MainNavigator = () => {
         <Stack.Screen
             name="LanguageSetting"
             component={LanguageSettingScreen}
+            options={{
+                headerShown: false,
+            }}
+        />
+
+        <Stack.Screen
+            name="ProfileSetting"
+            component={ProfileSettingScreen}
             options={{
                 headerShown: false,
             }}

@@ -21,6 +21,7 @@ interface IProps {
   placeHolder?: string;
   renderIsCheck?: boolean;
   isCheck?: boolean | null;
+  defaultValue?: string | null;
 }
 
 const InfoInputTextField: React.FC<IProps> = ({
@@ -36,6 +37,7 @@ const InfoInputTextField: React.FC<IProps> = ({
     placeHolder, 
     isCheck,
     renderIsCheck,
+    defaultValue,
 }) => {
 
   const dispatch = useDispatch();
@@ -69,6 +71,7 @@ const InfoInputTextField: React.FC<IProps> = ({
                 placeholder={placeHolder}
                 placeholderTextColor={colors.PlaceholderText}
                 onEndEditing={onEndEditing}
+                defaultValue={defaultValue || ""}
             />
             {(renderIsCheck) && (isCheck != null) &&
                 <View style={styles.viewCheck}>

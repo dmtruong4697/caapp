@@ -129,7 +129,7 @@ const SettingScreen: React.FC<IProps>  = () => {
               title='Profile'
               iconBackgroundColor={colors.LightColor}
               onPress={() => {
-
+                navigation.navigate("ProfileSetting");
               }}
             />
           </View>

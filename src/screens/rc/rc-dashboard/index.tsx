@@ -34,7 +34,7 @@ const RCDashboardScreen: React.FC = () => {
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
 
-  const profile = useSelector((state: RootState) => state.profileInfo);
+  const profile = useSelector((state: RootState) => state.profile);
   const [gender, setGender] = useState<string | null>("male");
   const [targetGender, setTargetGender] = useState<string | null>("male");
   const [isFinding, setIsFinding] = useState(false);
@@ -57,6 +57,8 @@ const RCDashboardScreen: React.FC = () => {
 
   useEffect(() => {
     const ws = new WebSocket(`${Config.WS_BASE_URL}/rc/queue?user_id=${profile.profile?.id}`);
+
+    console.log("user id: ",profile.profile?.id);
 
     ws.onopen = () => console.log('WebSocket connected');
     // ws.onmessage = (event) => console.log('Message:', JSON.parse(event.data));
