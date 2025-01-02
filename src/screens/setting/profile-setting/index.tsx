@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, Linking, ScrollView, Modal } from 'react-native'
+import { View, Text, TouchableOpacity, Image, useWindowDimensions, SafeAreaView, Linking, ScrollView, Modal, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { styles } from './styles'
 import { ParamListBase, useIsFocused, useNavigation } from '@react-navigation/native';
@@ -22,6 +22,9 @@ import { getLanguageListRequest } from '../../../store/actions/constant-data/get
 import InfoInputTextField from '../../../components/info-input-text-field';
 import { regex } from '../../../utils/vaidate/regex';
 import InfoInputDatePicker from '../../../components/info-input-date-picker';
+import LanguageSelectItem from '../../../components/language-select-item';
+import InfoInputLanguagePicker from '../../../components/info-input-language-picker';
+import { scale } from '../../../styles/scale';
 
 interface IProps {}
 
@@ -41,7 +44,16 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
         control,
         getValues,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+      defaultValues: {
+        hashtagName: profileState.profile?.hashtag_name || "",
+        firstName: profileState.profile?.first_name || "",
+        lastName: profileState.profile?.last_name || "",
+        phoneNumber: profileState.profile?.phone_number || "",
+        profileDescription: "",
+        jobName: "",
+      }
+    });
 
     const languageListState = useSelector((state: RootState) => state.languageList);
     const checkDuplicateHashtagNameState = useSelector((state: RootState) => state.checkDuplicateHashtagName);
@@ -49,6 +61,7 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
 
     const [selectedGender, setSelectedGender] = useState<string | null>(profileState.profile?.gender || null);
     const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
+    const [language, setLanguage] = useState<string>(profileState.profile?.language!);
 
     const onSubmit = async(data: any)=> {
         setIsLoading(true);
@@ -63,7 +76,7 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
             gender: selectedGender!,
             date_of_birth: dateOfBirth,
             country: "",
-            language: "",
+            language: language,
             profile_description: profileDescription,
             job_name: jobName,
 
@@ -80,8 +93,13 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
     }
 
     useEffect(() => {
-        dispatch(getLanguageListRequest());
-    },[])
+      setIsLoading(true);
+      dispatch(getLanguageListRequest());
+    }, [])
+    useEffect(() => {
+      setIsLoading(false);
+      setLanguage(profileState.profile?.language != ""? profileState.profile?.language!:languageListState.languages[0].code)
+    }, [languageListState.success_flg])
 
     useEffect(() => {
         if (updateProfileInfoState.success_flg == true) {
@@ -217,6 +235,15 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
           }}
         />
 
+        <InfoInputLanguagePicker
+          title={t('common_language')}
+          onPress={toggleLanguageModal}
+          language={languageListState.languages.find(item => item.code === language)?.native_name}
+          // onPress={() => {
+          //   console.log(languageListState.languages);
+          // }}
+        />
+
         <View style={styles.viewGenderSelectContainer}>
           {/* male */}
           <TouchableOpacity
@@ -289,7 +316,23 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
                 onPressOut={toggleLanguageModal}
             >
             <View style={styles.viewModal}>
-
+              <FlatList
+                data={languageListState.languages}
+                // keyExtractor={item => item.Id.toString()}
+                scrollEnabled={true}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item}) => (
+                  <LanguageSelectItem
+                    title={(item.flag) + (" ") + (item.native_name) + (" ") + "[" + (item.code) + "]"}
+                    onPress={() => {
+                      setLanguage(item.code);
+                      toggleLanguageModal();
+                    }}
+                  />
+                )}
+                contentContainerStyle={{gap: scale(15)}}
+                // style={{width: '100%'}}
+              />
             </View>
             </TouchableOpacity>
         </Modal>

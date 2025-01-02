@@ -64,6 +64,7 @@ export const styles = StyleSheet.create({
 
     viewModal: {
         width: '90%',
+        height: '70%',
         padding: scale(15),
         flexDirection: 'column',
         backgroundColor: colors.White,

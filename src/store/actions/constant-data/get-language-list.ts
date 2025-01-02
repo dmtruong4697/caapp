@@ -1,8 +1,9 @@
-import { GetLanguageListResponse } from "../../../models/constant-data-response/get-language-list-data-response";
+import { GetLanguageListResponse, GetLanguageListResponseItem } from "../../../models/constant-data-response/get-language-list-data-response";
 
 export const GET_LANGUAGE_LIST_REQUEST = 'GET_LANGUAGE_LIST_REQUEST';
 export const GET_LANGUAGE_LIST_SUCCESS = 'GET_LANGUAGE_LIST_SUCCESS';
 export const GET_LANGUAGE_LIST_FAILURE = 'GET_LANGUAGE_LIST_FAILURE';
+export const RESET_LANGUAGE_LIST_STATE = 'RESET_LANGUAGE_LIST_STATE';
 
 interface GetLanguageListRequestAction {
   type: typeof GET_LANGUAGE_LIST_REQUEST;
@@ -14,7 +15,7 @@ interface GetLanguageListRequestAction {
 interface GetLanguageListSuccessAction {
   type: typeof GET_LANGUAGE_LIST_SUCCESS;
   payload: {
-    languages: GetLanguageListResponse;
+    languages: GetLanguageListResponseItem[];
     [key: string]: any;
   };
 }
@@ -27,14 +28,21 @@ interface GetLanguageListFailureAction {
   };
 }
 
-export type GetLanguageListActionTypes = GetLanguageListRequestAction | GetLanguageListSuccessAction | GetLanguageListFailureAction;
+interface ResetLanguageListStateAction {
+  type: typeof RESET_LANGUAGE_LIST_STATE;
+  payload: {
+    [key: string]: any;
+  };
+}
+
+export type GetLanguageListActionTypes = GetLanguageListRequestAction | GetLanguageListSuccessAction | GetLanguageListFailureAction | ResetLanguageListStateAction;
 
 export const getLanguageListRequest = () => ({
   type: GET_LANGUAGE_LIST_REQUEST,
   payload: { }
 });
 
-export const getLanguageListSuccess = (languages: GetLanguageListResponse) => ({
+export const getLanguageListSuccess = (languages: GetLanguageListResponseItem[]) => ({
   type: GET_LANGUAGE_LIST_SUCCESS,
   payload: { languages }
 });
@@ -42,4 +50,9 @@ export const getLanguageListSuccess = (languages: GetLanguageListResponse) => ({
 export const getLanguageListFailure = (error: string) => ({
   type: GET_LANGUAGE_LIST_FAILURE,
   payload: { error }
+});
+
+export const resetLanguageListState = () => ({
+  type: RESET_LANGUAGE_LIST_STATE,
+  payload: { }
 });
