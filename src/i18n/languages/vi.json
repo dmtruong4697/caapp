@@ -102,6 +102,7 @@
       "language_setting_screen_title": "Ngôn ngữ",
 
       "profile_setting_screen_title": "Chỉnh sửa hồ sơ",
+      "profile_setting_screen_success_update": "Cập nhật thông tin tài khoản thành công!",
 
       "api_error_400_004001": "Lỗi hệ thống. Vui lòng thử lại sau. [400/004001]",
       "api_error_500_004002": "Lỗi hệ thống. Vui lòng thử lại sau. [400/004002]",

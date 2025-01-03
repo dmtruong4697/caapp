@@ -15,6 +15,20 @@ export const createTwoButtonAlert = (errorCode: string, errorCode2: string) => {
   ]);
 };
 
+export const createTwoButtonSuccessAlert = (text: string) => {
+  // const title = i18n.t('alert.error_title');
+  const message = text
+  
+  Alert.alert(message, "", [
+    // {
+    //   text: "Cancel", 
+    //   onPress: () => {},
+    //   style: 'cancel',
+    // },
+    { text: "OK", onPress: () => {} }, 
+  ]);
+};
+
 export const createThreeButtonAlert = () => {
     Alert.alert('Alert Title', 'My Alert Msg', [
       {

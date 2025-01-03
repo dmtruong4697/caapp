@@ -25,6 +25,8 @@ import InfoInputDatePicker from '../../../components/info-input-date-picker';
 import LanguageSelectItem from '../../../components/language-select-item';
 import InfoInputLanguagePicker from '../../../components/info-input-language-picker';
 import { scale } from '../../../styles/scale';
+import { createTwoButtonSuccessAlert } from '../../../utils/alert';
+import { showSuccessToast } from '../../../utils/toast';
 
 interface IProps {}
 
@@ -98,16 +100,18 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
     }, [])
     useEffect(() => {
       setIsLoading(false);
-      setLanguage(profileState.profile?.language != ""? profileState.profile?.language!:languageListState.languages[0].code)
+      setLanguage(profileState.profile?.language != ""? profileState.profile?.language!:languageListState.languages[0]?.code)
     }, [languageListState.success_flg])
 
     useEffect(() => {
         if (updateProfileInfoState.success_flg == true) {
+        showSuccessToast(t('profile_setting_screen_success_update'))
         setIsLoading(false);
+        navigation.goBack();
         } else {
         setIsLoading(false);
         }
-    }, [updateProfileInfoState.success_flg])
+    }, [updateProfileInfoState.success_flg, updateProfileInfoState.error])
 
     const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
     const toggleLanguageModal = () => {
@@ -290,7 +294,7 @@ const ProfileSettingScreen: React.FC<IProps>  = () => {
 
         <View style={styles.viewButtonGroup}>
           <TwoStatusButton
-              title='NEXT'
+              title={t('common_done')}
               onPress={handleSubmit(onSubmit)}
               disabled={(selectedGender == null)}
           />

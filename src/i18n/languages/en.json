@@ -103,6 +103,7 @@
       "language_setting_screen_title": "Language",
 
       "profile_setting_screen_title": "Edit Profile",
+      "profile_setting_screen_success_update": "Update account info successful!",
 
       "api_error_400_004001": "System error. Please try again later. [400/004001]",
       "api_error_500_004002": "System error. Please try again later. [400/004002]",

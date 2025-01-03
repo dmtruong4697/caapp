@@ -75,7 +75,20 @@ export const profileService = {
       const response = await api.post(
         'profile/update-profile-info', 
         {
-          request
+          phone_number: request.phone_number,
+          first_name: request.first_name,
+          middle_name: request.middle_name,
+          last_name: request.last_name,
+          date_of_birth: request.date_of_birth,
+          hashtag_name: request.hashtag_name,
+          gender: request.gender,
+          language: request.language,
+          country: request.country,
+          profile_description: request.profile_description,
+          avatar_image: request.avatar_image,
+          cover_image: request.cover_image,
+          job_name: request.job_name,
+          time_zone: request.time_zone,
         },
         {
           headers: {

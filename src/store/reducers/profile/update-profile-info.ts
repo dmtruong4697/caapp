@@ -1,6 +1,6 @@
 import { createTwoButtonAlert } from "../../../utils/alert";
 import { VALIDATE_EMAIL_FAILURE, VALIDATE_EMAIL_REQUEST, VALIDATE_EMAIL_SUCCESS, ValidateEmailActionTypes } from "../../actions/auth/validate-email";
-import { UPDATE_PROFILE_INFO_FAILURE, UPDATE_PROFILE_INFO_REQUEST, UPDATE_PROFILE_INFO_SUCCESS, UpdateProfileInfoActionTypes } from "../../actions/profile/update-profile-info";
+import { RESET_UPDATE_PROFILE_INFO_STATE, UPDATE_PROFILE_INFO_FAILURE, UPDATE_PROFILE_INFO_REQUEST, UPDATE_PROFILE_INFO_SUCCESS, UpdateProfileInfoActionTypes } from "../../actions/profile/update-profile-info";
 
 interface UpdateProfileInfoState {
   success_flg: boolean | null;
@@ -31,6 +31,12 @@ const updateProfileInfoReducer = (state = initialState, action: UpdateProfileInf
       return {
         ...state,
         error: action.payload.error,
+        success_flg: false,
+      };
+    case RESET_UPDATE_PROFILE_INFO_STATE:
+      return {
+        ...state,
+        error: null,
         success_flg: false,
       };
     default:

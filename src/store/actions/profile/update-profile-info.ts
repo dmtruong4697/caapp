@@ -3,6 +3,7 @@ import { UpdateProfileInfoRequest } from "../../../models/profile-request/update
 export const UPDATE_PROFILE_INFO_REQUEST = 'UPDATE_PROFILE_INFO_REQUEST';
 export const UPDATE_PROFILE_INFO_SUCCESS = 'UPDATE_PROFILE_INFO_SUCCESS';
 export const UPDATE_PROFILE_INFO_FAILURE = 'UPDATE_PROFILE_INFO_FAILURE';
+export const RESET_UPDATE_PROFILE_INFO_STATE = 'RESET_UPDATE_PROFILE_INFO_STATE';
 
 interface UpdateProfileInfoRequestAction {
   type: typeof UPDATE_PROFILE_INFO_REQUEST;
@@ -27,7 +28,14 @@ interface UpdateProfileInfoFailureAction {
   };
 }
 
-export type UpdateProfileInfoActionTypes = UpdateProfileInfoRequestAction | UpdateProfileInfoSuccessAction | UpdateProfileInfoFailureAction;
+interface ResetUpdateProfileInfoStateAction {
+  type: typeof RESET_UPDATE_PROFILE_INFO_STATE;
+  payload: {
+    [key: string]: any;
+  };
+}
+
+export type UpdateProfileInfoActionTypes = UpdateProfileInfoRequestAction | UpdateProfileInfoSuccessAction | UpdateProfileInfoFailureAction | ResetUpdateProfileInfoStateAction;
 
 export const updateProfileInfoRequest = (updateProfile: UpdateProfileInfoRequest) => ({
   type: UPDATE_PROFILE_INFO_REQUEST,
@@ -42,4 +50,9 @@ export const updateProfileInfoSuccess = () => ({
 export const updateProfileInfoFailure = (error: string) => ({
   type: UPDATE_PROFILE_INFO_FAILURE,
   payload: { error }
+});
+
+export const resetUpdateProfileInfoState = () => ({
+  type: RESET_UPDATE_PROFILE_INFO_STATE,
+  payload: { }
 });
