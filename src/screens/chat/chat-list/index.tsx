@@ -84,7 +84,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
           <View style={{flexDirection: 'row', gap: scale(8)}}>
             <TouchableOpacity
               style={styles.btnSearch}
-              onPress={() => {}}
+              onPress={() => {navigation.navigate('AddFriend')}}
             >
               <FontAwesomeIcon icon={faMagnifyingGlass} size={20} color={colors.Black}/>
             </TouchableOpacity>
@@ -98,7 +98,7 @@ const ChatListScreen: React.FC<IProps>  = () => {
 
             <TouchableOpacity
               style={styles.btnSearch}
-              onPress={() => {}}
+              onPress={() => {navigation.navigate('AddFriend')}}
             >
               <FontAwesomeIcon icon={faPlus} size={20} color={colors.Black}/>
             </TouchableOpacity>

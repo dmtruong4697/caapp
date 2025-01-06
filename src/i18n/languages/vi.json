@@ -25,6 +25,15 @@
       "common_female": "Nữ",
       "common_other": "Khác",
       "common_language": "Ngôn ngữ",
+      "common_search": "Tìm kiếm",
+      "common_see_all": "Tất cả",
+      "common_delete": "Xoá",
+      "common_reject": "Từ chối",
+      "common_rejected": "Đã từ chối",
+      "common_accept": "Đồng ý",
+
+      "send_request": "Kết bạn",
+      "undo_request": "Huỷ lời mời",
 
       "placeholder_hashtag_name": "abcdef",
       "placeholder_first_name": "Nam",

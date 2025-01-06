@@ -5,6 +5,7 @@ import { colors } from '../../styles/colors';
 import { UserInfo } from '../../models/user-info/user-info';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 interface IProps {
     title?: string,
@@ -13,6 +14,8 @@ interface IProps {
 }
 
 const ListHeader: React.FC<IProps> = ({title, renderSeeAll, onPressSeeAll}) => {
+
+  const {t} = useTranslation();
 
   return (
     <View style={styles.viewContainer}>
@@ -23,7 +26,7 @@ const ListHeader: React.FC<IProps> = ({title, renderSeeAll, onPressSeeAll}) => {
         style={styles.btnSeeAll}
         onPress={onPressSeeAll}
       >
-        <Text style={styles.txtSeeAll}>See all</Text>
+        <Text style={styles.txtSeeAll}>{t('common_see_all')}</Text>
         <FontAwesomeIcon icon={faAngleRight} style={styles.imgRightArrow} size={14} color={colors.Gray}/>
       </TouchableOpacity>
       }

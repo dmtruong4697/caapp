@@ -25,6 +25,15 @@
       "common_female": "Female",
       "common_other": "Other",
       "common_language": "Language",
+      "common_search": "Search",
+      "common_see_all": "See all",
+      "common_delete": "Delete",
+      "common_reject": "Reject",
+      "common_rejected": "Rejected",
+      "common_accept": "Accept",
+
+      "send_request": "Send request",
+      "undo_request": "Undo request",
 
       "placeholder_hashtag_name": "abcdef",
       "placeholder_first_name": "Emma",

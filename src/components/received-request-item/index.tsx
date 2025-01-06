@@ -9,6 +9,7 @@ import { acceptFriendRequestRequest, createFriendRequestRequest, createFriendReq
 import { RootState } from '../../store';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { rejectFriendRequestRequest } from '../../store/actions/friend/reject-friend-request';
 
 interface IProps {
     userInfo?: UserInfo
@@ -21,13 +22,18 @@ const ReceivedRequestItem: React.FC<IProps> = ({userInfo}) => {
     const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
     
     const friendRequestState = useSelector((state: RootState) => state.friendRequest);
+    const rejectFriendRequestState = useSelector((state: RootState) => state.rejectFriendRequest);
 
     const [isLoading, setIsLoading] = useState(false);
-    const acceptRequest = async()=> {
+    const acceptRequest = async() => {
         setIsLoading(true);
         dispatch(acceptFriendRequestRequest(userInfo!.request.id));
         setIsLoading(false);
     };
+
+    const rejectRequest = async() => {
+        dispatch(rejectFriendRequestRequest(userInfo!.request.id));
+    }
 
   return (
     <View style={styles.viewContainer}>
@@ -61,21 +67,37 @@ const ReceivedRequestItem: React.FC<IProps> = ({userInfo}) => {
             </View>
 
             <View style={styles.viewButtonGroup}>
-                <TouchableOpacity 
-                    style={styles.btnRejectButton}
-                    onPress={() => {}}
-                >
-                    <Text style={[styles.txtButton]}>Reject</Text>
-                </TouchableOpacity>
+                { !(rejectFriendRequestState.rejected_requests.includes(userInfo?.request.id))?
+                <>
+                    <TouchableOpacity 
+                        style={styles.btnRejectButton}
+                        onPress={() => {
+                            rejectRequest();
+                        }}
+                    >
+                        <Text style={[styles.txtButton]}>{t('common_reject')}</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity 
-                    style={styles.btnAcceptButton}
-                    onPress={() => {
-                        acceptRequest();
-                    }}
-                >
-                    <Text style={[styles.txtButton]}>Accept</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={styles.btnAcceptButton}
+                        onPress={() => {
+                            acceptRequest();
+                        }}
+                    >
+                        <Text style={[styles.txtButton]}>{t('common_accept')}</Text>
+                    </TouchableOpacity>
+                </>
+                :
+                <>
+                    <TouchableOpacity 
+                        style={styles.btnRejectButton}
+                        onPress={() => {}}
+                        disabled
+                    >
+                        <Text style={[styles.txtButton]}>{t('common_rejected')}</Text>
+                    </TouchableOpacity>
+                </>
+                }
             </View>
         </View>
     </View>

@@ -58,12 +58,15 @@ import { profileInfoSaga } from './sagas/profile/profile-info';
 import profileInfoReducer from './reducers/profile/profile-info';
 import updateProfileInfoReducer from './reducers/profile/update-profile-info';
 import { updateProfileInfoSaga } from './sagas/profile/update-profile-info';
+import rejectFriendRequestReducer from './reducers/friend/reject-friend-request';
+import { rejectFriendRequestSaga } from './sagas/friend/reject-friend-request';
 
 const rootReducer = combineReducers({
   auth: loginReducer,
   logout: logoutReducer,
   friend: friendReducer,
   friendRequest: friendRequestReducer,
+  rejectFriendRequest: rejectFriendRequestReducer,
   channelList: channelListReducer,
   checkFriendChannel: checkFriendChannelReducer,
   channelInfo: getChannelInfoReducer,
@@ -106,6 +109,7 @@ function* rootSaga() {
     logoutSaga(),
     friendSaga(),
     friendRequestSaga(),
+    rejectFriendRequestSaga(),
     channelListSaga(),
     checkFriendChannelSaga(),
     channelInfoSaga(),

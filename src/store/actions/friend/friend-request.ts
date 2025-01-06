@@ -12,6 +12,10 @@ export const GET_ALL_RECEIVED_REQUEST_FAILURE = "GET_ALL_RECEIVED_REQUEST_FAILUR
 export const ACCEPT_FRIEND_REQUEST_REQUEST = "ACCEPT_FRIEND_REQUEST_REQUEST";
 export const ACCEPT_FRIEND_REQUEST_SUCCESS = "ACCEPT_FRIEND_REQUEST_SUCCESS";
 export const ACCEPT_FRIEND_REQUEST_FAILURE = "ACCEPT_FRIEND_REQUEST_FAILURE";
+//reject friend request
+// export const REJECT_FRIEND_REQUEST_REQUEST = 'REJECT_FRIEND_REQUEST_REQUEST';
+// export const REJECT_FRIEND_REQUEST_SUCCESS = 'REJECT_FRIEND_REQUEST_SUCCESS';
+// export const REJECT_FRIEND_REQUEST_FAILURE = 'REJECT_FRIEND_REQUEST_FAILURE';
 
 //create friend request
 interface CreateFriendRequestRequestAction {
@@ -81,6 +85,31 @@ interface AcceptFriendRequestFailureAction {
     };
 }
 
+// //reject friend request
+// interface RejectFriendRequestRequestAction {
+//   type: typeof REJECT_FRIEND_REQUEST_REQUEST;
+//   payload: {
+//     id: number;
+//     [key: string]: any;
+//   };
+// }
+
+// interface RejectFriendRequestSuccessAction {
+//   type: typeof REJECT_FRIEND_REQUEST_SUCCESS;
+//   payload: {
+//     id: number;
+//     [key: string]: any;
+//   };
+// }
+
+// interface RejectFriendRequestFailureAction {
+//   type: typeof REJECT_FRIEND_REQUEST_FAILURE;
+//   payload: {
+//     error: any;
+//     [key: string]: any;
+//   };
+// }
+
 export type FriendRequestActionTypes = 
     | AcceptFriendRequestRequestAction
     | AcceptFriendRequestSuccessAction
@@ -92,7 +121,11 @@ export type FriendRequestActionTypes =
     
     | GetAllReceivedRequestRequestAction
     | GetAllReceivedRequestSuccessAction
-    | GetAllReceivedRequestFailureAction;
+    | GetAllReceivedRequestFailureAction
+
+    // | RejectFriendRequestRequestAction
+    // | RejectFriendRequestSuccessAction
+    // | RejectFriendRequestFailureAction;
 
 // create friend request
 export const createFriendRequestRequest = (user_id: number) => ({
@@ -135,3 +168,19 @@ export const acceptFriendRequestFailure = (error: string) => ({
     type: ACCEPT_FRIEND_REQUEST_FAILURE,
     payload: {error}
 });
+
+// reject friend request
+// export const rejectFriendRequestRequest = (id: number) => ({
+//   type: REJECT_FRIEND_REQUEST_REQUEST,
+//   payload: { id }
+// });
+
+// export const rejectFriendRequestSuccess = (id: number) => ({
+//   type: REJECT_FRIEND_REQUEST_SUCCESS,
+//   payload: { id }
+// });
+
+// export const rejectFriendRequestFailure = (error: string) => ({
+//   type: REJECT_FRIEND_REQUEST_FAILURE,
+//   payload: { error }
+// });

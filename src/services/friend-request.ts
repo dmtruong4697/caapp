@@ -74,6 +74,30 @@ export const friendRequestService = {
       throw error.response.data
     }
   },
+
+  async rejectFriendRequest(id: number): Promise<any> {
+    try {
+      const token = await AsyncStorage.getItem('token');
+
+      const response = await api.post(
+        'friend/reject-request',
+        {
+          id: id,
+        }, 
+        {
+          headers: { 
+            'Authorization': token,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response);
+      throw error.response.data
+    }
+  },
 };
 
 export default friendRequestService;

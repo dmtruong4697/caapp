@@ -29,7 +29,7 @@ const SearchHeader: React.FC<IProps> = ({userInfo}) => {
         }}
         >
             <FontAwesomeIcon icon={faSearch} size={22} color={colors.White}/>
-            <Text style={styles.txtSearch}>Tìm kiếm</Text>
+            <Text style={styles.txtSearch}>{t('common_search')}</Text>
         </Pressable>
 
         <TouchableOpacity

@@ -72,7 +72,7 @@ const SuggestUserItem: React.FC<IProps> = ({userInfo}) => {
                         console.log(userInfo?.request);
                     }}
                 >
-                    <Text style={[styles.txtButton]}>Delete</Text>
+                    <Text style={[styles.txtButton]}>{t('common_delete')}</Text>
                 </TouchableOpacity>
 
                 { (!isSentRequest) &&
@@ -82,7 +82,7 @@ const SuggestUserItem: React.FC<IProps> = ({userInfo}) => {
                         sendRequest();
                     }}
                 >
-                    <Text style={[styles.txtButton]}>Send Request</Text>
+                    <Text style={[styles.txtButton]}>{t('send_request')}</Text>
                 </TouchableOpacity>
                 }
                 { (isSentRequest) &&
@@ -93,7 +93,7 @@ const SuggestUserItem: React.FC<IProps> = ({userInfo}) => {
                     }}
                     disabled
                 >
-                    <Text style={[styles.txtButton]}>Undo Request</Text>
+                    <Text style={[styles.txtButton]}>{t('undo_request')}</Text>
                 </TouchableOpacity>
                 }
             </View>
